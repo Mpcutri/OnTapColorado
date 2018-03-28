@@ -11,7 +11,7 @@ mongoose.connect(
   }
 );
 
-const bookSeed = [
+const brewerySeed = [
   {
     title: "The Great Gatsby",
     author: "F. Scott Fitzgerald",
@@ -21,9 +21,9 @@ const bookSeed = [
   }
 ];
 
-db.Book
+db.Brewery
   .remove({})
-  .then(() => db.Book.collection.insertMany(bookSeed))
+  .then(() => db.Brewery.collection.insertMany(brewerySeed))
   .then(data => {
     console.log(data.insertedIds.length + " records inserted!");
     process.exit(0);
