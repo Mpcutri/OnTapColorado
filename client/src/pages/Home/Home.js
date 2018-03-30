@@ -9,13 +9,15 @@ import { List, ListItem } from "../../components/List";
 import { Input, TextArea, FormBtn } from "../../components/Form";
 import { ReactDOM, findDOMNode } from "react-dom";
 import $ from "jquery";
-import { compose, withProps, withHandlers } from "recompose";
+import { compose, withProps, withHandlers, withStateHandlers } from "recompose";
 import {
   withScriptjs,
   withGoogleMap,
   GoogleMap,
-  Marker
+  Marker,
+  InfoWindow
 } from "react-google-maps";
+import FaAnchor from "react-icons/lib/fa/anchor";
 
 var markers = [
 {
@@ -86,7 +88,14 @@ var markers = [
 }
 ]
 
-const MyMapComponent = compose(
+  const MapWithAMakredInfoWindow = compose(
+    withStateHandlers(() => ({
+      isOpen: false,
+    }), {
+      onToggleOpen: ({ isOpen }) => () => ({
+        isOpen: !isOpen,
+      })
+  }),
   withProps({
     /**
      * Note: create and replace your own key in the Google console.
@@ -118,25 +127,22 @@ const MyMapComponent = compose(
   withGoogleMap
 )(props => (
   <GoogleMap defaultZoom={13} defaultCenter={{ lat: 39.7393, lng: -104.9848 }} style={{ position: "relative" }}>
-    <div id="infoBox" style={{ backgroundColor: `gray`, color: "white", opacity: 0.75, padding: `12px`, position: "absolute", left: "60%", bottom: "-30%" }}>
-      <p id="infoText"></p>
-    </div>
-    {props.isMarkerShown && (
+
       <div>
         
         {markers.map(marker => (
         <Marker
           onClick={props.onMarkerClick.bind(this, marker)}
-          onMouseOver={props.showInfo.bind(this, marker)}
-          onMouseOut={props.hideInfo.bind(this, marker)}
-          key={marker.id}
-          className={marker.id}
+          onMouseOver={props.onToggleOpen.bind(this, marker)}
+          
           position={marker.position}
-        />
+        >
+          {props.isOpen && <InfoWindow onMouseOut={props.onToggleOpen}>
+        <FaAnchor />
+      </InfoWindow>}
+        </Marker>
       ))}
       </div>
-
-    )}
   </GoogleMap>
 ));
 
@@ -206,7 +212,7 @@ class Breweries extends Component {
               <h1>Breweries On My List</h1>
             </Jumbotron>
             <div id="map">
-              <MyMapComponent isMarkerShown />
+              <MapWithAMakredInfoWindow isMarkerShown />
             </div>
             {this.state.breweries.length ? (
               <List>
