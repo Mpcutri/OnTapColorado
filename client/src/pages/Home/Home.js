@@ -14,7 +14,8 @@ import {
   withScriptjs,
   withGoogleMap,
   GoogleMap,
-  Marker
+  Marker,
+  InfoWindow
 } from "react-google-maps";
 
 var markers = [
@@ -95,9 +96,9 @@ const MyMapComponent = compose(
      */
     googleMapURL:
       "https://maps.googleapis.com/maps/api/js?key=AIzaSyA3o7dy50LdekZi5WmxFMHbVK690D3KeKQ&v=3.exp&libraries=geometry,drawing,places",
-    loadingElement: <div style={{ height: `80%` }} />,
-    containerElement: <div style={{ height: `800px` }} />,
-    mapElement: <div style={{ height: `80%` }} />
+    loadingElement: <div style={{ height: `95%` }} />,
+    containerElement: <div style={{ height: `700px` }} />,
+    mapElement: <div style={{ height: `95%` }} />
   }),   
   withHandlers({
     onMarkerClick: () => (marker) => {
@@ -121,10 +122,12 @@ const MyMapComponent = compose(
     <div id="infoBox" style={{ backgroundColor: `white`, color: "black", padding: `12px`, position: "absolute", left: "60%", bottom: "-30%" }}>
       <p id="infoText"></p>
     </div>
+
     {props.isMarkerShown && (
       <div>
         
         {markers.map(marker => (
+        <div>
         <Marker
           onClick={props.onMarkerClick.bind(this, marker)}
           onMouseOver={props.showInfo.bind(this, marker)}
@@ -132,9 +135,15 @@ const MyMapComponent = compose(
           key={marker.id}
           className={marker.id}
           position={marker.position}
-        />
-      ))}
+        >
+
+      </Marker>
       </div>
+      ))}
+
+      </div>
+      
+      
 
     )}
   </GoogleMap>
