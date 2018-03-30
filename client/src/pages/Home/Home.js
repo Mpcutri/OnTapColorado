@@ -94,6 +94,9 @@ var markers = [
     }), {
       onToggleOpen: ({ isOpen }) => () => ({
         isOpen: !isOpen,
+      }), 
+      onToggleClose: ({ isNotOpen }) => () => ({
+        isOpen: isNotOpen,
       })
   }),
   withProps({
@@ -134,11 +137,12 @@ var markers = [
         <Marker
           onClick={props.onMarkerClick.bind(this, marker)}
           onMouseOver={props.onToggleOpen.bind(this, marker)}
-          
+          onMouseOut={props.onToggleClose.bind(this, marker)}
           position={marker.position}
+          key={marker.id}
         >
-          {props.isOpen && <InfoWindow onMouseOut={props.onToggleOpen}>
-        <FaAnchor />
+          {props.isOpen && <InfoWindow onMouseOut={props.onToggleClose}>
+        <p>Hello</p>
       </InfoWindow>}
         </Marker>
       ))}
