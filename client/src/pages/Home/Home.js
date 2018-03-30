@@ -9,15 +9,13 @@ import { List, ListItem } from "../../components/List";
 import { Input, TextArea, FormBtn } from "../../components/Form";
 import { ReactDOM, findDOMNode } from "react-dom";
 import $ from "jquery";
-import { compose, withProps, withHandlers, withStateHandlers } from "recompose";
+import { compose, withProps, withHandlers } from "recompose";
 import {
   withScriptjs,
   withGoogleMap,
   GoogleMap,
-  Marker,
-  InfoWindow
+  Marker
 } from "react-google-maps";
-import FaAnchor from "react-icons/lib/fa/anchor";
 
 var markers = [
 {
@@ -88,17 +86,7 @@ var markers = [
 }
 ]
 
-  const MapWithAMakredInfoWindow = compose(
-    withStateHandlers(() => ({
-      isOpen: false,
-    }), {
-      onToggleOpen: ({ isOpen }) => () => ({
-        isOpen: !isOpen,
-      }), 
-      onToggleClose: ({ isNotOpen }) => () => ({
-        isOpen: isNotOpen,
-      })
-  }),
+const MyMapComponent = compose(
   withProps({
     /**
      * Note: create and replace your own key in the Google console.
@@ -130,23 +118,25 @@ var markers = [
   withGoogleMap
 )(props => (
   <GoogleMap defaultZoom={13} defaultCenter={{ lat: 39.7393, lng: -104.9848 }} style={{ position: "relative" }}>
-
+    <div id="infoBox" style={{ backgroundColor: `white`, color: "black", padding: `12px`, position: "absolute", left: "60%", bottom: "-30%" }}>
+      <p id="infoText"></p>
+    </div>
+    {props.isMarkerShown && (
       <div>
         
         {markers.map(marker => (
         <Marker
           onClick={props.onMarkerClick.bind(this, marker)}
-          onMouseOver={props.onToggleOpen.bind(this, marker)}
-          onMouseOut={props.onToggleClose.bind(this, marker)}
-          position={marker.position}
+          onMouseOver={props.showInfo.bind(this, marker)}
+          onMouseOut={props.hideInfo.bind(this, marker)}
           key={marker.id}
-        >
-          {props.isOpen && <InfoWindow onMouseOut={props.onToggleClose}>
-        <p>Hello</p>
-      </InfoWindow>}
-        </Marker>
+          className={marker.id}
+          position={marker.position}
+        />
       ))}
       </div>
+
+    )}
   </GoogleMap>
 ));
 
@@ -216,7 +206,7 @@ class Breweries extends Component {
               <h1>Breweries On My List</h1>
             </Jumbotron>
             <div id="map">
-              <MapWithAMakredInfoWindow isMarkerShown />
+              <MyMapComponent isMarkerShown />
             </div>
             {this.state.breweries.length ? (
               <List>
