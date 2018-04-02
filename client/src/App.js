@@ -18,13 +18,19 @@ import Nav2 from "./components/Nav2";
 const DisplayLinks = props => {
   if (props.loggedIn) {
     return (
-      <nav className="navbar">
-        <ul className="nav">
-          <li className="nav-item">
-          <Nav2 userLogout={props._logout} />
-          </li>
-        </ul>
-      </nav>
+      <Router>
+      <div>
+        <Nav2 userLogout={props._logout} />
+        <Switch>
+          <Route exact path="/breweries" component={Breweries} />
+          <Route exact path="/breweries/:id" component={Detail} />
+          {/*
+          <Route exact path="/signup" component={SignUp} />
+          <Route exact path="/login" component={Login} />
+          */}
+        </Switch>
+      </div>
+    </Router>   
     )
   } else {
     return (
