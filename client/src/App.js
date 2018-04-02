@@ -20,6 +20,7 @@ const DisplayLinks = props => {
       <nav className="navbar">
         <ul className="nav">
           <li className="nav-item">
+          <Nav2 _logout={props._logout} />
             <Link to="/" className="nav-link">
               Home
             </Link>
@@ -118,7 +119,6 @@ class App extends Component {
       <div className="App">
         <Route exact path="/" render={() => <LoginStatus user={this.state.user} />} />
         <h1>This is the main App component</h1>
-        <Nav />
         {/* LINKS to our different 'pages' */}
         <DisplayLinks _logout={this._logout} loggedIn={this.state.loggedIn} />
         {/*  ROUTES */}
