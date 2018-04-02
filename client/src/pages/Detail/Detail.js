@@ -24,8 +24,6 @@ class Detail extends Component {
             <Jumbotron>
               <h1>
 
-                {this.state.brewery._id}
-
                 {this.state.brewery.brewery}
                 {console.log(this.state.brewery)}
 
