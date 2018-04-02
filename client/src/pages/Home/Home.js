@@ -2,6 +2,7 @@ import React, { Component } from "react";
 // import DeleteBtn from "../../components/DeleteBtn";
 import Jumbotron from "../../components/Jumbotron";
 import background from "./images/ccbBackground.jpg";
+import LoginStatus from "../../components/LoginStatus";
 import API from "../../utils/API";
 import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../../components/Grid";
@@ -179,6 +180,7 @@ class Breweries extends Component {
           <div id="background">
             <img src={background} style={{ width: "100%" }}/>
           </div>
+
             <Jumbotron>
               <h1>Breweries On My List</h1>
             </Jumbotron>
