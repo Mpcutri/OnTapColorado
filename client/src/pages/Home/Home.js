@@ -19,6 +19,24 @@ import {
   InfoWindow
 } from "react-google-maps";
 
+
+const style = {
+  breweryList: {
+    border: 'solid',
+  },
+  breweryProfile: {
+    float: 'right',
+    background: 'none',
+    borderRadius: "10px",
+    margin: "2.5px",
+    marginTop: "15px",
+    color: "white"
+  },
+  navbarHeader: {
+    float: 'none'
+  }
+}
+
 var markers = [
 {
   position: {lat: 39.7605, lng: -104.9824},
@@ -199,18 +217,20 @@ class Breweries extends Component {
               <MyMapComponent isMarkerShown />
             </div>
             {this.state.breweries.length ? (
-              <List>
-                {this.state.breweries.map(brewery => (
-                  <ListItem key={brewery._id}>
-                    <Link to={"/breweries/" + brewery._id}>
-                      <strong>
-                        {brewery.brewery}
-                      </strong>
-                    </Link>
-                    
-                  </ListItem>
-                ))}
-              </List>
+              <div className="brewery-list" style={style.breweryList}>
+                <List>
+                  {this.state.breweries.map(brewery => (
+                    <ListItem key={brewery._id}>
+                      <Link to={"/breweries/" + brewery._id}>
+                        <strong>
+                          {brewery.brewery}
+                        </strong>
+                      </Link>
+                      
+                    </ListItem>
+                  ))}
+                </List>
+              </div>
             ) : (
               <h3>No Results to Display</h3>
             )}
