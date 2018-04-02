@@ -7,6 +7,7 @@ import Breweries from "./pages/Breweries";
 import Detail from "./pages/Detail";
 import NoMatch from "./pages/NoMatch";
 import Nav from "./components/Nav";
+import Nav2 from "./components/Nav2";
 import SignUp from "./pages/SignUp";
 import Login from "./pages/Login";
 
@@ -20,14 +21,7 @@ const DisplayLinks = props => {
       <nav className="navbar">
         <ul className="nav">
           <li className="nav-item">
-            <Link to="/" className="nav-link">
-              Home
-            </Link>
-          </li>
-          <li>
-            <Link to="#" className="nav-link" onClick={props._logout}>
-              Logout
-            </Link>
+          <Nav2 _logout={props._logout} />
           </li>
         </ul>
       </nav>
@@ -118,7 +112,6 @@ class App extends Component {
       <div className="App">
         <Route exact path="/" render={() => <LoginStatus user={this.state.user} />} />
         <h1>This is the main App component</h1>
-        <Nav />
         {/* LINKS to our different 'pages' */}
         <DisplayLinks _logout={this._logout} loggedIn={this.state.loggedIn} />
         {/*  ROUTES */}

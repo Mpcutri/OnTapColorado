@@ -20,7 +20,7 @@ const style = {
   }
 }
 
-const Nav = () => (
+const Nav2 = props => (
   <nav className="navbar navbar-inverse navbar-top">
     <div className="container-fluid">
       <div className="navbar-header" style={style.navbarHeader}>
@@ -32,11 +32,11 @@ const Nav = () => (
         <a href="/" className="navbar-brand">
           Colorado Craft Breweries
         </a>
-        <a href="/login"><button style={style.loginButton} className="login-button">Log in!</button></a>
-        <a href="/signup"><button style={style.signupButton} className="signup-button">Sign Up!</button></a>
+        <a href="/"><button style={style.loginButton} className="login-button">Home</button></a>
+        <a href="#" className="nav-link" onClick={props._logout}><button style={style.signupButton} className="logout-button">Logout</button></a>
       </div>
     </div>
   </nav>
 );
 
-export default Nav;
+export default Nav2;
