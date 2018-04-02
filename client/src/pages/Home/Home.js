@@ -31,61 +31,71 @@ var markers = [
   position: {lat: 39.7615, lng: -104.9811},
   title: 'Ratio Beerworks',
   url: "http://www.google.com/",
-  id: "RatioBeerworks"
+  id: "RatioBeerworks",
+  _id: "5abd4bf39fa2d2a11f40b57a"
 },
 {
   position: {lat: 39.755217, lng: -104.977019},
   title: 'Spangalang Brewery',
   url: "http://www.google.com/",
   id: "SpanalangBrewery",
+  _id: "5abd4c239fa2d2a11f40b57b"
 },
 {
   position: {lat: 39.7510, lng: -104.9846},
   title: 'Woods Boss Brewing',
   url: "http://www.google.com/",
-  id: "WoodsBossBrewing"
+  id: "WoodsBossBrewing",
+  _id: "5abd4c349fa2d2a11f40b57c"
 },
 {
   position: {lat: 39.7632, lng: -104.9813},
   title: 'Epic Brewing Company',
   url: "http://www.google.com/",
-  id: "EpicBrewingCompany"
+  id: "EpicBrewingCompany",
+  _id: "5abd4c4b9fa2d2a11f40b57d"
 },
 {
   position: {lat: 39.753786, lng: -104.988500},
   title: 'Great Divide Brewing Co',
   url: "http://www.google.com/",
-  id: "GreatDivideBrewingCo"
+  id: "GreatDivideBrewingCo",
+  _id: "5abd4c649fa2d2a11f40b57e"
 },
 {
   position: {lat: 39.7523, lng: -104.9914},
   title: 'Jagged Mountain Craft Brewing',
   url: "http://www.google.com/",
-  id: "JaggedMountainCraftBrewing"
+  id: "JaggedMountainCraftBrewing",
+  _id: "5abd4c7e9fa2d2a11f40b57f"
 },
 {
   position: {lat: 39.7199, lng: -104.9877},
   title: 'TRVE Brewing Co',
   url: "http://www.google.com/",
-  id: "TRVEBrewingCo"
+  id: "TRVEBrewingCo",
+  _id: "5abd4c919fa2d2a11f40b580"
 },
 {
   position: {lat: 39.7237, lng: -105.0006},
   title: 'Crazy Mountain Brewery Tap Room',
   url: "http://www.google.com/",
-  id: "CrazyMountainBreweryTapRoom"
+  id: "CrazyMountainBreweryTapRoom",
+  _id: "5abd4ca49fa2d2a11f40b581"
 },
 {
   position: {lat: 39.7239, lng: -104.9985},
   title: 'Black Sky Brewery',
   url: "http://www.google.com/",
-  id: "BlackSkyBrewery"
+  id: "BlackSkyBrewery",
+  _id: "5abd4cb39fa2d2a11f40b582"
 },
 {
   position: {lat: 39.7306, lng: -104.9993},
   title: 'Renegade Brewing Company',
   url: "http://www.google.com/",
-  id: "RenegadeBrewingCompany"
+  id: "RenegadeBrewingCompany",
+  _id: "5abd4cc29fa2d2a11f40b583"
 }
 ];
 

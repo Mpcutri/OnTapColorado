@@ -3,13 +3,13 @@ import axios from 'axios'
 import { BrowserRouter as Router, Route, Switch, Link} from "react-router-dom";
 import LoginStatus from "./components/LoginStatus";
 import Home from "./pages/Home";
-import Breweries from "./pages/Breweries";
+import Breweries from "./pages/BreweryPortal";
 import Detail from "./pages/Detail";
 import NoMatch from "./pages/NoMatch";
 import Nav from "./components/Nav";
-import Nav2 from "./components/Nav2";
 import SignUp from "./pages/SignUp";
 import Login from "./pages/Login";
+import Nav2 from "./components/Nav2";
 
 // IF ALL FAILS: changes line 14 to exactly: const App = () => (
 // get rid of the } on line 49
@@ -22,6 +22,14 @@ const DisplayLinks = props => {
         <ul className="nav">
           <li className="nav-item">
           <Nav2 _logout={props._logout} />
+            <Link to="/" className="nav-link">
+              Home
+            </Link>
+          </li>
+          <li>
+            <Link to="#" className="nav-link" onClick={props._logout}>
+              Logout
+            </Link>
           </li>
         </ul>
       </nav>
