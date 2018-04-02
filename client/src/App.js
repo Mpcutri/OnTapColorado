@@ -2,6 +2,7 @@ import React, { Component } from 'react' // just added this one to test
 import axios from 'axios'
 import { BrowserRouter as Router, Route, Switch, Link} from "react-router-dom";
 import LoginStatus from "./components/LoginStatus";
+import Home from "./pages/Home";
 import Breweries from "./pages/Breweries";
 import Detail from "./pages/Detail";
 import NoMatch from "./pages/NoMatch";
@@ -115,12 +116,15 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+        <Route exact path="/" render={() => <LoginStatus user={this.state.user} />} />
         <h1>This is the main App component</h1>
+        <Nav />
         {/* LINKS to our different 'pages' */}
         <DisplayLinks _logout={this._logout} loggedIn={this.state.loggedIn} />
         {/*  ROUTES */}
-        {/* <Route exact path="/" component={LoginStatus} /> */}
-        <Route exact path="/" render={() => <LoginStatus user={this.state.user} />} />
+        {/* <Route exact path="/" component={Home} /> */}
+        <Route exact path="/" render={() => <Home user={this.state.user} />} />
+
         <Route
           exact
           path="/login"
