@@ -1,4 +1,7 @@
-function initMap() {
+import React from "react";
+import "./gMap.css";
+
+export const initMap = () => { 
       //Pin Location
         //Our Mutual Friend
         var myLatLng1 = {lat: 39.7605, lng: -104.9824};
