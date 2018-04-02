@@ -23,7 +23,8 @@ class Detail extends Component {
           <Col size="md-12">
             <Jumbotron>
               <h1>
-                {this.state.brewery.title} by {this.state.brewery.author}
+                {this.state.brewery.brewery}
+                {console.log(this.state.brewery)}
               </h1>
             </Jumbotron>
           </Col>
