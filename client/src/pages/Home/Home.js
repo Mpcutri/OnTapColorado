@@ -221,7 +221,7 @@ class Breweries extends Component {
                 <List>
                   {this.state.breweries.map(brewery => (
                     <ListItem key={brewery._id}>
-                      <Link to={"/breweries/" + brewery._id}>
+                      <Link onClick={this.forceUpdate} to={"/breweries/" + brewery._id}>
                         <strong>
                           {brewery.brewery}
                         </strong>

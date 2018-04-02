@@ -41,11 +41,6 @@ class Detail extends Component {
             </article>
           </Col>
         </Row>
-        <Row>
-          <Col size="md-2">
-            <Link to="/">← Back to Home</Link>
-          </Col>
-        </Row>
       </Container>
     );
   }
