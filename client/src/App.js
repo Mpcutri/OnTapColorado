@@ -3,7 +3,7 @@ import axios from 'axios'
 import { BrowserRouter as Router, Route, Switch, Link} from "react-router-dom";
 import LoginStatus from "./components/LoginStatus";
 import Home from "./pages/Home";
-import BreweryPortal from "./pages/BreweryPortal";
+import Breweries from "./pages/Breweries";
 import Detail from "./pages/Detail";
 import NoMatch from "./pages/NoMatch";
 import Nav from "./components/Nav";
@@ -38,7 +38,7 @@ const DisplayLinks = props => {
       <div>
         <Nav />
         <Switch>
-          <Route exact path="/admin/:id" component={BreweryPortal} />
+          <Route exact path="/breweries" component={Breweries} />
           <Route exact path="/breweries/:id" component={Detail} />
           {/*
           <Route exact path="/signup" component={SignUp} />
@@ -117,7 +117,7 @@ class App extends Component {
     return (
       <div className="App">
         <Route exact path="/" render={() => <LoginStatus user={this.state.user} />} />
-     
+        <h1>This is the main App component</h1>
         <Nav />
         {/* LINKS to our different 'pages' */}
         <DisplayLinks _logout={this._logout} loggedIn={this.state.loggedIn} />
