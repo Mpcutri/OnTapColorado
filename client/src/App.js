@@ -22,14 +22,6 @@ const DisplayLinks = props => {
         <ul className="nav">
           <li className="nav-item">
           <Nav2 userLogout={props._logout} />
-            <Link to="/" className="nav-link">
-              Home
-            </Link>
-          </li>
-          <li>
-            <Link to="#" className="nav-link" onClick={props._logout}>
-              Logout
-            </Link>
           </li>
         </ul>
       </nav>
