@@ -1,16 +1,19 @@
 import React from "react";
 
+// const BUTTONS = ['Default', 'Primary', 'Success', 'Info', 'Warning', 'Danger'];
+
 const style = {
-  signupButton: {
+  logoutButton: {
     float: 'right',
-    backgroundColor: 'blue',
+    background: "blue",
     margin: "2.5px",
     marginTop: "15px",
     color: "white",
   },
-  loginButton: {
+  breweryProfile: {
     float: 'right',
-    backgroundColor: 'orange',
+    background: 'none',
+    borderRadius: "10px",
     margin: "2.5px",
     marginTop: "15px",
     color: "white"
@@ -19,6 +22,7 @@ const style = {
     float: 'none'
   }
 }
+
 
 const Nav2 = props => (
   <nav className="navbar navbar-inverse navbar-top">
@@ -32,8 +36,18 @@ const Nav2 = props => (
         <a href="/" className="navbar-brand">
           Colorado Craft Breweries
         </a>
-        <a href="/"><button style={style.loginButton} className="login-button">Home</button></a>
-        <a href="#" className="nav-link" onClick={props._logout}><button style={style.signupButton} className="logout-button">Logout</button></a>
+
+        <div className="btn-group">
+          <span className="glyphicon glyphicon-user brewery-profile btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"aria-hidden="true" style={style.breweryProfile}></span>
+          <ul className="dropdown-menu">
+            <li><a href="#">View Profile</a></li>
+            <li><a href="#">Visit Brewery Page</a></li>
+            <li role="separator" className="divider"></li>
+            <li><a href="#">Sign out</a></li>
+          </ul>
+        </div>
+
+        <a href="#" onClick={props.userLogout}><button style={style.logoutButton} className="logout-button">Logout</button></a>
       </div>
     </div>
   </nav>
