@@ -3,7 +3,7 @@ import axios from 'axios'
 import { BrowserRouter as Router, Route, Switch, Link} from "react-router-dom";
 import LoginStatus from "./components/LoginStatus";
 import Home from "./pages/Home";
-import Breweries from "./pages/Breweries";
+import Breweries from "./pages/BreweryPortal";
 import Detail from "./pages/Detail";
 import NoMatch from "./pages/NoMatch";
 import Nav from "./components/Nav";
