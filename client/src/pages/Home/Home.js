@@ -194,7 +194,7 @@ class Breweries extends Component {
                   <ListItem key={brewery._id}>
                     <Link to={"/breweries/" + brewery._id}>
                       <strong>
-                        {brewery.local.brewery}
+                        {brewery.brewery}
                       </strong>
                     </Link>
                     
