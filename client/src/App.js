@@ -9,6 +9,7 @@ import NoMatch from "./pages/NoMatch";
 import Nav from "./components/Nav";
 import SignUp from "./pages/SignUp";
 import Login from "./pages/Login";
+import Nav2 from "./components/Nav2";
 
 // IF ALL FAILS: changes line 14 to exactly: const App = () => (
 // get rid of the } on line 49
