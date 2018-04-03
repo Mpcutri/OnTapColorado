@@ -56,11 +56,12 @@ router.post('/signup', (req, res) => {
 		const newUser = new User({
 			'local.username': username,
 			'local.password': password,
-			'local.brewery': brewery,
-			'local.location': location,
-			'local.website': website,
-			'local.phone_number': phone_number,
-			'local.beer': beer
+			'brewery': brewery,
+			'breweryURL': breweryURL,
+			'location': location,
+			'website': website,
+			'phone_number': phone_number,
+			'beer': beer
 		})
 		console.log(newUser);
 		newUser.save((err, savedUser) => {
