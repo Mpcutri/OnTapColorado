@@ -15,7 +15,11 @@ const PORT = process.env.PORT || 3001;
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 // Serve up static assets
+if (process.env.NODE_ENV === "production") {
 app.use(express.static("client/build"));
+} else {
+app.use(express.static("public"));
+}
 
 app.use((req, res, next) => {
 	console.log(req.path);
