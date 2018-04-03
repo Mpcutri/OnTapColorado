@@ -117,8 +117,8 @@ const DisplayLinks = props => {
     return (
       <Router>
       <div>
-        {console.log(this.state.id)}
-        <Nav2 userLogout={props._logout} id={props.state.id}/>
+        {console.log(id)}
+        <Nav2 userLogout={props._logout} id={props.id}/>
         <Switch>
           <Route exact path="/admin/:id" component={Breweries} />
           <Route exact path="/breweries/:id" component={Detail} />
