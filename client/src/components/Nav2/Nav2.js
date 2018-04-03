@@ -71,7 +71,7 @@ const Nav2 = props => (
             <li><a href={"/breweries/" + props.id}>Visit Brewery Page</a></li>
 
             <li role="separator" className="divider"></li>
-            <li className="logout" onClick={props.userLogout}>Sign out</li>
+            <li> <a className="logout" onClick={props.userLogout}>Sign out</a></li>
           </ul>
         </div>
         {/*onClick={(e) => {props.userLogout(e); console.log(this); this.forceUpdate();}}*/}
