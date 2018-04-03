@@ -89,7 +89,6 @@ class App extends Component {
     } else {
     return (
       <div className="App">
-        <Route exact path="/" render={() => <LoginStatus user={this.state.user} />} />
         {/* LINKS to our different 'pages' */}
         <DisplayLinks _logout={this._logout} loggedIn={this.state.loggedIn} />
         {/*  ROUTES */}
