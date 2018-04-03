@@ -39,7 +39,7 @@ class App extends Component {
         this.setState({
           loggedIn: true,
           user: response.data.user,
-          id: response.data._id
+          id: response.data.user._id
         })
       } else {
         this.setState({
@@ -90,7 +90,7 @@ class App extends Component {
     return (
       <div className="App">
         {/* LINKS to our different 'pages' */}
-        <DisplayLinks _logout={this._logout} loggedIn={this.state.loggedIn} />
+        <DisplayLinks _logout={this._logout} loggedIn={this.state.loggedIn} id={this.state.id}/>
         {/*  ROUTES */}
         {/* <Route exact path="/" component={Home} /> */}
         <Route exact path="/" render={() => <Home user={this.state.user} />} />

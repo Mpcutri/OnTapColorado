@@ -40,9 +40,9 @@ const Nav2 = props => (
         <div className="btn-group">
           <span className="glyphicon glyphicon-user brewery-profile btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"aria-hidden="true" style={style.breweryProfile}></span>
           <ul className="dropdown-menu">
-            {console.log(props.id)}
+            {console.log(props)}
             <li><a href={"/admin/" + props.id}>View Profile</a></li>
-            <li><a href="#">Visit Brewery Page</a></li>
+            <li><a href={"/breweries/" + props.id}>Visit Brewery Page</a></li>
             <li role="separator" className="divider"></li>
             <li><a href="#">Sign out</a></li>
           </ul>
