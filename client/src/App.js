@@ -58,7 +58,8 @@ class App extends Component {
       if (response.status === 200) {
         this.setState({
           loggedIn: false,
-          user: null
+          user: null,
+          redirectTo: '/'
         })
       }
     })
