@@ -40,7 +40,7 @@ class Detail extends Component {
       .then(res => this.setState({ website: res.data }))
       .then(res => this.setState({ beers: res.data }))
       .catch(err => console.log(err));
-  }
+  } 
 
   render() {
     return (

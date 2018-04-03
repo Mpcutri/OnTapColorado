@@ -39,10 +39,10 @@ const beerSchema = new Schema({
   type: {
     type: String, // lager, ipa, porter . . etc.
   },
-  ABV: {
+  abv: {
     type: Number,
   },
-  IBU: {
+  ibu: {
     type: Number,
   },
   onTap: {
