@@ -25,22 +25,16 @@ const style = {
 class Detail extends Component {
   state = {
     brewery: "",
-    location: "",
-    phone_number: "",
-    website: "",
     beers: []
   };
   // When this component mounts, grab the brewery with the _id of this.props.match.params.id
   // e.g. localhost:3000/breweries/599dcb67f0f16317844583fc
   componentDidMount() {
     API.getBrewery(this.props.match.params.id)
-      .then(res => this.setState({ brewery: res.data }))
-      .then(res => this.setState({ location: res.data }))
-      .then(res => this.setState({ phone_number: res.data }))
-      .then(res => this.setState({ website: res.data }))
-      .then(res => this.setState({ beers: res.data }))
+      .then(res => this.setState({ brewery: res.data, beers: res.data.beer }))
       .catch(err => console.log(err));
   } 
+
 
   render() {
     return (
@@ -72,11 +66,11 @@ class Detail extends Component {
             {this.state.beers.length ? (
               <div className="brewery-list" style={style.breweryList}>
                 <List>
-                  {this.state.beers.map(brewery => (
-                    <ListItem key={brewery._id}>
-                      <Link>
+                  {this.state.beers.map(beer => (
+                    <ListItem key={beer._id}>
+                      <Link onClick={this.forceUpdate} to={"/breweries/" + beer._id}>
                         <strong>
-                          {brewery.brewery}
+                          {beer.name}
                         </strong>
                       </Link>
                     </ListItem>
