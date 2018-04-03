@@ -56,7 +56,6 @@ class Detail extends Component {
       .catch(err => console.log(err));
   } 
 
-
   handleClick = (e) => {
     e.preventDefault();
     window.location = this.state.brewery.website;
