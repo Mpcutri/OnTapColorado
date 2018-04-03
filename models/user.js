@@ -29,6 +29,8 @@ const userSchema = new Schema({
 	// lastName: { type: String }
 })
 
+// minor change
+
 const beerSchema = new Schema({
   name: {
     type: String,
