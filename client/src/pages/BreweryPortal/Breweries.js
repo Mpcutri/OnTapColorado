@@ -9,28 +9,40 @@ import { Input, TextArea, FormBtn } from "../../components/Form";
 
 class Breweries extends Component {
   state = {
-    breweries: [],
-    title: "",
-    author: "",
-    synopsis: ""
+    brewery: [],
+    beers: [],
+    id: null,
+    name: null,
+    type: null,
+    abv: null,
+    ibu: null,
+    description: null
   };
 
   componentDidMount() {
-    this.loadBreweries();
+    this.loadBreweryInfo();
+    console.log(this.state.brewery)
   }
 
   loadBreweries = () => {
     API.getBreweries()
       .then(res =>
-        this.setState({ breweries: res.data, title: "", author: "", synopsis: "" })
+        this.setState({ brewery: res.data })
       )
       .catch(err => console.log(err));
   };
 
-  deleteBreweries = id => {
-    API.deleteBreweries(id)
+  loadBreweryInfo = () => {
+    API.getBrewery(this.props.match.params.id)
+      .then(res => this.setState({ brewery: res.data, beers: res.data.beer, id: res.data._id }))
+      .catch(err => console.log(err));
+  };
+
+  deleteBeer = (id, name) => {
+    API.deleteBeer(id, name)
       .then(res => this.loadBreweries())
       .catch(err => console.log(err));
+      console.log(id)
   };
 
   handleInputChange = event => {
@@ -42,13 +54,17 @@ class Breweries extends Component {
 
   handleFormSubmit = event => {
     event.preventDefault();
-    if (this.state.title && this.state.author) {
-      API.saveBrewery({
-        title: this.state.title,
-        author: this.state.author,
-        synopsis: this.state.synopsis
+    console.log(this.state.id)
+    if (this.state.name) {
+      API.saveBeer({
+        name: this.state.name,
+        type: this.state.type,
+        abv: this.state.abv,
+        ibu: this.state.ibu,
+        description: this.state.description,
+        id: this.state.id
       })
-        .then(res => this.loadBreweries())
+        .then(res => this.loadBreweryInfo())
         .catch(err => console.log(err));
     }
   };
@@ -57,51 +73,81 @@ class Breweries extends Component {
     return (
       <Container fluid>
         <Row>
+        <Col size="md-12">
+          <Jumbotron>
+          <Col size="md-6">
+            <h1>{this.state.brewery.brewery}</h1>
+            <h2>{this.state.brewery.website}</h2>
+          </Col>
+          <Col size="md-6">
+            
+            <h2>{this.state.brewery.location}</h2>
+            <h2>{this.state.brewery.phone_number}</h2>
+          </Col>
+          </Jumbotron>
+        </Col>
+        </Row>
+        <Row>
           <Col size="md-6">
             <Jumbotron>
-              <h1>What Breweries Should I Visit?</h1>
+              <h1>Add a beer to your tap list!</h1>
             </Jumbotron>
             <form>
               <Input
-                value={this.state.title}
+                value={this.state.name}
                 onChange={this.handleInputChange}
-                name="title"
-                placeholder="Title (required)"
+                name="name"
+                placeholder="Name (required)"
               />
               <Input
-                value={this.state.author}
+                value={this.state.type}
                 onChange={this.handleInputChange}
-                name="author"
-                placeholder="Author (required)"
+                name="type"
+                placeholder="Type"
+              />
+              <Input
+                value={this.state.abv}
+                onChange={this.handleInputChange}
+                name="abv"
+                placeholder="ABV"
+              />
+              <Input
+                value={this.state.ibu}
+                onChange={this.handleInputChange}
+                name="ibu"
+                placeholder="IBUs"
               />
               <TextArea
-                value={this.state.synopsis}
+                value={this.state.description}
                 onChange={this.handleInputChange}
-                name="synopsis"
-                placeholder="Synopsis (Optional)"
+                name="description"
+                placeholder="Description (Optional)"
               />
               <FormBtn
-                disabled={!(this.state.author && this.state.title)}
+                disabled={!(this.state.abv)}
                 onClick={this.handleFormSubmit}
               >
-                Submit Brewery
+                Add Beer
               </FormBtn>
             </form>
           </Col>
           <Col size="md-6 sm-12">
             <Jumbotron>
-              <h1>Brewerys On My List</h1>
+              <h1>Beers On My List</h1>
             </Jumbotron>
-            {this.state.breweries.length ? (
+            {console.log(this.state.brewery)}
+            {console.log(this.state.beers)}
+            {this.state.beers.length ? (
               <List>
-                {this.state.breweries.map(brewery => (
-                  <ListItem key={brewery._id}>
-                    <Link to={"/breweries/" + brewery._id}>
+                {this.state.beers.map(beer => (
+                  <ListItem key={beer.name}>
+                    <Link to={"/breweries/" + beer.name}>
                       <strong>
-                        {brewery.title} by {brewery.author}
+                        {beer.name}
+                        {console.log(beer.name)}
                       </strong>
                     </Link>
-                    <DeleteBtn onClick={() => this.deleteBrewery(brewery._id)} />
+                    <DeleteBtn onClick={() => this.deleteBeer(this.state.id, beer.name)} />
                   </ListItem>
                 ))}
               </List>

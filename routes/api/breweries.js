@@ -10,7 +10,7 @@ router.route("/")
 router
   .route("/:id")
   .get(breweriesController.findById)
-  .put(breweriesController.update)
-  .delete(breweriesController.remove);
+  .post(breweriesController.update)
+  .put(breweriesController.remove);
 
 module.exports = router;

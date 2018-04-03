@@ -10,11 +10,18 @@ export default {
     return axios.get("/api/breweries/" + id);
   },
   // Deletes the brewery with the given id
-  deleteBrewery: function(id) {
-    return axios.delete("/api/breweries/" + id);
+  deleteBeer: function(id, name) {
+    console.log(id)
+    console.log(name)
+    return axios.put("/api/breweries/" + id, name);
   },
   // Saves a brewery to the database
   saveBrewery: function(breweryData) {
     return axios.post("/api/breweries", breweryData);
+  },
+
+  saveBeer: function(beerData) {
+    console.log(beerData)
+    return axios.post("/api/breweries/" + beerData.id, beerData);
   }
 };

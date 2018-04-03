@@ -18,6 +18,7 @@ import {
   Marker,
   InfoWindow
 } from "react-google-maps";
+// import brewMark from "./markers.js";
 
 
 const style = {
@@ -35,6 +36,22 @@ const style = {
   navbarHeader: {
     float: 'none'
   }
+}
+
+var dynamicMarkers = [];
+var dyMark = []
+var markers2 = 
+    API.getBreweries()
+      .then(res =>
+        dynamicMarkers.push(res.data)
+
+      )
+      .catch(err => console.log(err));
+console.log(markers2)
+console.log(dynamicMarkers);
+
+for (var i = 0; i < dynamicMarkers.length; i++) {
+  dyMark.push(dynamicMarkers[i])
 }
 
 var markers = [
@@ -117,62 +134,9 @@ var markers = [
 }
 ];
 
-    const MyMapComponent = compose(
-      withProps({
-        googleMapURL:
-          "https://maps.googleapis.com/maps/api/js?key=AIzaSyA3o7dy50LdekZi5WmxFMHbVK690D3KeKQ&v=3.exp&libraries=geometry,drawing,places",
-        loadingElement: <div style={{ height: `95%` }} />,
-        containerElement: <div style={{ height: `700px` }} />,
-        mapElement: <div style={{ height: `95%` }} />
-      }),   
-      withHandlers({
-        onMarkerClick: () => (marker) => {
-          console.log(marker.id)
-          console.log('Go to the marker post page')
-          window.location = '/breweries/' + marker._id;
-        },
-        showInfo: () => (marker) => {
-          $("#infoBox").show()
-          $("#infoText").text(marker.title)
-        },
-        hideInfo: () => (marker) => {
-          $("#infoBox").hide()
-          $("#infoText").text("")
-        }
-      }),
-      withScriptjs,
-      withGoogleMap
-    )(props => (
-      <GoogleMap defaultZoom={13} defaultCenter={{ lat: 39.7393, lng: -104.9848 }} style={{ position: "relative" }}>
-        <div id="infoBox" style={{ backgroundColor: `white`, color: "black", padding: `12px`, position: "absolute", left: "60%", bottom: "-30%" }}>
-          <p id="infoText"></p>
-        </div>
 
-        {props.isMarkerShown && (
-          <div>
-            
-            {markers.map(brewery => (
-            <div>
-            <Marker
-              onClick={props.onMarkerClick.bind(this, brewery)}
-              onMouseOver={props.showInfo.bind(this, brewery)}
-              onMouseOut={props.hideInfo.bind(this, brewery)}
-              key={brewery.id}
-              className={brewery.id}
-              position={brewery.position}
-            >
 
-          </Marker>
-          </div>
-          ))}
 
-          </div>
-          
-          
-
-        )}
-      </GoogleMap>
-    ));
 
 class Breweries extends Component {
   state = {
@@ -181,9 +145,7 @@ class Breweries extends Component {
 
   componentDidMount() {
     this.loadBreweries();
-
-
-  }
+  };
 
   loadBreweries = () => {
     API.getBreweries()
@@ -216,6 +178,7 @@ class Breweries extends Component {
             <div id="map">
               <MyMapComponent isMarkerShown />
             </div>
+            {console.log(this.state.breweries)}
             {this.state.breweries.length ? (
               <div className="brewery-list" style={style.breweryList}>
                 <List>
@@ -239,5 +202,63 @@ class Breweries extends Component {
     );
   }
 }
+
+const MyMapComponent = compose(
+  withProps({
+    googleMapURL:
+      "https://maps.googleapis.com/maps/api/js?key=AIzaSyA3o7dy50LdekZi5WmxFMHbVK690D3KeKQ&v=3.exp&libraries=geometry,drawing,places",
+    loadingElement: <div style={{ height: `95%` }} />,
+    containerElement: <div style={{ height: `700px` }} />,
+    mapElement: <div style={{ height: `95%` }} />
+  }),   
+  withHandlers({
+    onMarkerClick: () => (marker) => {
+      console.log(marker.id)
+      console.log('Go to the marker post page')
+      window.location = '/breweries/' + marker._id;
+    },
+    showInfo: () => (marker) => {
+      $("#infoBox").show()
+      $("#infoText").text(marker.title)
+    },
+    hideInfo: () => (marker) => {
+      $("#infoBox").hide()
+      $("#infoText").text("")
+    }
+  }),
+  withScriptjs,
+  withGoogleMap
+)(props => (
+  <GoogleMap defaultZoom={13} defaultCenter={{ lat: 39.7393, lng: -104.9848 }} style={{ position: "relative" }}>
+    <div id="infoBox" style={{ backgroundColor: `white`, color: "black", padding: `12px`, position: "absolute", left: "60%", bottom: "-30%" }}>
+      <p id="infoText"></p>
+    </div>
+
+    {props.isMarkerShown && (
+      <div>
+        {console.log(dyMark)}
+        {markers.map(brewery => (
+        <div>
+        <Marker
+          onClick={props.onMarkerClick.bind(this, brewery)}
+          onMouseOver={props.showInfo.bind(this, brewery)}
+          onMouseOut={props.hideInfo.bind(this, brewery)}
+          key={brewery.id}
+          className={brewery.id}
+          position={brewery.position}
+        >
+
+      </Marker>
+      </div>
+      ))}
+
+      </div>
+      
+      
+
+    )}
+  </GoogleMap>
+));
+
 
 export default Breweries;

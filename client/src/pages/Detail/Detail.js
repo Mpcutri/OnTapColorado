@@ -14,7 +14,7 @@ class Detail extends Component {
     API.getBrewery(this.props.match.params.id)
       .then(res => this.setState({ brewery: res.data }))
       .catch(err => console.log(err));
-  }
+  } 
 
   render() {
     return (
