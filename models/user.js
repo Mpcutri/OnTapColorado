@@ -6,15 +6,15 @@ mongoose.promise = Promise
 // Define userSchema
 const userSchema = new Schema({
 
-	brewery: { type: String, unique: false, required: false },
-	breweryURL: { type: String, unique: false, required: false },
-	location: { type: String, unique: false, required: false },
-	website: { type: String, unique: false, required: false },
-	phone_number: { type: String, unique: false, required: false },
+	brewery: { type: String, unique: false },
+	breweryURL: { type: String, unique: false },
+	location: { type: String, unique: false },
+	website: { type: String, unique: false },
+	phone_number: { type: String, unique: false },
 	beer: [],
 	local: {
 		username: { type: String, unique: false, required: false },
-		password: { type: String, unique: false, required: false }	
+		password: { type: String, required: false }	
 	},
 	photos: []
 	// local: {

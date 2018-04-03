@@ -9,13 +9,21 @@ const MongoStore = require('connect-mongo')(session);
 const app = express();
 const PORT = process.env.PORT || 3001;
 
-
+if (process.env.NODE_ENV === "production") {
+app.use(express.static("client/build"));
+} else {
+app.use(express.static("public"));
+}
 // mongoose.connect("mongodb://heroku_1zh96hjn:8ein2g5l10u4ctrrhlj7euo0kh@ds127129.mlab.com:27129/heroku_1zh96hjn")
 // Configure body parser for AJAX requests
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-// Serve up static assets
+
+if (process.env.NODE_ENV === "production") {
 app.use(express.static("client/build"));
+} else {
+app.use(express.static("public"));
+}
 
 app.use((req, res, next) => {
 	console.log(req.path);

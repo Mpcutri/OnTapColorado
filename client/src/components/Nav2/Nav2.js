@@ -65,9 +65,11 @@ const Nav2 = props => (
             <img src={Nav2Icon} style={{ width: "15%", height: "15%" }} className="brewery-profile dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"aria-hidden="true" style={style.breweryProfile} />
           
           <ul className="dropdown-menu">
-            {console.log(props.id)}
-            <li><a href="/admin + props.id">View Profile</a></li>
-            <li><a href="">Visit Brewery Page</a></li>
+
+            {console.log(props)}
+            <li><a href={"/admin/" + props.id}>View Profile</a></li>
+            <li><a href={"/breweries/" + props.id}>Visit Brewery Page</a></li>
+
             <li role="separator" className="divider"></li>
             <li className="logout" onClick={props.userLogout}>Sign out</li>
           </ul>
