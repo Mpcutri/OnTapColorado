@@ -1,0 +1,9 @@
+.dropdown-menu {
+	left: auto;
+	right: 0;
+	margin-right: 5px;
+}
+
+.open .dropdown-menu {
+    opacity: 0;
+}
