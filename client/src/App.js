@@ -15,7 +15,7 @@ import { Redirect } from 'react-router-dom'
 // IF ALL FAILS: changes line 14 to exactly: const App = () => (
 // get rid of the } on line 49
 // and comment out the entire class App
-let id = null;
+let id;
 
 class App extends Component {
   constructor() {
@@ -117,7 +117,7 @@ const DisplayLinks = props => {
       <Router>
       <div>
         {console.log(id)}
-        <Nav2 userLogout={props._logout} id={id}/>
+        <Nav2 userLogout={props._logout} id={props.id}/>
         <Switch>
           <Route exact path="/admin/:id" component={Breweries} />
           <Route exact path="/breweries/:id" component={Detail} />
