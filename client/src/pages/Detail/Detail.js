@@ -22,6 +22,27 @@ const style = {
   }
 }
 
+// const beerSchema = new Schema({
+//  name: {
+//    type: String,
+//  },
+//  description: {
+//    type: String,
+//  },
+//  type: {
+//    type: String, // lager, ipa, porter . . etc.
+//  },
+//  abv: {
+//    type: Number,
+//  },
+//  ibu: {
+//    type: Number,
+//  },
+//  onTap: {
+//    type: Boolean,
+//  },
+// });
+
 class Detail extends Component {
   state = {
     brewery: "",
@@ -35,6 +56,12 @@ class Detail extends Component {
       .catch(err => console.log(err));
   } 
 
+
+  handleClick = (e) => {
+    e.preventDefault();
+    window.location = this.state.brewery.website;
+    console.log('The link was clicked.');
+  }
 
   render() {
     return (
@@ -52,7 +79,10 @@ class Detail extends Component {
                 {this.state.brewery.phone_number}
               </p>
               <p>
-                {this.state.brewery.website}
+                <a 
+                  onClick={this.handleClick}>
+                  {this.state.brewery.website}
+                </a>
               </p>
             </Jumbotron>
           </Col>
@@ -68,11 +98,35 @@ class Detail extends Component {
                 <List>
                   {this.state.beers.map(beer => (
                     <ListItem key={beer._id}>
-                      <Link onClick={this.forceUpdate} to={"/breweries/" + beer._id}>
-                        <strong>
-                          {beer.name}
-                        </strong>
-                      </Link>
+                      <Row>
+                        <Col size="md-5 md-offset-1">
+                          <strong>
+                          <h2>
+                            {beer.name}
+                          </h2>
+                          </strong>
+                          <p>
+                            Type: {beer.type}
+                          </p>
+                          <p>
+                            ABV: {beer.abv}
+                          </p>
+                          <p>
+                            IBU: {beer.ibu}
+                          </p>
+                        </Col>
+                        <Col size="md-5 md-offset-1">
+                          <strong>
+                          <p>
+                            Description
+                          </p>
+                          </strong>
+                          <p>
+                            {beer.description}
+                          </p>
+                        </Col>
+                      </Row>
+                      
                     </ListItem>
                   ))}
                 </List>
@@ -80,7 +134,6 @@ class Detail extends Component {
             ) : (
               <h3>No Results to Display</h3>
             )}
-
 
           </Col>
         </Row>
