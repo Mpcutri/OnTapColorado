@@ -71,23 +71,33 @@ class Breweries extends Component {
     }
   };
 
+  handleClick = (e) => {
+    e.preventDefault();
+    window.location = this.state.brewery.website;
+    console.log('The link was clicked on bwerery portal.');
+  }
+
   render() {
     return (
       <Container fluid>
         <Row>
-        <Col size="md-12">
-          <Jumbotron>
-          <Col size="md-6">
-            <h1>{this.state.brewery.brewery}</h1>
-            <h2>{this.state.brewery.website}</h2>
+          <Col size="md-12">
+            <Jumbotron>
+              <Col size="md-6">
+              <img src={this.state.brewery.img}
+                <h1>{this.state.brewery.brewery}</h1>
+                <p>
+                  <a onClick={this.handleClick}>
+                      {this.state.brewery.website}
+                  </a>
+                </p>
+              </Col>
+              <Col size="md-6">
+                <h2>{this.state.brewery.location}</h2>
+                <p>{this.state.brewery.phone_number}</p>
+              </Col>
+            </Jumbotron>
           </Col>
-          <Col size="md-6">
-            
-            <h2>{this.state.brewery.location}</h2>
-            <h2>{this.state.brewery.phone_number}</h2>
-          </Col>
-          </Jumbotron>
-        </Col>
         </Row>
         <Row>
           <Col size="md-6">
