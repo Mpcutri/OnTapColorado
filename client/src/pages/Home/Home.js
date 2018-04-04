@@ -151,7 +151,7 @@ class Breweries extends Component {
       <Container>
         <Row>
           <div id="background">
-            <img src={background} style={{ width: "100%" }}/>
+            <img src={background} style={{ width: "100%", marginBottom: "25px" }}/>
           </div>
             
             <div id="map">
@@ -207,7 +207,7 @@ const MyMapComponent = compose(
   withScriptjs,
   withGoogleMap
 )(props => (
-  <GoogleMap defaultZoom={13} defaultCenter={{ lat: 39.7393, lng: -104.9848 }} style={{ position: "relative" }}>
+  <GoogleMap defaultZoom={13} defaultCenter={{ lat: 39.7393, lng: -104.9848 }} style={{ position: "relative"}}>
     <div id="infoBox" style={{ backgroundColor: `white`, color: "black", padding: `12px`, position: "absolute", left: "60%", bottom: "-30%" }}>
       <p id="infoText"></p>
     </div>

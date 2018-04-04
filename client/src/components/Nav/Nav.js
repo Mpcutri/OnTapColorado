@@ -1,4 +1,7 @@
 import React from "react";
+import "./Nav.css";
+import $ from "jquery";
+
 
 const style = {
   signupButton: {
@@ -20,6 +23,7 @@ const style = {
   }
 }
 
+
 const Nav = () => (
   <nav className="navbar navbar-inverse navbar-top">
     <div className="container-fluid">
@@ -33,6 +37,12 @@ const Nav = () => (
           Colorado Craft Breweries
         </a>
         <a href="/login"><button style={style.loginButton} className="login-button">Log in!</button></a>
+
+      <form id="demo-2">
+        <input type="search" placeholder="Search" />
+      </form>
+
+
         <a href="/signup"><button style={style.signupButton} className="signup-button">Sign Up!</button></a>
       </div>
     </div>

@@ -7,23 +7,20 @@ const session = require('express-session');
 const router = require('./auth');
 const MongoStore = require('connect-mongo')(session);
 const app = express();
+const path = require("path");
 const PORT = process.env.PORT || 3001;
 
-if (process.env.NODE_ENV === "production") {
+// if (process.env.NODE_ENV === "production") { // this line identifies if we're in the production version of the app
+// app.use(express.static("client/build"));
+// } else {
+// app.use(express.static("public"));
+// }
 app.use(express.static("client/build"));
-} else {
-app.use(express.static("public"));
-}
+
 // mongoose.connect("mongodb://heroku_1zh96hjn:8ein2g5l10u4ctrrhlj7euo0kh@ds127129.mlab.com:27129/heroku_1zh96hjn")
 // Configure body parser for AJAX requests
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-
-if (process.env.NODE_ENV === "production") {
-app.use(express.static("client/build"));
-} else {
-app.use(express.static("public"));
-}
 
 app.use((req, res, next) => {
 	console.log(req.path);
@@ -78,10 +75,13 @@ app.use(passport.initialize())
 app.use(passport.session()) // will call the deserializeUser
 app.use('/auth', require('./auth'))
 
+
+// ========= HEROKU BUILD =========
+
 // If no API routes are hit, send the React app
-// app.use(function(req, res) {
-//   res.sendFile(path.join(__dirname, "../client/build/index.html"));
-// });
+app.use(function(req, res) {
+  res.sendFile(path.join(__dirname, "./client/build/index.html"));
+});
 
 
 // Start the API server

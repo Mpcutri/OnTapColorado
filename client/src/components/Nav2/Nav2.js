@@ -80,6 +80,7 @@ const Nav2 = props => (
       </div>
     </div>
   </nav>
+
 );
 
 export default Nav2;
