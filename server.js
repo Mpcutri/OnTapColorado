@@ -11,9 +11,9 @@ const path = require("path");
 const PORT = process.env.PORT || 3001;
 
 // if (process.env.NODE_ENV === "production") { // this line identifies if we're in the production version of the app
-// app.use(express.static("client/build"));
+app.use(express.static("client/build"));
 // } else {
-app.use(express.static("public"));
+// app.use(express.static("public"));
 // }
 // app.use(express.static("client/build"));
 
@@ -79,9 +79,9 @@ app.use('/auth', require('./auth'))
 // ========= HEROKU BUILD =========
 
 // If no API routes are hit, send the React app
-// app.use(function(req, res) {
-  // res.sendFile(path.join(__dirname, "./client/build/index.html"))
-// });
+app.use(function(req, res) {
+  res.sendFile(path.join(__dirname, "./client/build/index.html"))
+});
 
 
 // Start the API server
