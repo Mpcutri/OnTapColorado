@@ -182,12 +182,10 @@ class Breweries extends Component {
                 {this.state.beers.map((beer, index) => (
                   beer.onTap ? (
                       <ListItem key={beer.name} id={index}>
-                        <Link to={"/breweries/" + beer.name}>
-                          <strong>
+                          <span style={{fontSize: 20}}>
                             {beer.name}
                             {console.log(beer.name)}
-                          </strong>
-                        </Link>
+                          </span>
                         <DeleteBtn onClick={() => this.deleteBeer(index)} />
                         <UpdateBtn onClick={() => this.toggleBeer(index)} />
                       </ListItem>
@@ -198,12 +196,10 @@ class Breweries extends Component {
                 {this.state.beers.map((beer, index) => (
                   !beer.onTap ? (
                       <ListItem key={beer.name} id={index}>
-                        <Link to={"/breweries/" + beer.name}>
-                          <strong>
+                          <span style={{fontSize: 20}}>
                             {beer.name}
                             {console.log(beer.name)}
-                          </strong>
-                        </Link>
+                          </span>
                         <DeleteBtn onClick={() => this.deleteBeer(index)} />
                         <UpdateBtn onClick={() => this.toggleBeer(index)} />
                       </ListItem>
