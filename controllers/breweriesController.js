@@ -44,5 +44,12 @@ module.exports = {
       .where( { _id: req.params.id } )
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
-  }
+  },
+  updateBreweryInfo: function(req, res) {
+    console.log("reqbody: ", req.body)
+    db.User
+      .findOneAndUpdate({ _id: req.params.id }, {$set:{ brewery: req.body.brewery, location: req.body.location, website: req.body.website, phone_number: req.body.phone_number }} )
+      .then(dbModel => res.json(dbModel))
+      .catch(err => res.status(422).json(err));
+  },
 };

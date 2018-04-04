@@ -9,32 +9,28 @@ import { Input, TextArea, FormBtn } from "../../components/Form";
 
 class Breweries extends Component {
   state = {
-    brewery: [],
+    currentBrewery: [],
     beers: [],
     id: null,
     name: null,
     type: null,
     abv: null,
     ibu: null,
-    description: null
+    description: null,
+    brewery: null,
+    location: null,
+    website: null,
+    phone_number: null
   };
 
   componentDidMount() {
     this.loadBreweryInfo();
-    console.log(this.state.brewery)
+    console.log(this.state.currentBrewery)
   }
-
-  loadBreweries = () => {
-    API.getBreweries()
-      .then(res =>
-        this.setState({ brewery: res.data })
-      )
-      .catch(err => console.log(err));
-  };
 
   loadBreweryInfo = () => {
     API.getBrewery(this.props.match.params.id)
-      .then(res => this.setState({ brewery: res.data, beers: res.data.beer, id: res.data._id }))
+      .then(res => this.setState({ currentBrewery: res.data, beers: res.data.beer, id: res.data._id, brewery: res.data.brewery, location: res.data.location, website: res.data.website, phone_number: res.data.phone_number }))
       .catch(err => console.log(err));
   };
 
@@ -42,7 +38,7 @@ class Breweries extends Component {
     console.log(index)
     this.state.beers.splice(index, 1)
     console.log(this.state.beers)
-    API.updateBrewery({ id: this.state.id}, this.state.beers)
+    API.deleteBeer({ id: this.state.id}, this.state.beers)
       .then(res => this.loadBreweryInfo())
       .catch(err => console.log(err));
   };
@@ -52,9 +48,10 @@ class Breweries extends Component {
     this.setState({
       [name]: value
     });
+    console.log("Name: " + name + "  Value: " + value)
   };
 
-  handleFormSubmit = event => {
+  handleBeerFormSubmit = event => {
     event.preventDefault();
     console.log(this.state.id)
     if (this.state.name) {
@@ -71,6 +68,20 @@ class Breweries extends Component {
     }
   };
 
+  handleBreweryFormSubmit = event => {
+    event.preventDefault();
+    console.log(this.state.id)
+    API.updateBreweryInfo({
+      brewery: this.state.brewery,
+      location: this.state.location,
+      website: this.state.website,
+      phone_number: this.state.phone_number,
+      id: this.state.id
+    })
+      .then(res => this.loadBreweryInfo())
+      .catch(err => console.log(err));
+    };
+
   render() {
     return (
       <Container fluid>
@@ -78,13 +89,13 @@ class Breweries extends Component {
         <Col size="md-12">
           <Jumbotron>
           <Col size="md-6">
-            <h1>{this.state.brewery.brewery}</h1>
-            <h2>{this.state.brewery.website}</h2>
+            <h1>{this.state.currentBrewery.brewery}</h1>
+            <h2>{this.state.currentBrewery.website}</h2>
           </Col>
           <Col size="md-6">
             
-            <h2>{this.state.brewery.location}</h2>
-            <h2>{this.state.brewery.phone_number}</h2>
+            <h2>{this.state.currentBrewery.location}</h2>
+            <h2>{this.state.currentBrewery.phone_number}</h2>
           </Col>
           </Jumbotron>
         </Col>
@@ -127,7 +138,7 @@ class Breweries extends Component {
               />
               <FormBtn
                 disabled={!(this.state.abv)}
-                onClick={this.handleFormSubmit}
+                onClick={this.handleBeerFormSubmit}
               >
                 Add Beer
               </FormBtn>
@@ -137,7 +148,7 @@ class Breweries extends Component {
             <Jumbotron>
               <h1>Beers On My List</h1>
             </Jumbotron>
-            {console.log(this.state.brewery)}
+            {console.log(this.state.currentBrewery)}
             {console.log(this.state.beers)}
             {this.state.beers.length ? (
               <List>
@@ -156,6 +167,49 @@ class Breweries extends Component {
             ) : (
               <h3>No Results to Display</h3>
             )}
+          </Col>
+        </Row>
+        <Row>
+          <Col size="md-6">
+            <Jumbotron>
+              <h1>Update your Brewery Information</h1>
+            </Jumbotron>
+            <form>
+              Brewery Name
+              <Input
+                value={this.state.brewery}
+                onChange={this.handleInputChange}
+                name="brewery"
+                placeholder="Brewery Name (required)"
+              />
+              Brewery Address
+              <Input
+                value={this.state.location}
+                onChange={this.handleInputChange}
+                name="location"
+                placeholder="Location"
+              />
+              Brewery Website
+              <Input
+                value={this.state.website}
+                onChange={this.handleInputChange}
+                name="website"
+                placeholder="Website"
+              />
+              Brewery Phone Number
+              <Input
+                value={this.state.phone_number}
+                onChange={this.handleInputChange}
+                name="phone_number"
+                placeholder="Phone Number"
+              />
+              <FormBtn
+                disabled={!(this.state.brewery)}
+                onClick={this.handleBreweryFormSubmit}
+              >
+                Update Info
+              </FormBtn>
+            </form>
           </Col>
         </Row>
       </Container>
