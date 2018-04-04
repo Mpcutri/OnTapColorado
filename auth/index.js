@@ -45,7 +45,7 @@ router.post('/logout', (req, res) => {
 })
 
 router.post('/signup', (req, res) => {
-	const { username, password, brewery, location, website, phone_number, beer } = req.body
+	const { username, password, brewery, breweryURL, location, website, phone_number, beer } = req.body
 	// ADD VALIDATION
 	User.findOne({ 'local.username': username }, (err, userMatch) => {
 		if (userMatch) {
