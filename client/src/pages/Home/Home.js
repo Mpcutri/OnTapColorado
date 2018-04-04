@@ -151,8 +151,6 @@ class Breweries extends Component {
 
   render() {
     return (
-<<<<<<< HEAD
-      <body style={{background: "url({Background})"}}>
         <Container>
           <SearchBar className="search-bar"/>
           <Row>
@@ -183,8 +181,6 @@ class Breweries extends Component {
               )}
           </Row>
         </Container>
-      </body>
-=======
       <Container>
         <SearchBar className="search-bar"/>
           <div>
@@ -214,7 +210,6 @@ class Breweries extends Component {
             )}
 
       </Container>
->>>>>>> 75f2d6f9c82f26d8d221bfb93e335f25f4f57cbc
     );
   }
 }
