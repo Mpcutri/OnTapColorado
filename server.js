@@ -7,23 +7,20 @@ const session = require('express-session');
 const router = require('./auth');
 const MongoStore = require('connect-mongo')(session);
 const app = express();
+const path = require("path");
 const PORT = process.env.PORT || 3001;
 
-if (process.env.NODE_ENV === "production") {
-app.use(express.static("client/build"));
-} else {
+// if (process.env.NODE_ENV === "production") { // this line identifies if we're in the production version of the app
+// app.use(express.static("client/build"));
+// } else {
 app.use(express.static("public"));
-}
+// }
+// app.use(express.static("client/build"));
+
 // mongoose.connect("mongodb://heroku_1zh96hjn:8ein2g5l10u4ctrrhlj7euo0kh@ds127129.mlab.com:27129/heroku_1zh96hjn")
 // Configure body parser for AJAX requests
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-
-if (process.env.NODE_ENV === "production") {
-app.use(express.static("client/build"));
-} else {
-app.use(express.static("public"));
-}
 
 app.use((req, res, next) => {
 	console.log(req.path);
@@ -46,12 +43,12 @@ app.use(routes);
 // added this from my file. (MAX) ===============
 mongoose.Promise = global.Promise
 let MONGO_URL
-const MONGO_LOCAL_URL = 'mongodb://localhost/ColoradoPours'
+// const MONGO_LOCAL_URL = 'mongodb://localhost/ColoradoPours'
 
-if (process.env.MONGODB_URI) {
-	mongoose.connect(process.env.MONGODB_URI)
-	MONGO_URL = process.env.MONGODB_URI
-} else {
+// if (process.env.MONGODB_URI) {
+// 	mongoose.connect(process.env.MONGODB_URI)
+// 	MONGO_URL = process.env.MONGODB_URI
+// } else {
 	// heroku_1zh96hjn - username
 	// 8ein2g5l10u4ctrrhlj7euo0kh - password
 	// ds127129.mlab.com - host
@@ -59,8 +56,8 @@ if (process.env.MONGODB_URI) {
 	// heroku_1zh96hjn - database
 	mongoose.connect("mongodb://heroku_1zh96hjn:8ein2g5l10u4ctrrhlj7euo0kh@ds127129.mlab.com:27129/heroku_1zh96hjn"); // local mongo url
 	var dbConnection = mongoose.connection
-	MONGO_URL = MONGO_LOCAL_URL
-}
+	// MONGO_URL = MONGO_LOCAL_URL
+// }
 // (MAX) ========================================
 app.use(
 	session({
@@ -78,9 +75,12 @@ app.use(passport.initialize())
 app.use(passport.session()) // will call the deserializeUser
 app.use('/auth', require('./auth'))
 
+
+// ========= HEROKU BUILD =========
+
 // If no API routes are hit, send the React app
 // app.use(function(req, res) {
-//   res.sendFile(path.join(__dirname, "../client/build/index.html"));
+  // res.sendFile(path.join(__dirname, "./client/build/index.html"))
 // });
 
 

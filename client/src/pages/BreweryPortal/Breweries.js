@@ -82,23 +82,33 @@ class Breweries extends Component {
       .catch(err => console.log(err));
     };
 
+  handleClick = (e) => {
+    e.preventDefault();
+    window.location = this.state.brewery.website;
+    console.log('The link was clicked on bwerery portal.');
+  }
+
   render() {
     return (
       <Container fluid>
         <Row>
-        <Col size="md-12">
-          <Jumbotron>
-          <Col size="md-6">
-            <h1>{this.state.currentBrewery.brewery}</h1>
-            <h2>{this.state.currentBrewery.website}</h2>
+          <Col size="md-12">
+            <Jumbotron>
+              <Col size="md-6">
+              <img src={this.state.currentBrewery.img} />
+                <h1>{this.state.currentBrewery.brewery}</h1>
+                <p>
+                  <a onClick={this.handleClick}>
+                      {this.state.currentBrewery.website}
+                  </a>
+                </p>
+              </Col>
+              <Col size="md-6">
+                <h2>{this.state.currentBrewery.location}</h2>
+                <p>{this.state.currentBrewery.phone_number}</p>
+              </Col>
+            </Jumbotron>
           </Col>
-          <Col size="md-6">
-            
-            <h2>{this.state.currentBrewery.location}</h2>
-            <h2>{this.state.currentBrewery.phone_number}</h2>
-          </Col>
-          </Jumbotron>
-        </Col>
         </Row>
         <Row>
           <Col size="md-6">
