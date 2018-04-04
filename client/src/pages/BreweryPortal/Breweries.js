@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import DeleteBtn from "../../components/DeleteBtn";
 import UpdateBtn from "../../components/UpdateBtn";
+import EditBtn from "../../components/EditBtn";
 import Jumbotron from "../../components/Jumbotron";
 import API from "../../utils/API";
 import { Link } from "react-router-dom";
@@ -52,6 +53,24 @@ class Breweries extends Component {
     } else {
       this.state.beers[index].onTap = true
     }
+    console.log(this.state.beers)
+    API.deleteBeer({ id: this.state.id}, this.state.beers)
+      .then(res => this.loadBreweryInfo())
+      .catch(err => console.log(err));
+  };
+
+  updateBeer = (index) => {
+    console.log(index)
+    this.setState({
+      name: this.state.beers[index].name,
+      type: this.state.beers[index].type,
+      abv: this.state.beers[index].abv,
+      ibu: this.state.beers[index].ibu,
+      description: this.state.beers[index].description,
+      onTap: this.state.beers[index].onTap,
+      id: this.state.beers[index].id
+    });
+    this.state.beers.splice(index, 1)
     console.log(this.state.beers)
     API.deleteBeer({ id: this.state.id}, this.state.beers)
       .then(res => this.loadBreweryInfo())
@@ -160,13 +179,14 @@ class Breweries extends Component {
                 value={this.state.description}
                 onChange={this.handleInputChange}
                 name="description"
-                placeholder="Description (Optional)"
+                placeholder="Description"
+                style={{height: 200}}
               />
               <FormBtn
-                disabled={!(this.state.abv)}
+                disabled={!(this.state.name)}
                 onClick={this.handleBeerFormSubmit}
               >
-                Add Beer
+                Add/Update Beer
               </FormBtn>
             </form>
           </Col>
@@ -188,6 +208,7 @@ class Breweries extends Component {
                           </span>
                         <DeleteBtn onClick={() => this.deleteBeer(index)} />
                         <UpdateBtn onClick={() => this.toggleBeer(index)} />
+                        <EditBtn onClick={() => this.updateBeer(index)} />
                       </ListItem>
                   ) : ("")
                 ))}
@@ -196,12 +217,14 @@ class Breweries extends Component {
                 {this.state.beers.map((beer, index) => (
                   !beer.onTap ? (
                       <ListItem key={beer.name} id={index}>
-                          <span style={{fontSize: 20}}>
+                          <span style={{fontSize: 20}} >
                             {beer.name}
                             {console.log(beer.name)}
                           </span>
                         <DeleteBtn onClick={() => this.deleteBeer(index)} />
                         <UpdateBtn onClick={() => this.toggleBeer(index)} />
+                        <EditBtn onClick={() => this.updateBeer(index)} />
+                          
                       </ListItem>
                   ) : ("")
                 ))}
