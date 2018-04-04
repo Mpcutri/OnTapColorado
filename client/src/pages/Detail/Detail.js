@@ -22,27 +22,6 @@ const style = {
   }
 }
 
-// const beerSchema = new Schema({
-//  name: {
-//    type: String,
-//  },
-//  description: {
-//    type: String,
-//  },
-//  type: {
-//    type: String, // lager, ipa, porter . . etc.
-//  },
-//  abv: {
-//    type: Number,
-//  },
-//  ibu: {
-//    type: Number,
-//  },
-//  onTap: {
-//    type: Boolean,
-//  },
-// });
-
 class Detail extends Component {
   state = {
     brewery: "",
