@@ -193,13 +193,13 @@ class Breweries extends Component {
           </Col>
           <Col size="md-6 sm-12">
             <Jumbotron>
-              <h1>Beers On My List</h1>
+              <h1>Beers List</h1>
             </Jumbotron>
             {console.log(this.state.currentBrewery)}
             {console.log(this.state.beers)}
             {this.state.beers.length ? (
               <div>
-              <List>On Tap:
+              <List><span style={{fontSize: 24, color: "black"}}>On Tap:</span>
                 {this.state.beers.map((beer, index) => (
                   beer.onTap ? (
                       <ListItem key={beer.name} id={index}>
@@ -214,7 +214,7 @@ class Breweries extends Component {
                   ) : ("")
                 ))}
               </List>
-              <List>Not On Tap:
+              <List><span style={{fontSize: 24, color: "black"}}>Not On Tap:</span>
                 {this.state.beers.map((beer, index) => (
                   !beer.onTap ? (
                       <ListItem key={beer.name} id={index}>
@@ -242,28 +242,28 @@ class Breweries extends Component {
               <h1>Update your Brewery Information</h1>
             </Jumbotron>
             <form>
-              Brewery Name
+              <span style={{fontSize: 24, color: "black"}}>Brewery Name</span>
               <Input
                 value={this.state.brewery}
                 onChange={this.handleInputChange}
                 name="brewery"
                 placeholder="Brewery Name (required)"
               />
-              Brewery Address
+              <span style={{fontSize: 24, color: "black"}}>Brewery Address</span>
               <Input
                 value={this.state.location}
                 onChange={this.handleInputChange}
                 name="location"
                 placeholder="Location"
               />
-              Brewery Website
+              <span style={{fontSize: 24, color: "black"}}>Brewery Website</span>
               <Input
                 value={this.state.website}
                 onChange={this.handleInputChange}
                 name="website"
                 placeholder="Website"
               />
-              Brewery Phone Number
+              <span style={{fontSize: 24, color: "black"}}>Brewery Phone Number</span>
               <Input
                 value={this.state.phone_number}
                 onChange={this.handleInputChange}

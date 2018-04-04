@@ -151,36 +151,6 @@ class Breweries extends Component {
 
   render() {
     return (
-        <Container>
-          <SearchBar className="search-bar"/>
-          <Row>
-            <Logo style={{position: "absolute"}}>
-              <img src={logoImage} />
-            </Logo>
-              
-              <div id="map" style={{ marginTop: '490px' }}>
-                <MyMapComponent isMarkerShown />
-              </div>
-              {console.log(this.state.breweries)}
-              {this.state.breweries.length ? (
-                <div className="brewery-list" style={style.breweryList}>
-                  <List>
-                    {this.state.breweries.map(brewery => (
-                      <ListItem key={brewery._id}>
-                        <Link onClick={this.forceUpdate} to={"/breweries/" + brewery._id}>
-                          <strong>
-                            {brewery.brewery}
-                          </strong>
-                        </Link>
-                      </ListItem>
-                    ))}
-                  </List>
-                </div>
-              ) : (
-                <h3>No Results to Display</h3>
-              )}
-          </Row>
-        </Container>
       <Container>
         <SearchBar className="search-bar"/>
           <div>
