@@ -152,10 +152,9 @@ class Breweries extends Component {
     return (
       <Container>
         <SearchBar className="search-bar"/>
-        <Row>
-          <Logo style={{position: "absolute"}}>
-            <img src={logoImage} />
-          </Logo>
+          <div>
+          <Logo style={{position: "absolute"}} />
+          </div>
             
             <div id="map" style={{ marginTop: '490px' }}>
               <MyMapComponent isMarkerShown />
@@ -178,7 +177,7 @@ class Breweries extends Component {
             ) : (
               <h3>No Results to Display</h3>
             )}
-        </Row>
+
       </Container>
     );
   }

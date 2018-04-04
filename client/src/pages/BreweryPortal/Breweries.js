@@ -151,7 +151,7 @@ class Breweries extends Component {
             <Jumbotron>
               <h1>Add a beer to your tap list!</h1>
             </Jumbotron>
-            <form>
+            <form style={{backgroundColor: "rbga(0,0,0,0.1)"}}>
               <Input
                 value={this.state.name}
                 onChange={this.handleInputChange}
