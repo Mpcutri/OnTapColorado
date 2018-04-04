@@ -113,6 +113,7 @@ class Breweries extends Component {
               
               <Col size="md-6">
                 <h1>{this.state.currentBrewery.brewery}</h1>
+
                 <p>
                   <a onClick={this.handleClick}>
                       {this.state.currentBrewery.website}

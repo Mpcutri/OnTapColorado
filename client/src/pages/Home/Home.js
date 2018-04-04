@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 // import Jumbotron from "../../components/Jumbotron";
-import background from "./images/ccbBackground.jpg";
+import logoImage from "./images/onTapColoradoFlag.png";
 import LoginStatus from "../../components/LoginStatus";
 import SearchBar from "../../components/SearchBar";
+import Logo from "../../components/Logo";
 import API from "../../utils/API";
 import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../../components/Grid";
@@ -152,11 +153,11 @@ class Breweries extends Component {
       <Container>
         <SearchBar className="search-bar"/>
         <Row>
-          <div id="background">
-            <img src={background} style={{ width: "100%", marginBottom: "25px" }}/>
-          </div>
+          <Logo style={{position: "absolute"}}>
+            <img src={logoImage} />
+          </Logo>
             
-            <div id="map">
+            <div id="map" style={{ marginTop: '490px' }}>
               <MyMapComponent isMarkerShown />
             </div>
             {console.log(this.state.breweries)}
@@ -186,7 +187,7 @@ class Breweries extends Component {
 const MyMapComponent = compose(
   withProps({
     googleMapURL:
-      "https://maps.googleapis.com/maps/api/js?key=AIzaSyA3o7dy50LdekZi5WmxFMHbVK690D3KeKQ&v=3.exp&libraries=geometry,drawing,places",
+    "https://maps.googleapis.com/maps/api/js?key=AIzaSyA3o7dy50LdekZi5WmxFMHbVK690D3KeKQ&v=3.exp&libraries=geometry,drawing,places",
     loadingElement: <div style={{ height: `95%` }} />,
     containerElement: <div style={{ height: `700px` }} />,
     mapElement: <div style={{ height: `95%` }} />

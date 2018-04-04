@@ -1,3 +1,18 @@
+a:hover {
+  background-color: purple;
+}
+
 .navbar {
   margin-bottom: 20px;
+  background-color: rgba(175, 204, 220, 0.5);
+  border-bottom: solid;
+  border-color: #67818c;
+}
+
+.navbar-brand {
+  margin-top: 15px;
+}
+
+.navbar-brand:hover {
+  background-color: purple;
 }
