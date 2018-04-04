@@ -22,8 +22,7 @@ class App extends Component {
     this.state = {
       loggedIn: false,
       user: null,
-      id: null,
-      redirectTo: null
+      id: null
     }
     this._logout = this._logout.bind(this)
     this._login = this._login.bind(this)
@@ -56,9 +55,9 @@ class App extends Component {
       if (response.status === 200) {
         this.setState({
           loggedIn: false,
-          user: null,
-          redirectTo: "/"
+          user: null
         })
+        window.location = '/'
       }
     })
   }
@@ -75,17 +74,14 @@ class App extends Component {
           // update the state
           this.setState({
             loggedIn: true,
-            user: response.data.user,
-            redirectTo: '/admin/' + response.data.user._id
+            user: response.data.user
           })
+          window.location = '/admin/' + response.data.user._id
         }
       })
   }
 
   render() {
-    if (this.state.redirectTo) {
-      return <Redirect to={{ pathname: this.state.redirectTo }} />
-    } else {
     return (
       <div className="App">
         {/* LINKS to our different 'pages' */}
@@ -106,7 +102,6 @@ class App extends Component {
         {/* <Login _login={this._login} /> */}
       </div>
     )
-  }
   }
 }
 

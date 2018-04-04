@@ -7,6 +7,7 @@ class SignupForm extends Component {
 		super()
 		this.state = {
 			brewery: '',
+			breweryURL: '',
 			username: '',
 			password: '',
 			confirmPassword: '',
@@ -31,6 +32,7 @@ class SignupForm extends Component {
 		axios
 			.post('/auth/signup', {
 				brewery: this.state.brewery,
+				breweryURL: this.state.breweryURL,
 				username: this.state.username,
 				password: this.state.password,
 				location: this.state.location,
