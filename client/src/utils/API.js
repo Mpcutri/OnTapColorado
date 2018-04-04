@@ -13,7 +13,7 @@ export default {
   deleteBeer: function(id, name) {
     console.log(id)
     console.log(name)
-    return axios.put("/api/breweries/" + id, name);
+    return axios.delete("/api/breweries/" + id, name);
   },
   // Saves a brewery to the database
   saveBrewery: function(breweryData) {
@@ -23,5 +23,13 @@ export default {
   saveBeer: function(beerData) {
     console.log(beerData)
     return axios.post("/api/breweries/" + beerData.id, beerData);
-  }
+  },
+
+  updateBrewery: function(id, beers) {
+    console.log(id)
+    console.log(beers)
+    return axios.post("/api/admin/" + id.id, beers);
+  },
+
+
 };

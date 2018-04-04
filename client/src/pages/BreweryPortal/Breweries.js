@@ -38,11 +38,13 @@ class Breweries extends Component {
       .catch(err => console.log(err));
   };
 
-  deleteBeer = (id, name) => {
-    API.deleteBeer(id, name)
-      .then(res => this.loadBreweries())
+  deleteBeer = (index) => {
+    console.log(index)
+    this.state.beers.splice(index, 1)
+    console.log(this.state.beers)
+    API.updateBrewery({ id: this.state.id}, this.state.beers)
+      .then(res => this.loadBreweryInfo())
       .catch(err => console.log(err));
-      console.log(id)
   };
 
   handleInputChange = event => {
@@ -139,15 +141,15 @@ class Breweries extends Component {
             {console.log(this.state.beers)}
             {this.state.beers.length ? (
               <List>
-                {this.state.beers.map(beer => (
-                  <ListItem key={beer.name}>
+                {this.state.beers.map((beer, index) => (
+                  <ListItem key={beer.name} id={index}>
                     <Link to={"/breweries/" + beer.name}>
                       <strong>
                         {beer.name}
                         {console.log(beer.name)}
                       </strong>
                     </Link>
-                    <DeleteBtn onClick={() => this.deleteBeer(this.state.id, beer.name)} />
+                    <DeleteBtn onClick={() => this.deleteBeer(index)} />
                   </ListItem>
                 ))}
               </List>
