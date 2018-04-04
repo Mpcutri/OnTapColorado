@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import DeleteBtn from "../../components/DeleteBtn";
+import UpdateBtn from "../../components/UpdateBtn";
 import Jumbotron from "../../components/Jumbotron";
 import API from "../../utils/API";
 import { Link } from "react-router-dom";
@@ -20,7 +21,8 @@ class Breweries extends Component {
     brewery: null,
     location: null,
     website: null,
-    phone_number: null
+    phone_number: null,
+    onTap: false
   };
 
   componentDidMount() {
@@ -37,6 +39,19 @@ class Breweries extends Component {
   deleteBeer = (index) => {
     console.log(index)
     this.state.beers.splice(index, 1)
+    console.log(this.state.beers)
+    API.deleteBeer({ id: this.state.id}, this.state.beers)
+      .then(res => this.loadBreweryInfo())
+      .catch(err => console.log(err));
+  };
+
+  toggleBeer = (index) => {
+    console.log(index)
+    if (this.state.beers[index].onTap) {
+      this.state.beers[index].onTap = false
+    } else {
+      this.state.beers[index].onTap = true
+    }
     console.log(this.state.beers)
     API.deleteBeer({ id: this.state.id}, this.state.beers)
       .then(res => this.loadBreweryInfo())
@@ -61,6 +76,7 @@ class Breweries extends Component {
         abv: this.state.abv,
         ibu: this.state.ibu,
         description: this.state.description,
+        onTap: this.state.onTap,
         id: this.state.id
       })
         .then(res => this.loadBreweryInfo())
@@ -161,19 +177,40 @@ class Breweries extends Component {
             {console.log(this.state.currentBrewery)}
             {console.log(this.state.beers)}
             {this.state.beers.length ? (
-              <List>
+              <div>
+              <List>On Tap:
                 {this.state.beers.map((beer, index) => (
-                  <ListItem key={beer.name} id={index}>
-                    <Link to={"/breweries/" + beer.name}>
-                      <strong>
-                        {beer.name}
-                        {console.log(beer.name)}
-                      </strong>
-                    </Link>
-                    <DeleteBtn onClick={() => this.deleteBeer(index)} />
-                  </ListItem>
+                  beer.onTap ? (
+                      <ListItem key={beer.name} id={index}>
+                        <Link to={"/breweries/" + beer.name}>
+                          <strong>
+                            {beer.name}
+                            {console.log(beer.name)}
+                          </strong>
+                        </Link>
+                        <DeleteBtn onClick={() => this.deleteBeer(index)} />
+                        <UpdateBtn onClick={() => this.toggleBeer(index)} />
+                      </ListItem>
+                  ) : ("")
                 ))}
               </List>
+              <List>Not On Tap:
+                {this.state.beers.map((beer, index) => (
+                  !beer.onTap ? (
+                      <ListItem key={beer.name} id={index}>
+                        <Link to={"/breweries/" + beer.name}>
+                          <strong>
+                            {beer.name}
+                            {console.log(beer.name)}
+                          </strong>
+                        </Link>
+                        <DeleteBtn onClick={() => this.deleteBeer(index)} />
+                        <UpdateBtn onClick={() => this.toggleBeer(index)} />
+                      </ListItem>
+                  ) : ("")
+                ))}
+                </List>
+                </div>
             ) : (
               <h3>No Results to Display</h3>
             )}
