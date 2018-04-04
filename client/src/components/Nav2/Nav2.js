@@ -17,14 +17,15 @@ const style = {
     float: 'right',
     background: 'none',
     borderRadius: "10px",
-    margin: "2.5px",
     marginTop: "0px",
     color: "white",
     padding: "0px",
-    width: "10%"
+    height: "90px",
+    margin: "3px"
   },
   navbarHeader: {
-    float: 'none'
+    float: 'none',
+    height: '100px'
   }
 }
 
@@ -45,6 +46,8 @@ function signOut(props) {
     this.forceUpdate();
   }
 }
+
+  
 
 
 const Nav2 = props => (

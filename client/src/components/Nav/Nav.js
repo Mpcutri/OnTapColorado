@@ -6,22 +6,38 @@ import $ from "jquery";
 const style = {
   signupButton: {
     float: 'right',
-    backgroundColor: 'blue',
-    margin: "2.5px",
-    marginTop: "15px",
+    backgroundColor: "#e43b36",
+    margin: "15px 2.5px 2.5px",
     color: "white",
+    border: "none",
+    borderRadius: "5px",
+    padding: "5px 15px"
   },
   loginButton: {
     float: 'right',
-    backgroundColor: 'orange',
-    margin: "2.5px",
-    marginTop: "15px",
-    color: "white"
+    backgroundColor: "rgb(236, 103, 99)",
+    margin: "15px 2.5px 2.5px",
+    color: "white",
+    border: "none",
+    borderRadius: "5px",
+    padding: "5px 15px"
   },
   navbarHeader: {
     float: 'none'
   }
 }
+
+// -
+function expand() {
+  $(".search").toggleClass("close");
+  $(".input").toggleClass("square");
+  if ($('.search').hasClass('close')) {
+    $('input').focus();
+  } else {
+    $('input').blur();
+  }
+}
+$('.search').on('click', expand);
 
 
 const Nav = () => (
@@ -36,14 +52,16 @@ const Nav = () => (
         <a href="/" className="navbar-brand">
           Colorado Craft Breweries
         </a>
-        <a href="/login"><button style={style.loginButton} className="login-button">Log in!</button></a>
+        <a href="/login"><button style={style.loginButton} className="login-button">Log in</button></a>
 
-      <form id="demo-2">
-        <input type="search" placeholder="Search" />
-      </form>
+        {/*<div id="search-bar" className="search-container">
+          <div className="search-box">
+              <input type="text" />
+                <span></span>
+          </div>
+        </div>*/}
 
-
-        <a href="/signup"><button style={style.signupButton} className="signup-button">Sign Up!</button></a>
+        <a href="/signup"><button style={style.signupButton} className="signup-button">Sign Up</button></a>
       </div>
     </div>
   </nav>

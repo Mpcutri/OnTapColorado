@@ -2,6 +2,7 @@ import React, { Component } from "react";
 // import Jumbotron from "../../components/Jumbotron";
 import background from "./images/ccbBackground.jpg";
 import LoginStatus from "../../components/LoginStatus";
+import SearchBar from "../../components/SearchBar";
 import API from "../../utils/API";
 import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../../components/Grid";
@@ -149,6 +150,7 @@ class Breweries extends Component {
   render() {
     return (
       <Container>
+        <SearchBar className="search-bar"/>
         <Row>
           <div id="background">
             <img src={background} style={{ width: "100%", marginBottom: "25px" }}/>
