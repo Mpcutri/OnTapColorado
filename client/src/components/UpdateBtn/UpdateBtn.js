@@ -4,9 +4,7 @@ import "./UpdateBtn.css";
 // The ...props means, spread all of the passed props onto this element
 // That way we don't have to define them all individually
 const UpdateBtn = props => (
-  <span className="btn btn-info update-btn" {...props}>
-    On Tap Toggle
-  </span>
+  <span className="btn update-btn glyphicon glyphicon-sort" {...props} />
 );
 
 export default UpdateBtn;
