@@ -1,13 +1,14 @@
 import React from "react";
 import "./Nav.css";
 import $ from "jquery";
+import homeIcon from "../../images/home.png";
 
 
 const style = {
   signupButton: {
     float: 'right',
     backgroundColor: "#e43b36",
-    margin: "15px 2.5px 2.5px",
+    margin: "30px 2.5px 2.5px",
     color: "white",
     border: "none",
     borderRadius: "5px",
@@ -16,7 +17,7 @@ const style = {
   loginButton: {
     float: 'right',
     backgroundColor: "rgb(236, 103, 99)",
-    margin: "15px 2.5px 2.5px",
+    margin: "30px 2.5px 2.5px",
     color: "white",
     border: "none",
     borderRadius: "5px",
@@ -38,7 +39,7 @@ const Nav = () => (
         </button>
         <a href="/" className="navbar-brand">
           <span id="logo-text" style={{ fontSize: '60px', marginTop: '20px'}}>
-            Home
+            <img id="home-icon" src={homeIcon} />
           </span>
         </a>
         <a href="/login"><button style={style.loginButton} className="login-button">Log in</button></a>

@@ -2,6 +2,7 @@ import React from "react";
 import Nav2Icon from "./images/ProfileIcon.png";
 import $ from "jquery";
 import "./Nav2.css";
+import homeIcon from "../../images/home.png";
 
 // const BUTTONS = ['Default', 'Primary', 'Success', 'Info', 'Warning', 'Danger'];
 
@@ -59,10 +60,9 @@ const Nav2 = props => (
           <span className="icon-bar" /> <span className="icon-bar" />
           <span className="icon-bar" />
         </button>
+
         <a href="/" className="navbar-brand">
-          <span id="logo-text" style={{ fontSize: '60px', marginTop: '20px'}}>
-            Home
-          </span>
+            <img  id="home-icon" src={homeIcon} />
         </a>
 
         <div id="profile-icon">

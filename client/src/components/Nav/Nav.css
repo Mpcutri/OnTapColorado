@@ -4,6 +4,7 @@ a:hover {
 
 .navbar {
   margin-bottom: 20px;
+  height: 100px;
   background-color: rgba(175, 204, 220, 0.5);
   border-bottom: solid;
   border-color: #67818c;
