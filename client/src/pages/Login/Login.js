@@ -39,6 +39,7 @@ class LoginForm extends Component {
 				<div className="LoginForm">
 					<h1>Login form</h1>
 					<form>
+						<label htmlFor="username">Username: </label>
 						<input
 							type="text"
 							name="username"
