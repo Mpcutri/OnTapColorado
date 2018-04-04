@@ -47,7 +47,7 @@ function signOut(props) {
   }
 }
 
-  
+
 
 
 const Nav2 = props => (
@@ -60,7 +60,9 @@ const Nav2 = props => (
           <span className="icon-bar" />
         </button>
         <a href="/" className="navbar-brand">
-          Colorado Craft Breweries
+          <span id="logo-text" style={{ fontSize: '60px', marginTop: '20px'}}>
+            Home
+          </span>
         </a>
 
         <div id="profile-icon">

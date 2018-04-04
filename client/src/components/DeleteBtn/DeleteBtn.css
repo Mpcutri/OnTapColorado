@@ -1,3 +1,11 @@
+body {
+	background: url("http://www.saleoilpaintings.com/paintings-image/bob-ross/bob-ross-crimson-mountains-86005.jpg") no-repeat center center fixed; 
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+}
+
 .delete-btn {
   float: right;
   color: #e74944;

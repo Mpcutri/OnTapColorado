@@ -27,19 +27,6 @@ const style = {
   }
 }
 
-// -
-function expand() {
-  $(".search").toggleClass("close");
-  $(".input").toggleClass("square");
-  if ($('.search').hasClass('close')) {
-    $('input').focus();
-  } else {
-    $('input').blur();
-  }
-}
-$('.search').on('click', expand);
-
-
 const Nav = () => (
   <nav className="navbar navbar-inverse navbar-top">
     <div className="container-fluid">
@@ -50,16 +37,11 @@ const Nav = () => (
           <span className="icon-bar" />
         </button>
         <a href="/" className="navbar-brand">
-          Colorado Craft Breweries
+          <span id="logo-text" style={{ fontSize: '60px', marginTop: '20px'}}>
+            Home
+          </span>
         </a>
         <a href="/login"><button style={style.loginButton} className="login-button">Log in</button></a>
-
-        {/*<div id="search-bar" className="search-container">
-          <div className="search-box">
-              <input type="text" />
-                <span></span>
-          </div>
-        </div>*/}
 
         <a href="/signup"><button style={style.signupButton} className="signup-button">Sign Up</button></a>
       </div>

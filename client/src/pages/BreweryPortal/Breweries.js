@@ -84,7 +84,7 @@ class Breweries extends Component {
           <Col size="md-12">
             <Jumbotron>
               <Col size="md-6">
-              <img src={this.state.brewery.img}
+              <img src={this.state.brewery.img} />
                 <h1>{this.state.brewery.brewery}</h1>
                 <p>
                   <a onClick={this.handleClick}>
