@@ -5,7 +5,7 @@ import "./SearchBar.css";
 const SearchBar = () => (
   <div id="wrap">
     <form action="" autocomplete="on">
-      <input id="search" name="search" type="text" placeholder="What're we looking for ?" /><input id="search_submit" value="Rechercher" type="submit" />
+      <input id="search" name="search" type="text" placeholder="Search for brewery, beer, type. . ." /><input id="search_submit" type="submit" />
     </form>
   </div>
 );

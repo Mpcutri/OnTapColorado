@@ -20,12 +20,18 @@ import {
   Marker,
   InfoWindow
 } from "react-google-maps";
+import "./Home.css";
+import {
+  Button } from 'reactstrap';
+import ScrollToTop from "react-scroll-up";
 // import brewMark from "./markers.js";
 
 
 const style = {
   breweryList: {
     border: 'solid',
+    position: "relative", 
+    zIndex: "-100"
   },
   breweryProfile: {
     float: 'right',
@@ -151,35 +157,44 @@ class Breweries extends Component {
 
   render() {
     return (
-      <Container>
-        <SearchBar className="search-bar"/>
-          <div>
-          <Logo style={{position: "absolute"}} />
-          </div>
-            
-            <div id="map" style={{ marginTop: '490px' }}>
-              <MyMapComponent isMarkerShown />
-            </div>
-            {console.log(this.state.breweries)}
-            {this.state.breweries.length ? (
-              <div className="brewery-list" style={style.breweryList}>
-                <List>
-                  {this.state.breweries.map(brewery => (
-                    <ListItem key={brewery._id}>
-                      <Link onClick={this.forceUpdate} to={"/breweries/" + brewery._id}>
-                        <strong>
-                          {brewery.brewery}
-                        </strong>
-                      </Link>
-                    </ListItem>
-                  ))}
-                </List>
-              </div>
-            ) : (
-              <h3>No Results to Display</h3>
-            )}
+      <div>
+        <Logo style={{position: "absolute"}} />
 
-      </Container>
+        <Container>
+            <div>
+            
+            
+            <ScrollToTop showUnder={160}>
+              <span style={{ backgroundColor: "red", padding: "20px", zIndex: "2000", borderRadius: '10px' }}><span class="glyphicon glyphicon-arrow-up"></span></span>
+            </ScrollToTop>
+
+            </div>
+              
+              <div id="map" style={{position: "relative", zIndex: "-100", marginTop: "30px" }}>
+                <MyMapComponent isMarkerShown />
+              </div>
+              {console.log(this.state.breweries)}
+              {this.state.breweries.length ? (
+                <div className="brewery-list" style={style.breweryList}>
+                  <List>
+                    {this.state.breweries.map(brewery => (
+                      <ListItem key={brewery._id}>
+                        <Link onClick={this.forceUpdate} to={"/breweries/" + brewery._id}>
+                          <strong>
+                            {brewery.brewery}
+                          </strong>
+                        </Link>
+                      </ListItem>
+                    ))}
+                  </List>
+                  
+                </div>
+              ) : (
+                <h3>No Results to Display</h3>
+              )}
+
+        </Container>
+      </div>
     );
   }
 }
@@ -210,7 +225,7 @@ const MyMapComponent = compose(
   withScriptjs,
   withGoogleMap
 )(props => (
-  <GoogleMap defaultZoom={13} defaultCenter={{ lat: 39.7393, lng: -104.9848 }} style={{ position: "relative"}}>
+  <GoogleMap defaultZoom={13} defaultCenter={{ lat: 39.7393, lng: -104.9848 }} style={{ position: "relative" }}>
     <div id="infoBox" style={{ backgroundColor: `white`, color: "black", padding: `12px`, position: "absolute", left: "60%", bottom: "-30%" }}>
       <p id="infoText"></p>
     </div>
@@ -228,14 +243,11 @@ const MyMapComponent = compose(
           className={brewery.id}
           position={brewery.position}
         >
-
       </Marker>
       </div>
       ))}
 
       </div>
-      
-      
 
     )}
   </GoogleMap>
