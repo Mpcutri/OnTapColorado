@@ -8,6 +8,10 @@ import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../../components/Grid";
 import { List, ListItem } from "../../components/List";
 import { Input, TextArea, FormBtn } from "../../components/Form";
+import { Card, CardImg, CardText, CardBody,
+  CardTitle, CardSubtitle, Button } from 'reactstrap';
+//DND
+import { DragDropContainer, DropTarget } from 'react-drag-drop-container';
 
 class Breweries extends Component {
   state = {
@@ -134,9 +138,9 @@ class Breweries extends Component {
                 <h1>{this.state.currentBrewery.brewery}</h1>
 
                 <p>
-                  <a onClick={this.handleClick}>
-                      {this.state.currentBrewery.website}
-                  </a>
+                  <Button onClick={this.handleClick}>
+                  Brewery Website
+                </Button>
                 </p>
               </Col>
               <Col size="md-6">
@@ -278,6 +282,18 @@ class Breweries extends Component {
               </FormBtn>
             </form>
           </Col>
+        </Row>
+        <Row>
+          {/* Draggable card for brewery inventory list and on tap list */}
+          <div>
+            <DragDropContainer>
+              <Card body width="100%">
+                <CardTitle>beer.name</CardTitle>
+                <CardText>Type: beer.type &#9632; ABV: beer.abv &#9632; IBU:beer.ibu</CardText>
+                <Button color="primary">Go somewhere</Button>
+              </Card>
+            </DragDropContainer>
+          </div>
         </Row>
       </Container>
     );
