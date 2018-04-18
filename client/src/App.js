@@ -14,6 +14,7 @@ import Nav2 from "./components/Nav2";
 import { Redirect } from 'react-router-dom';
 import "./pages/Home/Home.css";
 
+
 // IF ALL FAILS: changes line 14 to exactly: const App = () => (
 // get rid of the } on line 49
 // and comment out the entire class App

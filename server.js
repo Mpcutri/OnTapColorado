@@ -15,7 +15,7 @@ app.use(express.static("client/build"));
 // } else {
 // app.use(express.static("public"));
 // }
-// app.use(express.static("client/build"));
+app.use(express.static("client/build"));
 
 // mongoose.connect("mongodb://heroku_1zh96hjn:8ein2g5l10u4ctrrhlj7euo0kh@ds127129.mlab.com:27129/heroku_1zh96hjn")
 // Configure body parser for AJAX requests
