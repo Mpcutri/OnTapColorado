@@ -1,6 +1,7 @@
 import React, { Component } from 'react' // just added this one to test
 import axios from 'axios'
 import { BrowserRouter as Router, Route, Switch, Link} from "react-router-dom";
+import { Button } from 'reactstrap';
 import LoginStatus from "./components/LoginStatus";
 import Home from "./pages/Home";
 import Breweries from "./pages/BreweryPortal";
@@ -11,8 +12,7 @@ import SignUp from "./pages/SignUp";
 import Login from "./pages/Login";
 import Nav2 from "./components/Nav2";
 import { Redirect } from 'react-router-dom';
-//Cards - reactstrap
-import { Button } from 'reactstrap';
+import "./pages/Home/Home.css";
 
 
 // IF ALL FAILS: changes line 14 to exactly: const App = () => (
@@ -139,6 +139,7 @@ const DisplayLinks = props => {
           */}
           
         </Switch>
+
       </div>
     </Router>
     )
