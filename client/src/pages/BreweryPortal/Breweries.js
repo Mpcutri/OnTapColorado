@@ -7,11 +7,13 @@ import API from "../../utils/API";
 import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../../components/Grid";
 import { List, ListItem } from "../../components/List";
-import { Input, TextArea, FormBtn } from "../../components/Form";
+import { TextArea, FormBtn } from "../../components/Form";
 import { Card, CardImg, CardText, CardBody,
-  CardTitle, CardSubtitle, Button } from 'reactstrap';
+  CardTitle, CardSubtitle, Button,
+  Form, FormGroup, Label, Input, FormText } from 'reactstrap';
 //DND
 import { DragDropContainer, DropTarget } from 'react-drag-drop-container';
+// import InlineEdit from 'react-edit-inline';
 
 class Breweries extends Component {
   state = {
@@ -29,6 +31,7 @@ class Breweries extends Component {
     phone_number: null,
     onTap: false
   };
+  
 
   componentDidMount() {
     this.loadBreweryInfo();
@@ -133,28 +136,28 @@ class Breweries extends Component {
         <Row>
           <Col size="md-12">
             <Jumbotron>
-              
-              <Col size="md-6">
-                <h1>{this.state.currentBrewery.brewery}</h1>
-
-                <p>
-                  <Button onClick={this.handleClick}>
+              <h1>
+                {this.state.currentBrewery.brewery}
+              </h1>
+              <p>
+                {this.state.currentBrewery.location}
+              </p>
+              <p>
+                {this.state.currentBrewery.phone_number}
+              </p>
+              <p>
+                <Button onClick={this.handleClick}>
                   Brewery Website
                 </Button>
-                </p>
-              </Col>
-              <Col size="md-6">
-                <h2>{this.state.currentBrewery.location}</h2>
-                <p>{this.state.currentBrewery.phone_number}</p>
-              </Col>
+              </p>
             </Jumbotron>
           </Col>
         </Row>
         <Row>
           <Col size="md-6">
-            <Jumbotron>
+
               <h1>Add a beer to your tap list!</h1>
-            </Jumbotron>
+
             <form style={{backgroundColor: "rbga(0,0,0,0.1)"}}>
               <Input
                 value={this.state.name}
@@ -196,9 +199,9 @@ class Breweries extends Component {
             </form>
           </Col>
           <Col size="md-6 sm-12">
-            <Jumbotron>
+
               <h1>Beers List</h1>
-            </Jumbotron>
+
             {console.log(this.state.currentBrewery)}
             {console.log(this.state.beers)}
             {this.state.beers.length ? (
@@ -242,9 +245,9 @@ class Breweries extends Component {
         </Row>
         <Row>
           <Col size="md-6">
-            <Jumbotron>
+
               <h1>Update your Brewery Information</h1>
-            </Jumbotron>
+
             <form>
               <span style={{fontSize: 24, color: "black"}}>Brewery Name</span>
               <Input
