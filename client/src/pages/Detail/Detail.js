@@ -130,7 +130,7 @@ class Detail extends Component {
                             <CardImg top width="100%" src="https://placeholdit.imgix.net/~text?txtsize=33&txt=318%C3%97180&w=318&h=180" alt="Card image cap" />
                             <CardBody>
                               <CardTitle>{beer.name}</CardTitle>
-                              <CardSubtitle marginBottom="1000px">{beer.type}</CardSubtitle>
+                              <CardSubtitle>{beer.type}</CardSubtitle>
                               <CardText>&#9632; ABV:{beer.abv} &#9632; IBU:{beer.ibu}</CardText>
                               <CardText>{beer.description}</CardText>
                               {/* Notification button opens modal */}
@@ -139,7 +139,7 @@ class Detail extends Component {
                               <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className} backdrop={this.state.backdrop}>
                                 <ModalHeader toggle={this.toggle}>Modal title</ModalHeader>
                                 <ModalBody>
-                              {/* Form goes here*/}
+                                {/* Form goes here*/}
                                 form goes here for user to enter in email or phone # to be notified of state change - inventory > on tap
                                 </ModalBody>
                                 <ModalFooter>
