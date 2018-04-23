@@ -1,19 +1,36 @@
 import React, { Component } from "react";
 import Jumbotron from "../../components/Jumbotron";
 import API from "../../utils/API";
-import { Link } from "react-router-dom";
-import { Col, Row, Container } from "../../components/Grid";
-import { List, ListItem } from "../../components/List";
-//Cards
-import { Card, CardImg, CardText, CardBody, CardDeck,
-  CardTitle, CardSubtitle, Button, Modal, ModalHeader, 
-  ModalBody, ModalFooter } from 'reactstrap';
-//DND
-import { DragDropContainer, DropTarget } from 'react-drag-drop-container';
-//Sortable
-import {render} from 'react-dom';
-import {SortableContainer, SortableElement} from 'react-sortable-hoc';
 import "./Detail.css";
+import {render} from 'react-dom';
+import { Link } from "react-router-dom";
+import { List, ListItem } from "../../components/List";
+// import {ScrollArea} from'react-scrollbar';
+import { TextArea, FormBtn } from "../../components/Form";
+import { Col, Row, Container } from "../../components/Grid";
+import { DragDropContainer, DropTarget } from 'react-drag-drop-container';
+import {SortableContainer, SortableElement} from 'react-sortable-hoc';
+import { Card, 
+          CardImg, 
+          CardText, 
+          CardBody, 
+          CardDeck,
+          CardTitle, 
+          CardSubtitle, 
+          Button, 
+          Modal, 
+          ModalHeader, 
+          ModalBody, 
+          ModalFooter, 
+          Form, 
+          FormGroup, 
+          Label, 
+          Input, 
+          FormText,
+          Media,
+          Popover, 
+          PopoverHeader, 
+          PopoverBody } from 'reactstrap';
 
 const style = {
   breweryList: {
@@ -31,44 +48,40 @@ const style = {
     float: 'none'
   }
 }
-//Modal
-// class ModalExample extends React.Component {
-//   constructor(props) {
-//     super(props);
-//     this.state = {
-//       modal: false
-//     };
-
-//     this.toggle = this.toggle.bind(this);
-//   }
-
-//   toggle() {
-//     this.setState({
-//       modal: !this.state.modal
-//     });
-//   }
-// }
 
 class Detail extends Component {
   constructor(props) {
     super(props);
+    this.togglePopOver = this.togglePopOver.bind(this);
     this.state = {
-      modal: false,
       brewery: "",
       beers: [],
+      modal: false,
+      // when true backdrop goes black
+      // when false backdrop stays with no shade, but then is not clickable for 
+        // dismiss of modal and shadow on modal is way bigger than the modal in details
+        // backdrop needs to be clickable or we need a cancel button on the modal
       backdrop: true,
+      popoverOpen: false
     };
 
     this.toggle = this.toggle.bind(this);
     this.changeBackdrop = this.changeBackdrop.bind(this);
   }
-
+  // Modal on/off
   toggle() {
     this.setState({
       modal: !this.state.modal
     });
   }
 
+  togglePopOver() {
+    this.setState({
+      popoverOpen: !this.state.popoverOpen
+    });
+  }
+
+  // Gets called on Beer Form submit and updates DB with new form values
   changeBackdrop(e) {
     let value = e.target.value;
     if (value !== 'static') {
@@ -77,6 +90,7 @@ class Detail extends Component {
     this.setState({ backdrop: value });
   }
 
+  // When page loads
   // When this component mounts, grab the brewery with the _id of this.props.match.params.id
   // e.g. localhost:3000/breweries/599dcb67f0f16317844583fc
   componentDidMount() {
@@ -85,10 +99,32 @@ class Detail extends Component {
       .catch(err => console.log(err));
   } 
 
+  // Web link to brewery in jumbotron
   handleClick = (e) => {
     e.preventDefault();
     window.location = this.state.brewery.website;
-    console.log('Link to brewery URL has been clicked.');
+    console.log('Link to brewery URL clicked on Details');
+  }
+  // // Gets called each time a text field is entered or changed and sets the state to the new value
+  // handleInputChange = event => {
+  //   const { name, value } = event.target;
+  //   this.setState({
+  //     [name]: value
+  //   });
+  //   console.log("Name: " + name + "  Value: " + value)
+  // };
+
+  // Gets called on Notification Form submit and updates DB with new form values
+  handleNotificationFormSubmit = event => {
+    event.preventDefault();
+    this.toggle();
+    // API.updateBreweryInfo({
+    //   email: this.state.brewery,
+    //   phone: this.state.location,
+    //   id: this.state.id
+    // })
+    //   .then(res => this.loadBreweryInfo())
+    //   .catch(err => console.log(err));
   }
 
   render() {
@@ -133,25 +169,56 @@ class Detail extends Component {
                               <CardSubtitle>{beer.type}</CardSubtitle>
                               <CardText>&#9632; ABV:{beer.abv} &#9632; IBU:{beer.ibu}</CardText>
                               <CardText>{beer.description}</CardText>
-                              {/* Notification button opens modal */}
+                              <span>
+                                <Button color="primary" id="pop-over" onClick={this.togglePopOver}>Description</Button>
+                                <Popover placement="bottom" isOpen={this.state.popoverOpen} target="pop-over" toggle={this.togglePopOver}>
+                                  <PopoverHeader>Popover Title</PopoverHeader>
+                                  <PopoverBody>{beer.description}</PopoverBody>
+                                </Popover>
+                              </span>
+                              {/* Opens modal */}
                               <Button color="primary" onClick={this.toggle}>Notifications</Button>
+                              
                               {/* Actual modal */}
-                              <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className} backdrop={this.state.backdrop}>
-                                <ModalHeader toggle={this.toggle}>Modal title</ModalHeader>
-                                <ModalBody>
-                                {/* Form goes here*/}
-                                form goes here for user to enter in email or phone # to be notified of state change - inventory > on tap
-                                </ModalBody>
+                              <Modal 
+                                isOpen={this.state.modal} 
+                                toggle={this.toggle} 
+                                className={this.props.className} 
+                                backdrop={this.state.backdrop}>
+                                <ModalHeader toggle={this.toggle}>How would you like to be notified?</ModalHeader>
+                                  <ModalBody>
+
+                                    <form>
+                                      <span style={{fontSize: 24, color: "black"}}>Email</span>
+                                        <Input
+                                          // value={this.state.email}
+                                          // onChange={this.handleInputChange}
+                                          name="brewery"
+                                          placeholder="Email"
+                                        />
+                                      <span style={{fontSize: 24, color: "black"}}>Text</span>
+                                        <Input
+                                          // value={this.state.text}
+                                          // onChange={this.handleInputChange}
+                                          name="brewery"
+                                          placeholder="Text"
+                                        />
+                                    </form>
+                                  </ModalBody>
+
                                 <ModalFooter>
-                                  <Button color="primary" onClick={this.toggle}>Submit</Button>
+                                  <Button 
+                                    color="primary" 
+                                    onClick={this.handleNotificationFormSubmit}>Submit
+                                  </Button>
                                 </ModalFooter>
+
                               </Modal>
                             </CardBody>
                           </Card>
                         </DragDropContainer>
                     </Col>
                   ))}
-
               </CardDeck>
             ) : (
               <h3>No Results to Display</h3>
