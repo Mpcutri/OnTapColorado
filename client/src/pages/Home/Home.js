@@ -12,7 +12,7 @@ import { List, ListItem } from "../../components/List";
 import { Input, TextArea, FormBtn } from "../../components/Form";
 import { ReactDOM, findDOMNode } from "react-dom";
 import $ from "jquery";
-import { compose, withProps, withHandlers } from "recompose";
+import { compose, withProps, withHandlers, withStateHandlers } from "recompose";
 import {
   withScriptjs,
   withGoogleMap,
@@ -20,9 +20,11 @@ import {
   Marker,
   InfoWindow
 } from "react-google-maps";
+import { InfoBox } from "react-google-maps/lib/components/addons/InfoBox";
 import "./Home.css";
 import { Button } from 'reactstrap';
 import ScrollToTop from "react-scroll-up";
+import Flag from "../../images/blurryFlag.png";
 // import brewMark from "./markers.js";
 
 
@@ -103,13 +105,12 @@ class Breweries extends Component {
         </div>
 
         <div style={{ backgroundColor: "#2b2b2b", position: "relative" }}>
-        <Container>
-              <div id="map" style={{ position: "relative", marginTop: "30px" }}>
-                <MyMapComponent isMarkerShown />
-              </div>
-        </Container>
+          <Container>
+                <div id="map" style={{ position: "relative", marginTop: "30px" }}>
+                  <MyMapComponent isMarkerShown />
+                </div>
+          </Container>
         </div>
-
         <Container>
           <Col size="md-6">
               {console.log(this.state.breweries)}
@@ -141,10 +142,116 @@ class Breweries extends Component {
             </div>
           </Col>
         </Container>
+        <div className="listbackground">
+          <Container>
+            <Col size="md-6">
+                {console.log(this.state.breweries)}
+                {this.state.breweries.length ? (
+                  <div className="brewery-list" style={style.breweryList}>
+                    <List>
+                      {this.state.breweries.map(brewery => (
+                        <ListItem key={brewery._id}>
+                          <Link onClick={this.forceUpdate} to={"/breweries/" + brewery._id}>
+                            <strong>
+                              {brewery.brewery}
+                            </strong>
+                          </Link>
+                        </ListItem>
+                      ))}
+                    </List>
+                    
+                  </div>
+                ) : (
+                  <h3>No Results to Display</h3>
+                )}
+            </Col>
+            <Col size="md-6">
+              <div className="info-list" style={style.breweryList}>
+                <p>whatevewhatever
+                </p>
+              </div>
+            </Col>
+          </Container>
+        </div>
       </div>
     );
   }
 }
+
+// const MyMapComponent = compose(
+//   withProps({
+//     googleMapURL:
+//     "https://maps.googleapis.com/maps/api/js?key=AIzaSyA3o7dy50LdekZi5WmxFMHbVK690D3KeKQ&v=3.exp&libraries=geometry,drawing,places",
+//     loadingElement: <div style={{ height: `95%` }} />,
+//     containerElement: <div style={{ height: `700px` }} />,
+//     mapElement: <div style={{ height: `95%` }} />
+//   }),   
+//   withStateHandlers(() => ({
+//     isOpen: false,
+//   }), {
+//     onToggleOpen: ({ isOpen }) => () => ({
+//       isOpen: !isOpen,
+//     })
+//     // onToggleOpen: ( obj ) => (brewery) => {
+//     //   console.log(obj);
+//     //   console.log("brewery");
+//     //   console.log(brewery);
+//     //   // obj.isOpen = !obj.isOpen;
+//     // }
+//     // onToggleOpen: (brewery) => () => {
+//     //   // isOpen: !isOpen,
+//     //   console.log(brewery);
+//   }),
+//   withHandlers({
+//     onMarkerClick: () => (marker) => {
+//       console.log(marker)
+//       console.log('Go to the marker post page')
+//       window.location = '/breweries/' + marker.id;
+//     },
+//     showInfo: () => (marker) => {
+//       $("#infoBox").show()
+//       $("#infoText").text(marker.brewery)
+//     },
+//     hideInfo: () => (marker) => {
+//       $("#infoBox").hide()
+//       $("#infoText").text("")
+//     }
+//   }),
+//   withScriptjs,
+//   withGoogleMap
+// )(props =>
+//   <GoogleMap defaultZoom={13} defaultCenter={{ lat: 39.7393, lng: -104.9848 }} style={{ position: "relative" }}>
+
+// {props.isMarkerShown && (
+//       <div>
+//         {console.log(dyMark)}
+//         {markers.map(brewery => (
+//         <div>
+//         <Marker
+//           onClick={props.onMarkerClick.bind(this, brewery)}
+//           onMouseOver={props.onToggleOpen.bind(this, brewery)}
+//           onMouseOut={props.hideInfo.bind(this, brewery)}
+//           key={brewery.id}
+//           className={brewery.id}
+//           position={brewery.position}
+//         >
+//           {props.isOpen && <InfoWindow onCloseClick={props.onToggleOpen}>
+//             <p>
+//               {brewery.title}
+//               {console.log(brewery)}
+//             </p>
+//             </InfoWindow>
+//           }
+//         </Marker>
+//       </div>
+//       ))}
+
+//       </div>
+
+//     )}
+
+//   </GoogleMap>
+// );
 
 const MyMapComponent = compose(
   withProps({
@@ -173,6 +280,7 @@ const MyMapComponent = compose(
   withGoogleMap
 )(props => (
   <GoogleMap defaultZoom={13} defaultCenter={{ lat: 39.7393, lng: -104.9848 }} style={{ position: "relative" }}>
+
     <div id="infoBox" style={{ backgroundColor: `white`, color: "black", padding: `12px`, position: "absolute", left: "60%", bottom: "40%" }}>
       <p id="infoText"></p>
     </div>
