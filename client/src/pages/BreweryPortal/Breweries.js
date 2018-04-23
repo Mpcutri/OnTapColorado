@@ -186,7 +186,6 @@ class Breweries extends Component {
     })
       .then(res => this.loadBreweryInfo())
       .catch(err => console.log(err));
-<<<<<<< HEAD
     };
 
   handleClick = (e) => {
@@ -195,9 +194,6 @@ class Breweries extends Component {
     console.log(this.state);
     console.log('The link was clicked on brewery portal.');
   }
-=======
-  };
->>>>>>> 02e40f65d5a78f231d1084a4ab30a85d32b3dd14
 
   render() {
     return (
