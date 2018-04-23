@@ -1,55 +1,108 @@
 import React, { Component } from "react";
+import Jumbotron from "../../components/Jumbotron";
 import DeleteBtn from "../../components/DeleteBtn";
 import UpdateBtn from "../../components/UpdateBtn";
 import EditBtn from "../../components/EditBtn";
-import Jumbotron from "../../components/Jumbotron";
 import API from "../../utils/API";
 import { Link } from "react-router-dom";
-import { Col, Row, Container } from "../../components/Grid";
 import { List, ListItem } from "../../components/List";
-import { Input, TextArea, FormBtn } from "../../components/Form";
-import { Card, CardImg, CardText, CardBody,
-  CardTitle, CardSubtitle, Button } from 'reactstrap';
-//DND
+import { TextArea, FormBtn } from "../../components/Form";
+import { Col, Row, Container } from "../../components/Grid";
 import { DragDropContainer, DropTarget } from 'react-drag-drop-container';
+import {SortableContainer, SortableElement} from 'react-sortable-hoc';
+import { Card, 
+          CardImg, 
+          CardText, 
+          CardBody, 
+          CardDeck,
+          CardTitle, 
+          CardSubtitle, 
+          Button, 
+          Modal, 
+          ModalHeader, 
+          ModalBody, 
+          ModalFooter, 
+          Form, 
+          FormGroup, 
+          Label, 
+          Input, 
+          FormText,
+          Media,
+          Popover, 
+          PopoverHeader, 
+          PopoverBody } from 'reactstrap';
 
 class Breweries extends Component {
-  state = {
-    currentBrewery: [],
-    beers: [],
-    id: null,
-    name: null,
-    type: null,
-    abv: null,
-    ibu: null,
-    description: null,
-    brewery: null,
-    location: null,
-    website: null,
-    phone_number: null,
-    onTap: false
-  };
+  constructor(props) {
+    super(props);
+    this.togglePopOver = this.togglePopOver.bind(this);
+    this.state = {
+      currentBrewery: [],
+      beers: [],
+      id: null,
+      name: null,
+      type: null,
+      abv: null,
+      ibu: null,
+      description: null,
+      brewery: "",
+      location: null,
+      website: null,
+      phone_number: null,
+      onTap: false,
+      modal: false,
+      backdrop: true,
+      popoverOpen: false
+    };
 
+    this.toggle = this.toggle.bind(this);
+    this.changeBackdrop = this.changeBackdrop.bind(this);
+    
+  }
+
+  // Modal on/off
+  toggle() {
+    this.setState({
+      modal: !this.state.modal
+    });
+  }
+
+  togglePopOver() {
+    this.setState({
+      popoverOpen: !this.state.popoverOpen
+    });
+  }
+
+  // Gets called on Beer Form submit and updates DB with new form values
+  changeBackdrop(e) {
+    let value = e.target.value;
+    if (value !== 'static') {
+      value = JSON.parse(value);
+    }
+    this.setState({ backdrop: value });
+  }
+
+  // When page loads
   componentDidMount() {
     this.loadBreweryInfo();
     console.log(this.state.currentBrewery)
   }
 
+  // Web link to brewery in jumbotron
+  handleClick = (e) => {
+    e.preventDefault();
+    window.location = this.state.website;
+    console.log('Link to brewery URL clicked on Brewery Potal');
+  }
+
+  // Loads current brewery content on page load
   loadBreweryInfo = () => {
     API.getBrewery(this.props.match.params.id)
       .then(res => this.setState({ currentBrewery: res.data, beers: res.data.beer, id: res.data._id, brewery: res.data.brewery, location: res.data.location, website: res.data.website, phone_number: res.data.phone_number }))
       .catch(err => console.log(err));
   };
-
-  deleteBeer = (index) => {
-    console.log(index)
-    this.state.beers.splice(index, 1)
-    console.log(this.state.beers)
-    API.deleteBeer({ id: this.state.id}, this.state.beers)
-      .then(res => this.loadBreweryInfo())
-      .catch(err => console.log(err));
-  };
-
+  
+  // On tap/Off tap toggle
   toggleBeer = (index) => {
     console.log(index)
     if (this.state.beers[index].onTap) {
@@ -63,6 +116,7 @@ class Breweries extends Component {
       .catch(err => console.log(err));
   };
 
+  // Gets called when edit button on beer is clicked and populates update form with respective beers data
   updateBeer = (index) => {
     console.log(index)
     this.setState({
@@ -81,6 +135,17 @@ class Breweries extends Component {
       .catch(err => console.log(err));
   };
 
+  // Obvious
+  deleteBeer = (index) => {
+    console.log(index)
+    this.state.beers.splice(index, 1)
+    console.log(this.state.beers)
+    API.deleteBeer({ id: this.state.id}, this.state.beers)
+      .then(res => this.loadBreweryInfo())
+      .catch(err => console.log(err));
+  };
+
+  // Gets called each time a text field is entered or changed and sets the state to the new value
   handleInputChange = event => {
     const { name, value } = event.target;
     this.setState({
@@ -89,6 +154,7 @@ class Breweries extends Component {
     console.log("Name: " + name + "  Value: " + value)
   };
 
+  // Gets called on Beer Form submit and updates DB with new form values
   handleBeerFormSubmit = event => {
     event.preventDefault();
     console.log(this.state.id)
@@ -107,9 +173,10 @@ class Breweries extends Component {
     }
   };
 
+  // Gets called on Brewery Form (inside modal) submit and updates DB with new form values
   handleBreweryFormSubmit = event => {
     event.preventDefault();
-    console.log(this.state.id)
+    this.toggle();
     API.updateBreweryInfo({
       brewery: this.state.brewery,
       location: this.state.location,
@@ -119,6 +186,7 @@ class Breweries extends Component {
     })
       .then(res => this.loadBreweryInfo())
       .catch(err => console.log(err));
+<<<<<<< HEAD
     };
 
   handleClick = (e) => {
@@ -127,6 +195,9 @@ class Breweries extends Component {
     console.log(this.state);
     console.log('The link was clicked on brewery portal.');
   }
+=======
+  };
+>>>>>>> 02e40f65d5a78f231d1084a4ab30a85d32b3dd14
 
   render() {
     return (
@@ -135,27 +206,91 @@ class Breweries extends Component {
           <Col size="md-12" style={{ marginTop: "30px" }}>
             <Jumbotron>
               
-              <Col size="md-6">
-                <h1>{this.state.currentBrewery.brewery}</h1>
-
-                <p>
+              <Media>
+                <Media left href="#">
+                  <Media object data-src="holder.js/64x64" alt="Generic placeholder image" />
+                </Media>
+                <Media body>
+                  <Media heading>
+                    <h1>
+                      {this.state.currentBrewery.brewery}
+                    </h1>
+                  </Media>
+                  <Media heading>
+                    {this.state.currentBrewery.location}
+                  </Media>
+                  <Media heading>
+                    {this.state.currentBrewery.phone_number}
+                  </Media>
+                  <p>
                   <Button onClick={this.handleClick}>
-                  Brewery Website
-                </Button>
-                </p>
-              </Col>
-              <Col size="md-6">
-                <h2>{this.state.currentBrewery.location}</h2>
-                <p>{this.state.currentBrewery.phone_number}</p>
-              </Col>
+                    Brewery Website
+                  </Button>
+                  </p>
+                  <Button color="primary" onClick={this.toggle}>Edit Brewery Info</Button>               
+                </Media>
+              </Media>
+
+              {/* Actual modal */}
+              <Modal 
+                isOpen={this.state.modal} 
+                toggle={this.toggle} 
+                className={this.props.className} 
+                backdrop={this.state.backdrop}>
+                <ModalHeader toggle={this.toggle}>Update your Brewery Information</ModalHeader>
+                  <ModalBody>
+                  
+                    <form>
+                      <span style={{fontSize: 24, color: "black"}}>Brewery Name</span>
+                      <Input
+                        value={this.state.brewery}
+                        onChange={this.handleInputChange}
+                        name="brewery"
+                        placeholder="Brewery Name (required)"
+                      />
+                      <span style={{fontSize: 24, color: "black"}}>Brewery Address</span>
+                      <Input
+                        value={this.state.location}
+                        onChange={this.handleInputChange}
+                        name="location"
+                        placeholder="Location"
+                      />
+                      <span style={{fontSize: 24, color: "black"}}>Brewery Website</span>
+                      <Input
+                        value={this.state.website}
+                        onChange={this.handleInputChange}
+                        name="website"
+                        placeholder="Website"
+                      />
+                      <span style={{fontSize: 24, color: "black"}}>Brewery Phone Number</span>
+                      <Input
+                        value={this.state.phone_number}
+                        onChange={this.handleInputChange}
+                        name="phone_number"
+                        placeholder="Phone Number"
+                      />   
+                    </form>
+                  </ModalBody>
+
+                <ModalFooter>
+                  <Button 
+                    // disabled={!(this.state.brewery)} 
+                    color="primary" 
+                    onClick={this.handleBreweryFormSubmit}>Submit
+                  </Button>
+                </ModalFooter>
+
+              </Modal>
             </Jumbotron>
           </Col>
         </Row>
+      {/* End Modal*/}
+{/*-------------------------------------------------------------*/}
         <Row>
           <Col size="md-6">
-            <Jumbotron>
+
               <h1>Add a beer to your tap list!</h1>
-            </Jumbotron>
+
             <form style={{backgroundColor: "rbga(0,0,0,0.1)"}}>
               <Input
                 value={this.state.name}
@@ -197,9 +332,9 @@ class Breweries extends Component {
             </form>
           </Col>
           <Col size="md-6 sm-12">
-            <Jumbotron>
+
               <h1>Beers List</h1>
-            </Jumbotron>
+
             {console.log(this.state.currentBrewery)}
             {console.log(this.state.beers)}
             {this.state.beers.length ? (
@@ -230,7 +365,6 @@ class Breweries extends Component {
                         <DeleteBtn onClick={() => this.deleteBeer(index)} />
                         <UpdateBtn onClick={() => this.toggleBeer(index)} />
                         <EditBtn onClick={() => this.updateBeer(index)} />
-                          
                       </ListItem>
                   ) : ("")
                 ))}
@@ -242,56 +376,30 @@ class Breweries extends Component {
           </Col>
         </Row>
         <Row>
-          <Col size="md-6">
-            <Jumbotron>
-              <h1>Update your Brewery Information</h1>
-            </Jumbotron>
-            <form>
-              <span style={{fontSize: 24, color: "black"}}>Brewery Name</span>
-              <Input
-                value={this.state.brewery}
-                onChange={this.handleInputChange}
-                name="brewery"
-                placeholder="Brewery Name (required)"
-              />
-              <span style={{fontSize: 24, color: "black"}}>Brewery Address</span>
-              <Input
-                value={this.state.location}
-                onChange={this.handleInputChange}
-                name="location"
-                placeholder="Location"
-              />
-              <span style={{fontSize: 24, color: "black"}}>Brewery Website</span>
-              <Input
-                value={this.state.website}
-                onChange={this.handleInputChange}
-                name="website"
-                placeholder="Website"
-              />
-              <span style={{fontSize: 24, color: "black"}}>Brewery Phone Number</span>
-              <Input
-                value={this.state.phone_number}
-                onChange={this.handleInputChange}
-                name="phone_number"
-                placeholder="Phone Number"
-              />
-              <FormBtn
-                disabled={!(this.state.brewery)}
-                onClick={this.handleBreweryFormSubmit}
-              >
-                Update Info
-              </FormBtn>
-            </form>
-          </Col>
-        </Row>
-        <Row>
           {/* Draggable card for brewery inventory list and on tap list */}
           <div>
             <DragDropContainer>
               <Card body width="100%">
                 <CardTitle>beer.name</CardTitle>
                 <CardText>Type: beer.type &#9632; ABV: beer.abv &#9632; IBU:beer.ibu</CardText>
-                <Button color="primary">Go somewhere</Button>
+                <span>
+                <Button color="primary" id="pop-over" onClick={this.togglePopOver}>Go somewhere</Button>
+                <Popover placement="bottom" isOpen={this.state.popoverOpen} target="pop-over" toggle={this.togglePopOver}>
+                  <PopoverHeader>Popover Title</PopoverHeader>
+                  <PopoverBody>Sed posuere consectetur est at lobortis. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum.</PopoverBody>
+                </Popover>
+                </span>
+              </Card>
+              <Card body width="100%">
+                <CardTitle>beer.name</CardTitle>
+                <CardText>Type: beer.type &#9632; ABV: beer.abv &#9632; IBU:beer.ibu</CardText>
+                <span>
+                <Button color="primary" id="pop-over" onClick={this.togglePopOver}>Go somewhere</Button>
+                <Popover placement="bottom" isOpen={this.state.popoverOpen} target="pop-over" toggle={this.togglePopOver}>
+                  <PopoverHeader>Popover Title</PopoverHeader>
+                  <PopoverBody>Sed posuere consectetur est at lobortis. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum.</PopoverBody>
+                </Popover>
+                </span>
               </Card>
             </DragDropContainer>
           </div>
