@@ -130,9 +130,9 @@ export default class Example extends React.Component {
 //             <li><a href={"/admin/" + props.id}>View Profile</a></li>
 //             <li><a href={"/breweries/" + props.id}>Visit Brewery Page</a></li>
 
-            {console.log(props)}
-            <li><a href={"/admin/" + props.id}>Brewery Portal</a></li>
-            <li><a href={"/breweries/" + props.id}>User Portal</a></li>
+            // {console.log(props)}
+            // <li><a href={"/admin/" + props.id}>Brewery Portal</a></li>
+            // <li><a href={"/breweries/" + props.id}>User Portal</a></li>
 
 //             <li role="separator" className="divider"></li>
 //             <li> <a className="logout" onClick={props.userLogout}>Sign out</a></li>
