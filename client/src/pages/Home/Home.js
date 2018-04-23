@@ -30,7 +30,6 @@ const style = {
   breweryList: {
     border: 'solid',
     position: "relative", 
-    zIndex: "-100",
     marginBottom: "30px",
     marginTop: "30px"
   },
@@ -161,17 +160,18 @@ class Breweries extends Component {
       <div>
         <Logo style={{position: "absolute"}} />
       
-        <div>
+        <div id="scrollButton" style={{ position: "relative", zIndex: "5" }}>
             
             
-            <ScrollToTop id="scroll-button" showUnder={160}>
-              <span style={{ backgroundColor: "rgba(136, 135, 135, 0.65)", padding: "20px", zIndex: "2000", borderRadius: '10px' }}><span class="glyphicon glyphicon-arrow-up"></span></span>
-            </ScrollToTop>
+          <ScrollToTop id="scroll-button" showUnder={160}>
+            <span style={{ backgroundColor: "rgba(136, 135, 135, 0.65)", padding: "20px", borderRadius: '10px' }}><span class="glyphicon glyphicon-arrow-up"></span></span>
+          </ScrollToTop>
 
-            </div>
-        <div style={{ backgroundColor: "white", position: "relative", zIndex: "-2" }}>
+        </div>
+
+        <div style={{ backgroundColor: "#2b2b2b", position: "relative" }}>
         <Container>
-              <div id="map" style={{ position: "relative", zIndex: "-1", marginTop: "30px" }}>
+              <div id="map" style={{ position: "relative", marginTop: "30px" }}>
                 <MyMapComponent isMarkerShown />
               </div>
         </Container>
