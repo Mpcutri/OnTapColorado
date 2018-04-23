@@ -45,6 +45,7 @@ class Breweries extends Component {
       abv: null,
       ibu: null,
       description: null,
+      index: -10,
       brewery: "",
       location: null,
       website: null,
@@ -126,13 +127,10 @@ class Breweries extends Component {
       ibu: this.state.beers[index].ibu,
       description: this.state.beers[index].description,
       onTap: this.state.beers[index].onTap,
-      id: this.state.beers[index].id
+      id: this.state.beers[index].id,
+      index: index
     });
-    this.state.beers.splice(index, 1)
-    console.log(this.state.beers)
-    API.deleteBeer({ id: this.state.id}, this.state.beers)
-      .then(res => this.loadBreweryInfo())
-      .catch(err => console.log(err));
+    
   };
 
   // Obvious
@@ -158,6 +156,9 @@ class Breweries extends Component {
   handleBeerFormSubmit = event => {
     event.preventDefault();
     console.log(this.state.id)
+    if (this.state.index > -1) {
+      this.deleteBeer(this.state.index);
+    }
     if (this.state.name) {
       API.saveBeer({
         name: this.state.name,
@@ -171,6 +172,15 @@ class Breweries extends Component {
         .then(res => this.loadBreweryInfo())
         .catch(err => console.log(err));
     }
+    this.setState({
+      name: "",
+      type: "",
+      abv: "",
+      ibu: "",
+      description: "",
+      onTap: false,
+      index: -10
+    })
   };
 
   // Gets called on Brewery Form (inside modal) submit and updates DB with new form values
