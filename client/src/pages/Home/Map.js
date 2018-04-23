@@ -25,7 +25,7 @@ const MyMapComponent = compose(
   withGoogleMap
 )(props => (
   <GoogleMap defaultZoom={13} defaultCenter={{ lat: 39.7393, lng: -104.9848 }} style={{ position: "relative" }}>
-    <div id="infoBox" style={{ backgroundColor: `white`, color: "black", padding: `12px`, position: "absolute", left: "60%", bottom: "-30%" }}>
+    <div id="infoBox" style={{ backgroundColor: "white", color: "black", padding: `12px`, position: "absolute", left: "60%", bottom: "-30%" }}>
       <p id="infoText"></p>
     </div>
 

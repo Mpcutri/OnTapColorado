@@ -1,6 +1,6 @@
 import "./Nav.css";
 import $ from "jquery";
-import homeIcon from "../../images/home.png";
+import onTapText from "../../images/onTap.png";
 import SearchBar from "../SearchBar";
 import React from 'react';
 import {
@@ -65,7 +65,7 @@ export default class Example extends React.Component {
     return (
       <div>
         <Navbar color="light" light expand="md">
-          <NavbarBrand className="homePage" style={style.homePage} href="/">On Tap Colorado</NavbarBrand>
+          <NavbarBrand className="homePage" style={style.homePage} href="/"><img id="logoImage" src={onTapText} /></NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar pills>
