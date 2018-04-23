@@ -45,6 +45,7 @@ class Breweries extends Component {
       abv: null,
       ibu: null,
       description: null,
+      index: -10,
       brewery: "",
       location: null,
       website: null,
@@ -126,13 +127,10 @@ class Breweries extends Component {
       ibu: this.state.beers[index].ibu,
       description: this.state.beers[index].description,
       onTap: this.state.beers[index].onTap,
-      id: this.state.beers[index].id
+      id: this.state.beers[index].id,
+      index: index
     });
-    this.state.beers.splice(index, 1)
-    console.log(this.state.beers)
-    API.deleteBeer({ id: this.state.id}, this.state.beers)
-      .then(res => this.loadBreweryInfo())
-      .catch(err => console.log(err));
+    
   };
 
   // Obvious
@@ -158,7 +156,11 @@ class Breweries extends Component {
   handleBeerFormSubmit = event => {
     event.preventDefault();
     console.log(this.state.id)
+    if (this.state.index > -1) {
+      this.deleteBeer(this.state.index);
+    }
     if (this.state.name) {
+
       API.saveBeer({
         name: this.state.name,
         type: this.state.type,
@@ -171,6 +173,15 @@ class Breweries extends Component {
         .then(res => this.loadBreweryInfo())
         .catch(err => console.log(err));
     }
+    this.setState({
+      name: "",
+      type: "",
+      abv: "",
+      ibu: "",
+      description: "",
+      onTap: false,
+      index: -10
+    })
   };
 
   // Gets called on Brewery Form (inside modal) submit and updates DB with new form values
@@ -204,7 +215,7 @@ class Breweries extends Component {
               
               <Media>
                 <Media left href="#">
-                  <Media object data-src="holder.js/64x64" alt="Generic placeholder image" />
+                <Media object src="https://placeholdit.imgix.net/~text?txtsize=33&txt=318%C3%97180&w=300&h=200" alt="Generic placeholder image" style={{height: "220px", width: "300", marginRight: "10px"}}/>
                 </Media>
                 <Media body>
                   <Media heading>
@@ -328,40 +339,63 @@ class Breweries extends Component {
             </form>
           </Col>
           <Col size="md-6 sm-12">
-
+{/*-------------------------------------------------------------*/}
               <h1>Beers List</h1>
 
             {console.log(this.state.currentBrewery)}
             {console.log(this.state.beers)}
             {this.state.beers.length ? (
               <div>
-              <List><span style={{fontSize: 24, color: "black"}}>On Tap:</span>
+              <List><span style={{fontSize: 24, color: "black"}}>Currently On Tap:</span>
+              <Button>Modal for adding a beer form</Button>
                 {this.state.beers.map((beer, index) => (
                   beer.onTap ? (
+                    <DragDropContainer>
                       <ListItem key={beer.name} id={index}>
-                          <span style={{fontSize: 20}}>
-                            {beer.name}
-                            {console.log(beer.name)}
-                          </span>
-                        <DeleteBtn onClick={() => this.deleteBeer(index)} />
-                        <UpdateBtn onClick={() => this.toggleBeer(index)} />
-                        <EditBtn onClick={() => this.updateBeer(index)} />
+                        <Card body width="100%">
+                          <Row>
+                            <CardTitle>{beer.name}</CardTitle>
+                          </Row>
+                          <Row>
+                            <CardText>Type: {beer.type} &#9632; ABV: {beer.abv} &#9632; IBU: {beer.ibu}</CardText>
+                          </Row>
+                            <Row>
+                              <Button color="primary" id="pop-over" onClick={this.togglePopOver}>Go somewhere</Button>
+                            </Row>
+                            <Row>
+                              <DeleteBtn onClick={() => this.deleteBeer(index)} />
+                              <UpdateBtn onClick={() => this.toggleBeer(index)} />
+                              <EditBtn onClick={() => this.updateBeer(index)} />
+                            </Row>
+                        </Card>
                       </ListItem>
+                    </DragDropContainer>
                   ) : ("")
                 ))}
               </List>
-              <List><span style={{fontSize: 24, color: "black"}}>Not On Tap:</span>
+              <List><span style={{fontSize: 24, color: "black"}}>Inventory Not on Tap:</span>
                 {this.state.beers.map((beer, index) => (
                   !beer.onTap ? (
+                      <DragDropContainer>
                       <ListItem key={beer.name} id={index}>
-                          <span style={{fontSize: 20}} >
-                            {beer.name}
-                            {console.log(beer.name)}
+                        <Card body width="100%">
+                          <CardTitle>{beer.name}</CardTitle>
+                          <CardText>Type: {beer.type} &#9632; ABV: {beer.abv} &#9632; IBU: {beer.ibu}</CardText>
+                          <span>
+                          <Button color="primary" id="pop-over" onClick={this.togglePopOver}>Go somewhere</Button>
+                          <Popover placement="bottom" isOpen={this.state.popoverOpen} target="pop-over" toggle={this.togglePopOver}>
+                            <PopoverHeader>Popover Title</PopoverHeader>
+                            <PopoverBody>Sed posuere consectetur est at lobortis. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum.</PopoverBody>
+                          </Popover>
                           </span>
-                        <DeleteBtn onClick={() => this.deleteBeer(index)} />
-                        <UpdateBtn onClick={() => this.toggleBeer(index)} />
-                        <EditBtn onClick={() => this.updateBeer(index)} />
+                          <Row>
+                          <DeleteBtn onClick={() => this.deleteBeer(index)} />
+                          <UpdateBtn onClick={() => this.toggleBeer(index)} />
+                          <EditBtn onClick={() => this.updateBeer(index)} />
+                          </Row>
+                        </Card>
                       </ListItem>
+                    </DragDropContainer>
                   ) : ("")
                 ))}
                 </List>
@@ -371,35 +405,7 @@ class Breweries extends Component {
             )}
           </Col>
         </Row>
-        <Row>
-          {/* Draggable card for brewery inventory list and on tap list */}
-          <div>
-            <DragDropContainer>
-              <Card body width="100%">
-                <CardTitle>beer.name</CardTitle>
-                <CardText>Type: beer.type &#9632; ABV: beer.abv &#9632; IBU:beer.ibu</CardText>
-                <span>
-                <Button color="primary" id="pop-over" onClick={this.togglePopOver}>Go somewhere</Button>
-                <Popover placement="bottom" isOpen={this.state.popoverOpen} target="pop-over" toggle={this.togglePopOver}>
-                  <PopoverHeader>Popover Title</PopoverHeader>
-                  <PopoverBody>Sed posuere consectetur est at lobortis. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum.</PopoverBody>
-                </Popover>
-                </span>
-              </Card>
-              <Card body width="100%">
-                <CardTitle>beer.name</CardTitle>
-                <CardText>Type: beer.type &#9632; ABV: beer.abv &#9632; IBU:beer.ibu</CardText>
-                <span>
-                <Button color="primary" id="pop-over" onClick={this.togglePopOver}>Go somewhere</Button>
-                <Popover placement="bottom" isOpen={this.state.popoverOpen} target="pop-over" toggle={this.togglePopOver}>
-                  <PopoverHeader>Popover Title</PopoverHeader>
-                  <PopoverBody>Sed posuere consectetur est at lobortis. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum.</PopoverBody>
-                </Popover>
-                </span>
-              </Card>
-            </DragDropContainer>
-          </div>
-        </Row>
+{/*-------------------------------------------------------------*/}
       </Container>
     );
   }

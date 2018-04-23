@@ -49,89 +49,21 @@ const style = {
 }
 
 var dynamicMarkers = [];
-var dyMark = []
-var markers2 = 
-    API.getBreweries()
-      .then(res =>
-        dynamicMarkers.push(res.data)
 
-      )
-      .catch(err => console.log(err));
-console.log(markers2)
-console.log(dynamicMarkers);
-
-for (var i = 0; i < dynamicMarkers.length; i++) {
-  dyMark.push(dynamicMarkers[i])
-}
-
-var markers = [
-{
-  position: {lat: 39.7605, lng: -104.9824},
-  title: 'Our Mutual Friend',
-  id: "OurMutualFriend",
-  _id: "5abd202046b5be963d032e36"
-},
-{
-  position: {lat: 39.7615, lng: -104.9811},
-  title: 'Ratio Beerworks',
-  id: "RatioBeerworks",
-  _id: "5abd4bf39fa2d2a11f40b57a"
-},
-{
-  position: {lat: 39.755217, lng: -104.977019},
-  title: 'Spangalang Brewery',
-  id: "SpanalangBrewery",
-  _id: "5abd4c239fa2d2a11f40b57b"
-},
-{
-  position: {lat: 39.7510, lng: -104.9846},
-  title: 'Woods Boss Brewing',
-  id: "WoodsBossBrewing",
-  _id: "5abd4c349fa2d2a11f40b57c"
-},
-{
-  position: {lat: 39.7632, lng: -104.9813},
-  title: 'Epic Brewing Company',
-  id: "EpicBrewingCompany",
-  _id: "5abd4c4b9fa2d2a11f40b57d"
-},
-{
-  position: {lat: 39.753786, lng: -104.988500},
-  title: 'Great Divide Brewing Co',
-  id: "GreatDivideBrewingCo",
-  _id: "5abd4c649fa2d2a11f40b57e"
-},
-{
-  position: {lat: 39.7523, lng: -104.9914},
-  title: 'Jagged Mountain Craft Brewing',
-  id: "JaggedMountainCraftBrewing",
-  _id: "5abd4c7e9fa2d2a11f40b57f"
-},
-{
-  position: {lat: 39.7199, lng: -104.9877},
-  title: 'TRVE Brewing Co',
-  id: "TRVEBrewingCo",
-  _id: "5abd4c919fa2d2a11f40b580"
-},
-{
-  position: {lat: 39.7237, lng: -105.0006},
-  title: 'Crazy Mountain Brewery Tap Room',
-  id: "CrazyMountainBreweryTapRoom",
-  _id: "5abd4ca49fa2d2a11f40b581"
-},
-{
-  position: {lat: 39.7239, lng: -104.9985},
-  title: 'Black Sky Brewery',
-  id: "BlackSkyBrewery",
-  _id: "5abd4cb39fa2d2a11f40b582"
-},
-{
-  position: {lat: 39.7306, lng: -104.9993},
-  title: 'Renegade Brewing Company',
-  id: "RenegadeBrewingCompany",
-  _id: "5abd4cc29fa2d2a11f40b583"
-}
-];
+function markers2() { 
+  API.getBreweries()
+    .then(res =>
+      res.data.map(brewery => (
+        dynamicMarkers.push({
+          brewery: brewery.brewery,
+          position: brewery.position,
+          id: brewery._id
+        })
+      ))
+      
+    )
+    .catch(err => console.log(err));
+};
 
 class Breweries extends Component {
   state = {
@@ -139,6 +71,7 @@ class Breweries extends Component {
   };
 
   componentDidMount() {
+    markers2();
     this.loadBreweries();
   };
 
@@ -302,11 +235,11 @@ const MyMapComponent = compose(
     onMarkerClick: () => (marker) => {
       console.log(marker.id)
       console.log('Go to the marker post page')
-      window.location = '/breweries/' + marker._id;
+      window.location = '/breweries/' + marker.id;
     },
     showInfo: () => (marker) => {
       $("#infoBox").show()
-      $("#infoText").text(marker.title)
+      $("#infoText").text(marker.brewery)
     },
     hideInfo: () => (marker) => {
       $("#infoBox").hide()
@@ -317,14 +250,14 @@ const MyMapComponent = compose(
   withGoogleMap
 )(props => (
   <GoogleMap defaultZoom={13} defaultCenter={{ lat: 39.7393, lng: -104.9848 }} style={{ position: "relative" }}>
-    <div id="infoBox" style={{ backgroundColor: `white`, color: "black", padding: `12px`, position: "absolute", left: "60%" }}>
+
+    <div id="infoBox" style={{ backgroundColor: `white`, color: "black", padding: `12px`, position: "absolute", left: "60%", bottom: "40%" }}>
       <p id="infoText"></p>
     </div>
-
+    {console.log(dynamicMarkers)}
     {props.isMarkerShown && (
       <div>
-        {console.log(dyMark)}
-        {markers.map(brewery => (
+        {dynamicMarkers.map(brewery => (
         <div>
         <Marker
           onClick={props.onMarkerClick.bind(this, brewery)}
