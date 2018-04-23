@@ -136,7 +136,7 @@ class Detail extends Component {
             <Jumbotron>
               <Media>
                 <Media left href="#">
-                  <Media object data-src="holder.js/64x64" alt="Generic placeholder image" />
+                  <Media object src="https://placeholdit.imgix.net/~text?txtsize=33&txt=318%C3%97180&w=300&h=200" alt="Generic placeholder image" />
                 </Media>
                 <Media body>
                   <Media heading>
