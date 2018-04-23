@@ -132,22 +132,35 @@ class Detail extends Component {
       <Container fluid>
         {/* Jumbotron */}
         <Row>
-          <Col size="md-12">
+          <Col size="md-12" style={{ marginTop: "30px" }}>
             <Jumbotron>
-              <h1>
-                {this.state.brewery.brewery}
-              </h1>
-              <p>
-                {this.state.brewery.location}
-              </p>
-              <p>
-                {this.state.brewery.phone_number}
-              </p>
-              <p>
-                <Button onClick={this.handleClick}>
-                  Brewery Website
-                </Button>
-              </p>
+              <Media>
+                <Media left href="#">
+                  <Media object data-src="holder.js/64x64" alt="Generic placeholder image" />
+                </Media>
+                <Media body>
+                  <Media heading>
+                    <h1>
+                      {this.state.brewery.brewery}
+                    </h1>
+                  </Media>
+                  <Media heading>
+                    <p>
+                      {this.state.brewery.location}
+                    </p>
+                  </Media>
+                  <Media>
+                    <p>
+                      {this.state.brewery.phone_number}
+                    </p>
+                  </Media>
+                  <p>
+                    <Button onClick={this.handleClick}>
+                      Brewery Website
+                    </Button>
+                  </p>
+                </Media>
+              </Media>
             </Jumbotron>
           </Col>
         </Row>
@@ -161,62 +174,60 @@ class Detail extends Component {
               <CardDeck>
                   {this.state.beers.map(beer => (                     
                     <Col size="sm-3">
-                        <DragDropContainer>
-                          <Card key={beer._id}>
-                            <CardImg top width="100%" src="https://placeholdit.imgix.net/~text?txtsize=33&txt=318%C3%97180&w=318&h=180" alt="Card image cap" />
-                            <CardBody>
-                              <CardTitle>{beer.name}</CardTitle>
-                              <CardSubtitle>{beer.type}</CardSubtitle>
-                              <CardText>&#9632; ABV:{beer.abv} &#9632; IBU:{beer.ibu}</CardText>
-                              <CardText>{beer.description}</CardText>
-                              <span>
-                                <Button color="primary" id="pop-over" onClick={this.togglePopOver}>Description</Button>
-                                <Popover placement="bottom" isOpen={this.state.popoverOpen} target="pop-over" toggle={this.togglePopOver}>
-                                  <PopoverHeader>Popover Title</PopoverHeader>
-                                  <PopoverBody>{beer.description}</PopoverBody>
-                                </Popover>
-                              </span>
-                              {/* Opens modal */}
-                              <Button color="primary" onClick={this.toggle}>Notifications</Button>
-                              
-                              {/* Actual modal */}
-                              <Modal 
-                                isOpen={this.state.modal} 
-                                toggle={this.toggle} 
-                                className={this.props.className} 
-                                backdrop={this.state.backdrop}>
-                                <ModalHeader toggle={this.toggle}>How would you like to be notified?</ModalHeader>
-                                  <ModalBody>
+                      <Card key={beer._id}>
+                        <CardImg top width="100%" src="https://placeholdit.imgix.net/~text?txtsize=33&txt=318%C3%97180&w=318&h=180" alt="Card image cap" />
+                        <CardBody>
+                          <CardTitle>{beer.name}</CardTitle>
+                          <CardSubtitle>{beer.type}</CardSubtitle>
+                          <CardText>&#9632; ABV:{beer.abv} &#9632; IBU:{beer.ibu}</CardText>
+                          <CardText>{beer.description}</CardText>
+                          <span>
+                            <Button color="primary" id="pop-over" onClick={this.togglePopOver}>Description</Button>
+                            <Popover placement="bottom" isOpen={this.state.popoverOpen} target="pop-over" toggle={this.togglePopOver}>
+                              <PopoverHeader>Popover Title</PopoverHeader>
+                              <PopoverBody>{beer.description}</PopoverBody>
+                            </Popover>
+                          </span>
+                          {/* Opens modal */}
+                          <Button color="primary" onClick={this.toggle}>Notifications</Button>
+                          
+                          {/* Actual modal */}
+                          <Modal 
+                            isOpen={this.state.modal} 
+                            toggle={this.toggle} 
+                            className={this.props.className} 
+                            backdrop={this.state.backdrop}>
+                            <ModalHeader toggle={this.toggle}>How would you like to be notified?</ModalHeader>
+                              <ModalBody>
 
-                                    <form>
-                                      <span style={{fontSize: 24, color: "black"}}>Email</span>
-                                        <Input
-                                          // value={this.state.email}
-                                          // onChange={this.handleInputChange}
-                                          name="brewery"
-                                          placeholder="Email"
-                                        />
-                                      <span style={{fontSize: 24, color: "black"}}>Text</span>
-                                        <Input
-                                          // value={this.state.text}
-                                          // onChange={this.handleInputChange}
-                                          name="brewery"
-                                          placeholder="Text"
-                                        />
-                                    </form>
-                                  </ModalBody>
+                                <form>
+                                  <span style={{fontSize: 24, color: "black"}}>Email</span>
+                                    <Input
+                                      // value={this.state.email}
+                                      // onChange={this.handleInputChange}
+                                      name="brewery"
+                                      placeholder="Email"
+                                    />
+                                  <span style={{fontSize: 24, color: "black"}}>Text</span>
+                                    <Input
+                                      // value={this.state.text}
+                                      // onChange={this.handleInputChange}
+                                      name="brewery"
+                                      placeholder="Text"
+                                    />
+                                </form>
+                              </ModalBody>
 
-                                <ModalFooter>
-                                  <Button 
-                                    color="primary" 
-                                    onClick={this.handleNotificationFormSubmit}>Submit
-                                  </Button>
-                                </ModalFooter>
+                            <ModalFooter>
+                              <Button 
+                                color="primary" 
+                                onClick={this.handleNotificationFormSubmit}>Submit
+                              </Button>
+                            </ModalFooter>
 
-                              </Modal>
-                            </CardBody>
-                          </Card>
-                        </DragDropContainer>
+                          </Modal>
+                        </CardBody>
+                      </Card>
                     </Col>
                   ))}
               </CardDeck>
