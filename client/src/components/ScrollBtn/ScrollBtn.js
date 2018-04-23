@@ -1,8 +1,5 @@
 import React from "react";
-import Nav2Icon from "./images/ProfileIcon.png";
-import $ from "jquery";
-import "./Nav2.css";
-import homeIcon from "../../images/home.png";
+import "./ScrollBtn.css";
 
 /** React components for scrolling back to the top of the page **/
 class ColoredContainer extends React.Component {
