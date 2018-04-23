@@ -31,3 +31,10 @@
 .list-overflow-container li:last-child {
   border-bottom: none;
 }
+
+.info-list{
+  max-height: 555px;
+  height: 550px;
+  background: white;
+  border-radius: 5px;
+}

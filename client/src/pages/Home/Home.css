@@ -23,3 +23,13 @@
   #scroll-button:hover {
     background-color: red;
   }*/
+
+.gm-style {
+  -webkit-box-shadow: 0 0 100px 0 rgba(0,0,0,1);
+  box-shadow: 0 0 100px 0 rgba(0,0,0,1);
+}
+
+.listbackground {
+  background: url(../../images/blurryFlag.png) no-repeat center center fixed;
+  background-size: cover;
+}
