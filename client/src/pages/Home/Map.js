@@ -1,3 +1,10 @@
+import "./Map.css";
+
+
+var infowindow = new google.maps.InfoWindow({
+          content: contentString
+        });
+
 const MyMapComponent = compose(
   withProps({
     googleMapURL:

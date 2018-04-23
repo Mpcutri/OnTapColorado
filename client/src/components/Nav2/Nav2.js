@@ -85,10 +85,10 @@ export default class Example extends React.Component {
                 </DropdownToggle>
                 <DropdownMenu right>
                   <DropdownItem href={"/admin/" + this.props.id}>
-                    View Profile
+                    Brewery Portal
                   </DropdownItem>
                   <DropdownItem href={"/breweries/" + this.props.id}>
-                    Visit Brewery Page
+                    User Portal
                   </DropdownItem>
                   <DropdownItem divider />
                   <DropdownItem className="logout" onClick={this.props.userLogout}>
