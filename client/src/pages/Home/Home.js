@@ -117,6 +117,7 @@ class Breweries extends Component {
                 <div className="brewery-list" style={style.breweryList}>
                   <List>
                     {this.state.breweries.map(brewery => (
+                      brewery.position ? (
                       <ListItem key={brewery._id}>
                         <Link onClick={this.forceUpdate} to={"/breweries/" + brewery._id}>
                           <strong>
@@ -124,6 +125,7 @@ class Breweries extends Component {
                           </strong>
                         </Link>
                       </ListItem>
+                      ) : ("")
                     ))}
                   </List>
                   
@@ -179,6 +181,7 @@ const MyMapComponent = compose(
       <div>
         {dynamicMarkers.map(brewery => (
         <div>
+        {brewery.position ? (
         <Marker
           onClick={props.onMarkerClick.bind(this, brewery)}
           onMouseOver={props.showInfo.bind(this, brewery)}
@@ -188,6 +191,7 @@ const MyMapComponent = compose(
           position={brewery.position}
         >
       </Marker>
+      ) : ("")}
       </div>
       ))}
 
