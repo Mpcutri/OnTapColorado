@@ -136,7 +136,10 @@ class Detail extends Component {
             <Jumbotron>
               <Media>
                 <Media left href="#">
-                  <Media object src="https://placeholdit.imgix.net/~text?txtsize=33&txt=318%C3%97180&w=300&h=200" alt="Generic placeholder image" />
+                  {/* maybe try maxHeight and width if image upload doesn't fit in image div*/}
+                <Media object src="https://placeholdit.imgix.net/~text?txtsize=33&txt=318%C3%97180&w=300&h=200" 
+                        alt="Generic placeholder image" 
+                        style={{height: "220px", width: "300", marginRight: "10px"}}/>      
                 </Media>
                 <Media body>
                   <Media heading>
