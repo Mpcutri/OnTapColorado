@@ -11,7 +11,7 @@ const path = require("path");
 const PORT = process.env.PORT || 3001;
 
 // if (process.env.NODE_ENV === "production") { // this line identifies if we're in the production version of the app
-// app.use(express.static("client/build"));
+app.use(express.static("client/build"));
 // } else {
 // app.use(express.static("public"));
 // }

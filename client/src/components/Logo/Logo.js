@@ -5,15 +5,17 @@ import logoImage from "../../pages/Home/images/final.png"
 
 const Logo = () => (
 
-	<div class="widget center">
+	// <div class="widget center">
 	  
-	  <div class="blur"></div>
+	//   <div class="blur"></div>
 	  
-	  <div class="text center" id="logo-image">
-	   	<img src={logoImage} style={{ margin: "auto"}}/>
+	  <div className="logoContainer">
+	  	<section id="text-background">
+	   		<img id="logo-image" src={logoImage} style={{ margin: "auto"}}/>
+	   	</section>
 	  </div>
 
-	</div>
+	// </div>
 );
 
 export default Logo;
