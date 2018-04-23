@@ -21,8 +21,7 @@ import {
   InfoWindow
 } from "react-google-maps";
 import "./Home.css";
-import {
-  Button } from 'reactstrap';
+import { Button } from 'reactstrap';
 import ScrollToTop from "react-scroll-up";
 // import brewMark from "./markers.js";
 
@@ -31,7 +30,9 @@ const style = {
   breweryList: {
     border: 'solid',
     position: "relative", 
-    zIndex: "-100"
+    zIndex: "-100",
+    marginBottom: "30px",
+    marginTop: "30px"
   },
   breweryProfile: {
     float: 'right',
@@ -159,20 +160,25 @@ class Breweries extends Component {
     return (
       <div>
         <Logo style={{position: "absolute"}} />
-
-        <Container>
-            <div>
+      
+        <div>
             
             
-            <ScrollToTop showUnder={160}>
-              <span style={{ backgroundColor: "red", padding: "20px", zIndex: "2000", borderRadius: '10px' }}><span class="glyphicon glyphicon-arrow-up"></span></span>
+            <ScrollToTop id="scroll-button" showUnder={160}>
+              <span style={{ backgroundColor: "rgba(136, 135, 135, 0.65)", padding: "20px", zIndex: "2000", borderRadius: '10px' }}><span class="glyphicon glyphicon-arrow-up"></span></span>
             </ScrollToTop>
 
             </div>
-              
-              <div id="map" style={{position: "relative", zIndex: "-100", marginTop: "30px" }}>
+        <div style={{ backgroundColor: "white", position: "relative", zIndex: "-2" }}>
+        <Container>
+              <div id="map" style={{ position: "relative", zIndex: "-1", marginTop: "30px" }}>
                 <MyMapComponent isMarkerShown />
               </div>
+        </Container>
+        </div>
+
+        <Container>
+          <Col size="md-6">
               {console.log(this.state.breweries)}
               {this.state.breweries.length ? (
                 <div className="brewery-list" style={style.breweryList}>
@@ -192,7 +198,13 @@ class Breweries extends Component {
               ) : (
                 <h3>No Results to Display</h3>
               )}
-
+          </Col>
+          <Col size="md-6">
+            <div className="brewery-list" style={style.breweryList}>
+              <p>whatevewhatever
+              </p>
+            </div>
+          </Col>
         </Container>
       </div>
     );

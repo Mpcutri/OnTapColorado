@@ -186,13 +186,20 @@ class Breweries extends Component {
     })
       .then(res => this.loadBreweryInfo())
       .catch(err => console.log(err));
-  };
+    };
+
+  handleClick = (e) => {
+    e.preventDefault();
+    window.location = this.state.brewery.website;
+    console.log(this.state);
+    console.log('The link was clicked on brewery portal.');
+  }
 
   render() {
     return (
       <Container fluid>
         <Row>
-          <Col size="md-12">
+          <Col size="md-12" style={{ marginTop: "30px" }}>
             <Jumbotron>
               
               <Media>
