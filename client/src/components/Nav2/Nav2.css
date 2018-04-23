@@ -1,7 +1,12 @@
 .dropdown-menu {
 	left: auto;
 	right: 0;
-	margin-right: 15px;
+    font-size: 15px;
+    text-align: right;
+}
+
+#logoImage {
+    width: 200px;
 }
 
 .open .dropdown-menu {
@@ -10,6 +15,7 @@
 
 .navbar {
   margin-bottom: 0px;
+  background:;
 }
 
 #home-icon {

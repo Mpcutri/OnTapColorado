@@ -1,6 +1,6 @@
 import React from "react";
 import "./Logo.css";
-import logoImage from "../../pages/Home/images/final.png"
+import logoImage from "../../pages/Home/images/onTap.png"
 
 
 const Logo = () => (

@@ -25,7 +25,8 @@ class App extends Component {
     this.state = {
       loggedIn: false,
       user: null,
-      id: null
+      id: null,
+      brewery: null
     }
     this._logout = this._logout.bind(this)
     this._login = this._login.bind(this)
@@ -39,12 +40,14 @@ class App extends Component {
         this.setState({
           loggedIn: true,
           user: response.data.user,
-          id: response.data.user._id
+          id: response.data.user._id,
+          brewery: null
         })
       } else {
         this.setState({
           loggedIn: false,
-          user: null
+          user: null,
+          brewery: null
         })
       }
     })
@@ -88,7 +91,7 @@ class App extends Component {
     return (
       <div className="App">
         {/* LINKS to our different 'pages' */}
-        <DisplayLinks _logout={this._logout} loggedIn={this.state.loggedIn} id={this.state.id}/>
+        <DisplayLinks _logout={this._logout} loggedIn={this.state.loggedIn} id={this.state.id} brewery={this.state.brewery}/>
         {/*  ROUTES */}
         {/* <Route exact path="/" component={Home} /> */}
         <Route exact path="/" render={() => <Home user={this.state.user} />} />
@@ -113,7 +116,7 @@ const DisplayLinks = props => {
     return (
       <Router>
       <div>
-        <Nav2 userLogout={props._logout} id={props.id}/>
+        <Nav2 userLogout={props._logout} id={props.id} brewery={props.brewery}/>
         <Switch>
           <Route exact path="/admin/:id" component={Breweries} />
           <Route exact path="/breweries/:id" component={Detail} />

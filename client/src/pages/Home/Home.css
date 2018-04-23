@@ -1,4 +1,4 @@
-.scroll-to-top {
+/*.scroll-to-top {
   position: fixed;
   right: 15px;
   bottom: 15px;
@@ -14,8 +14,12 @@
     color: white;
   }
   .scroll-to-top:hover {
-    background: #343a40;
+    background-color: red;
   }
   .scroll-to-top i {
     font-weight: 800;
   }
+
+  #scroll-button:hover {
+    background-color: red;
+  }*/
