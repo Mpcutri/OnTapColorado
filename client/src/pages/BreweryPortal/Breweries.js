@@ -51,13 +51,12 @@ class Breweries extends Component {
       phone_number: null,
       onTap: false,
       modal: false,
-      backdrop: true,
+      backdrop: false,
       popoverOpen: false
     };
 
     this.toggle = this.toggle.bind(this);
     this.changeBackdrop = this.changeBackdrop.bind(this);
-    
   }
 
   // Modal on/off
@@ -205,7 +204,9 @@ class Breweries extends Component {
               
               <Media>
                 <Media left href="#">
-                <Media object src="https://placeholdit.imgix.net/~text?txtsize=33&txt=318%C3%97180&w=300&h=200" alt="Generic placeholder image" style={{height: "220px", width: "300", marginRight: "10px"}}/>
+                <Media object src="https://placeholdit.imgix.net/~text?txtsize=33&txt=318%C3%97180&w=200&h=200" 
+                        alt="Generic placeholder image" 
+                        style={{height: "200px", width: "200", marginRight: "10px"}}/>
                 </Media>
                 <Media body>
                   <Media heading>
@@ -214,17 +215,23 @@ class Breweries extends Component {
                     </h1>
                   </Media>
                   <Media heading>
-                    {this.state.currentBrewery.location}
+                    <h3>
+                      {this.state.currentBrewery.location}
+                    </h3>
                   </Media>
                   <Media heading>
                     {this.state.currentBrewery.phone_number}
                   </Media>
                   <p>
-                  <Button onClick={this.handleClick}>
-                    Brewery Website
-                  </Button>
+                    <Button color="primary" onClick={this.handleClick}>
+                      Brewery Website
+                    </Button>
                   </p>
-                  <Button color="primary" onClick={this.toggle}>Edit Brewery Info</Button>               
+                  <p>
+                    <Button color="primary" onClick={this.toggle}>
+                      Edit Brewery Info
+                    </Button>  
+                  </p>             
                 </Media>
               </Media>
 
