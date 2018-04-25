@@ -3,7 +3,6 @@ import Jumbotron from "../../components/Jumbotron";
 import API from "../../utils/API";
 import "./Detail.css";
 import {render} from 'react-dom';
-import ExpandText from 'react-expand-text';
 import { Link } from "react-router-dom";
 import { List, ListItem } from "../../components/List";
 // import {ScrollArea} from'react-scrollbar';
