@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 // import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import { Redirect } from 'react-router-dom'
+import { Button } from 'reactstrap';
+import "./Login.css";
 
 class LoginForm extends Component {
 	constructor() {
@@ -37,25 +39,29 @@ class LoginForm extends Component {
 		} else {
 			return (
 				<div className="LoginForm">
-					<h1>Login form</h1>
 					<form>
-						<label htmlFor="username">Username: </label>
+						<label htmlFor="username">Username </label>
+							<br />
 						<input
 							type="text"
 							name="username"
 							value={this.state.username}
 							onChange={this.handleChange}
 						/>
-						<label htmlFor="password">Password: </label>
+							<br />
+							<br />
+						<label htmlFor="password">Password </label>
+							<br />
 						<input
 							type="password"
 							name="password"
 							value={this.state.password}
 							onChange={this.handleChange}
 						/>
-						<button onClick={this.handleSubmit}>Login</button>
+							<br />
+							<br />
+						<Button id="submitButton" onClick={this.handleSubmit}>Login</Button>
 					</form>
-				
 				</div>
 			)
 		}

@@ -1,0 +1,42 @@
+.LoginForm {
+	text-align: center;
+}
+
+.LoginForm input {
+	text-align: center;
+	border: none;
+	border-bottom: solid;
+	border-width: 2px;
+	width: 100px;
+	min-width: auto;
+	-webkit-transition: width .5s; /* Safari */
+    transition: width .5s;
+}
+
+.LoginForm input:focus {
+	border: none;
+	border-bottom: solid;
+	border-width: 3px;
+	width: 300px;
+	max-width: 300px;
+}
+
+textarea:hover, 
+input:hover, 
+textarea:active, 
+input:active, 
+textarea:focus, 
+input:focus,
+button:focus,
+button:active,
+button:hover,
+label:focus,
+.btn:active,
+.btn.active
+{
+    outline:0px !important;
+}
+
+#submitButton {
+	background-color: #002968;
+}

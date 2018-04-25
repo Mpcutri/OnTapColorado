@@ -3,6 +3,7 @@ import $ from "jquery";
 import onTapText from "../../images/onTap.png";
 import SearchBar from "../SearchBar";
 import React from 'react';
+import axios from 'axios'
 import {
   Collapse,
   Navbar,
@@ -14,7 +15,13 @@ import {
   UncontrolledDropdown,
   DropdownToggle,
   DropdownMenu,
-  DropdownItem } from 'reactstrap';
+  DropdownItem,
+  Button,
+  Modal,
+  ModalHeader,
+  ModalBody,
+  ModalFooter } from 'reactstrap';
+import LoginForm from '../../pages/Login';
 
 const style = {
   signupButton: {
@@ -33,7 +40,7 @@ const style = {
     color: "white",
     border: "none",
     borderRadius: "5px",
-    padding: "5px 15px"
+    padding: "20px"
   },
   navbarHeader: {
     float: 'none'
@@ -44,43 +51,88 @@ const style = {
   },
   homePage: {
     fontSize: '30px'
+  },
+  loginForm: {
+    textAlign: "center"
+  },
+  footerText: {
+    textAlign: "center", 
+    borderTop: "solid", 
+    borderWidth: "1px", 
+    borderColor: "#e9ecef"
   }
 }
 
 export default class Example extends React.Component {
   constructor(props) {
     super(props);
-
-    this.toggle = this.toggle.bind(this);
     this.state = {
-      isOpen: false
+      modal: false
     };
+    this._login = this._login.bind(this)
+    this.toggle = this.toggle.bind(this)
   }
+
   toggle() {
     this.setState({
-      isOpen: !this.state.isOpen
+      modal: !this.state.modal
     });
   }
+
+  _login(username, password) {
+    axios
+      .post('/auth/login', {
+        username,
+        password
+      })
+      .then(response => {
+        console.log(response)
+        if (response.status === 200) {
+          // update the state
+          this.setState({
+            loggedIn: true,
+            user: response.data.user
+          })
+          window.location = '/admin/' + response.data.user._id
+        }
+      })
+  }
+
   render() {
     return (
       <div>
+      <div className="navbarDiv">
         <Navbar color="light" light expand="md">
           <NavbarBrand className="homePage" style={style.homePage} href="/"><img id="logoImage" src={onTapText} /></NavbarBrand>
-          <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar pills>
               <NavItem>
                 <SearchBar className="search-bar"/>
               </NavItem>
               <NavItem>
-                <NavLink className="loginButton" href="/login" active style={style.loginButton}>Login</NavLink>
+                <NavLink className="loginButton" onClick={this.toggle} active style={style.loginButton}>Login</NavLink>
               </NavItem>
               <NavItem>
-                <NavLink href="/signup">Sign up</NavLink>
+                <NavLink id="signUpLink" href="/signup">Sign up</NavLink>
               </NavItem>
             </Nav>
           </Collapse>
         </Navbar>
+      </div>
+
+      <div id="login-modal">
+        <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
+          <ModalHeader toggle={this.toggle}>Log in</ModalHeader>
+          <ModalBody>
+            <LoginForm _login={this._login}/>
+          </ModalBody>
+          <ModalBody style={style.footerText}>
+            <h6>
+              Don't have an account? <a href="/signup">Sign up today!</a>
+            </h6>
+          </ModalBody>
+        </Modal>
+      </div>
       </div>
     );
   }
