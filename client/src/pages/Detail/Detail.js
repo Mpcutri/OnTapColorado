@@ -3,6 +3,7 @@ import Jumbotron from "../../components/Jumbotron";
 import API from "../../utils/API";
 import "./Detail.css";
 import {render} from 'react-dom';
+import ExpandText from 'react-expand-text';
 import { Link } from "react-router-dom";
 import { List, ListItem } from "../../components/List";
 // import {ScrollArea} from'react-scrollbar';
@@ -62,7 +63,8 @@ class Detail extends Component {
         // dismiss of modal and shadow on modal is way bigger than the modal in details
         // backdrop needs to be clickable or we need a cancel button on the modal
       backdrop: false,
-      popoverOpen: false
+      popoverOpen: false,
+      description: null
     };
 
     this.toggle = this.toggle.bind(this);
@@ -76,9 +78,11 @@ class Detail extends Component {
     });
   }
 
-  togglePopOver() {
+  togglePopOver(beer) {
+    console.log(beer)
     this.setState({
-      popoverOpen: !this.state.popoverOpen
+      popoverOpen: !this.state.popoverOpen,
+      description: beer.description
     });
   }
 
@@ -184,14 +188,13 @@ class Detail extends Component {
                           <CardTitle><h2>{beer.name}</h2></CardTitle>
                           <CardSubtitle><h4>{beer.type}</h4></CardSubtitle>
                           <CardText>&#9632; ABV:{beer.abv} &#9632; IBU:{beer.ibu}</CardText>
-                          <CardText>{beer.description}</CardText>
-                          <span>
-                            <Button color="primary" id="pop-over" onClick={this.togglePopOver}>Description</Button>
-                            <Popover placement="bottom" isOpen={this.state.popoverOpen} target="pop-over" toggle={this.togglePopOver}>
-                              <PopoverHeader>Popover Title</PopoverHeader>
-                              <PopoverBody>{beer.description}</PopoverBody>
-                            </Popover>
-                          </span>
+                          <CardText>
+                            <ExpandText
+                              maxLength={10}
+                              className='my-css-class'
+                              text={beer.description}
+                            />
+                          </CardText>
                           {/* Opens modal */}
                           <Button color="primary" onClick={this.toggle}>
                             Notifications
