@@ -11,6 +11,8 @@ import { TextArea, FormBtn } from "../../components/Form";
 import { Col, Row, Container } from "../../components/Grid";
 import { DragDropContainer, DropTarget } from 'react-drag-drop-container';
 import {SortableContainer, SortableElement} from 'react-sortable-hoc';
+// import LinesEllipsisLoose from 'react-lines-ellipsis/lib/loose';
+import ExpandText from 'react-expand-text';
 import { Card, 
           CardImg, 
           CardText, 
@@ -79,7 +81,6 @@ class Detail extends Component {
   }
 
   togglePopOver(beer) {
-    console.log(beer)
     this.setState({
       popoverOpen: !this.state.popoverOpen,
       description: beer.description
@@ -188,11 +189,11 @@ class Detail extends Component {
                           <CardTitle><h2>{beer.name}</h2></CardTitle>
                           <CardSubtitle><h4>{beer.type}</h4></CardSubtitle>
                           <CardText>&#9632; ABV:{beer.abv} &#9632; IBU:{beer.ibu}</CardText>
-                          <CardText>
+                            <CardText>
                             <ExpandText
-                              maxLength={10}
-                              className='my-css-class'
                               text={beer.description}
+                              className="my-css-class"
+                              maxLength={75}
                             />
                           </CardText>
                           {/* Opens modal */}
