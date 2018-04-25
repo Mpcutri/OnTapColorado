@@ -61,13 +61,14 @@ class Detail extends Component {
       // when false backdrop stays with no shade, but then is not clickable for 
         // dismiss of modal and shadow on modal is way bigger than the modal in details
         // backdrop needs to be clickable or we need a cancel button on the modal
-      backdrop: true,
+      backdrop: false,
       popoverOpen: false
     };
 
     this.toggle = this.toggle.bind(this);
     this.changeBackdrop = this.changeBackdrop.bind(this);
   }
+
   // Modal on/off
   toggle() {
     this.setState({
@@ -118,9 +119,9 @@ class Detail extends Component {
   handleNotificationFormSubmit = event => {
     event.preventDefault();
     this.toggle();
-    // API.updateBreweryInfo({
-    //   email: this.state.brewery,
-    //   phone: this.state.location,
+    // API.notificationFormSubmit({
+    //   email: this.state.email,
+    //   phone: this.state.phone,
     //   id: this.state.id
     // })
     //   .then(res => this.loadBreweryInfo())
@@ -137,7 +138,7 @@ class Detail extends Component {
               <Media>
                 <Media left href="#">
                   {/* maybe try maxHeight and width if image upload doesn't fit in image div*/}
-                <Media object src="https://placeholdit.imgix.net/~text?txtsize=33&txt=318%C3%97180&w=300&h=200" 
+                <Media object src="https://placeholdit.imgix.net/~text?txtsize=33&txt=318%C3%97180&w=200&h=200" 
                         alt="Generic placeholder image" 
                         style={{height: "220px", width: "300", marginRight: "10px"}}/>      
                 </Media>
@@ -180,8 +181,8 @@ class Detail extends Component {
                       <Card key={beer._id}>
                         <CardImg top width="100%" src="https://placeholdit.imgix.net/~text?txtsize=33&txt=318%C3%97180&w=318&h=180" alt="Card image cap" />
                         <CardBody>
-                          <CardTitle>{beer.name}</CardTitle>
-                          <CardSubtitle>{beer.type}</CardSubtitle>
+                          <CardTitle><h2>{beer.name}</h2></CardTitle>
+                          <CardSubtitle><h4>{beer.type}</h4></CardSubtitle>
                           <CardText>&#9632; ABV:{beer.abv} &#9632; IBU:{beer.ibu}</CardText>
                           <CardText>{beer.description}</CardText>
                           <span>
@@ -192,7 +193,9 @@ class Detail extends Component {
                             </Popover>
                           </span>
                           {/* Opens modal */}
-                          <Button color="primary" onClick={this.toggle}>Notifications</Button>
+                          <Button color="primary" onClick={this.toggle}>
+                            Notifications
+                          </Button>
                           
                           {/* Actual modal */}
                           <Modal 
