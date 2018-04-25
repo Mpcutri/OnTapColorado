@@ -23,7 +23,7 @@
     "bcrypt": "^1.0.3",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.17.2",
-    "bootstrap": "^4.0.0",
+    "bootstrap": "^4.1.0",
     "compass": "^0.1.1",
     "connect-mongo": "^2.0.1",
     "create-npmrc": "^2.0.2",
