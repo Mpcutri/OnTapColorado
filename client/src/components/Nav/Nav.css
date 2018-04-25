@@ -17,6 +17,20 @@ a:hover {
   box-shadow: 0 0 50px 0 rgba(0,0,0,1);
 }
 
+#signUpLink {
+  padding: 20px 5px;
+}
+
+.modal-title {
+  padding-left: 15px;
+}
+
+#testing {
+  text-align: center;
+}
+
+
+
 .navbar-brand {
   margin-top: 0px;
   -webkit-transition: opacity .5s ease-in-out;
@@ -44,6 +58,8 @@ a:hover {
   	-o-transition: opacity .5s ease-in-out;
   	transition: opacity .5s ease-in-out;
   	opacity: 1;
+  padding: 20px;
+  border-radius: 5px;
 }
 
 
@@ -66,5 +82,15 @@ a:hover {
 .navbar-light .navbar-brand:hover {
 	/*background-color: transparent;*/
 	opacity: 0.5;
+}
+
+
+.modal-dialog {
+  height: 100vh;
+}
+
+.modal-content {
+    margin-top: 25vh;
+    margin-bottom: 25vh;
 }
 
