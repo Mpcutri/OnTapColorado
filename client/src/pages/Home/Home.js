@@ -107,7 +107,7 @@ class Breweries extends Component {
               <p id="infoText"></p>
             </div>
             {this.state.breweries.map(brewery => (
-              <div>
+              <div key={brewery.id}>
                 {brewery.position ? (
                   <Marker
                     onClick={props.onMarkerClick.bind(this, brewery)}
@@ -131,7 +131,7 @@ class Breweries extends Component {
 
         <div id="scrollButton" style={{ position: "relative", zIndex: "5" }}>   
           <ScrollToTop id="scroll-button" showUnder={160}>
-            <span style={{ backgroundColor: "rgba(136, 135, 135, 0.65)", padding: "20px", borderRadius: '10px' }}><span class="glyphicon glyphicon-arrow-up"></span></span>
+            <span style={{ backgroundColor: "rgba(136, 135, 135, 0.65)", padding: "20px", borderRadius: '10px' }}><span className="glyphicon glyphicon-arrow-up"></span></span>
           </ScrollToTop>
         </div>
 
