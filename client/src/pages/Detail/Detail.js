@@ -188,6 +188,7 @@ class Detail extends Component {
                           <CardTitle><h2>{beer.name}</h2></CardTitle>
                           <CardSubtitle><h4>{beer.type}</h4></CardSubtitle>
                           <CardText>&#9632; ABV:{beer.abv} &#9632; IBU:{beer.ibu}</CardText>
+
                             <CardText>
                             <ExpandText
                               text={beer.description}
@@ -195,6 +196,7 @@ class Detail extends Component {
                               maxLength={75}
                             />
                           </CardText>
+                          <CardText>Click text to expand:</CardText>
                           {/* Opens modal */}
                           <Button color="primary" onClick={this.toggle}>
                             Notifications

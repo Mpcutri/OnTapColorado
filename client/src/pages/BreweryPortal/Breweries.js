@@ -300,7 +300,7 @@ class Breweries extends Component {
         </Row>
       </div>
 
-      <div>
+    
 
       <div>
         <Row>
