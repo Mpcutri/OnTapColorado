@@ -294,15 +294,23 @@ class Breweries extends Component {
         </Row>
       {/* End Jumbotron and Modal*/}
 {/*-------------------------------------------------------------*/}
+      <div>  
         <Row>
-          <Col size="md-4 sm-12">
-            <h1>Beers List</h1>
+          <h1>Beers List</h1>
+        </Row>
+      </div>
 
+      <div>
+        <Row>
+            <Col size="md-1"/>
+            <Col size="md-5 sm-12">
+            <div>
               {console.log(this.state.currentBrewery)}
               {console.log(this.state.beers)}
               {this.state.beers.length ? (
               <div>
-              <List><span style={{fontSize: 24, color: "black"}}>Currently On Tap:</span>
+              <span style={{fontSize: 24, color: "black"}}>Currently On Tap:</span>
+              <List>
               <Button color="primary" >Modal for adding a beer form</Button>
                 {this.state.beers.map((beer, index) => (
                   beer.onTap ? (
@@ -327,6 +335,7 @@ class Breweries extends Component {
                               <EditBtn onClick={() => this.updateBeer(index)} />
                             </div>
 
+                            <div>  
                             <Modal 
                                 isOpen={this.state.modal1} 
                                 toggle={this.toggleEditBeerModal} 
@@ -376,6 +385,7 @@ class Breweries extends Component {
 
                                 </ModalBody>
                               </Modal>
+                              </div>
                             </Media>
                           </Media>
                         </Card>
@@ -384,10 +394,22 @@ class Breweries extends Component {
                   ) : ("")
                 ))}
               </List>
-              <List><span style={{fontSize: 24, color: "black"}}>Inventory Not on Tap:</span>
+              </div>
+              ) : (
+              <h3>No Results to Display</h3>
+              )}
+              </div>
+              </Col>
+              
+
+              
+              <Col size="md-5 sm-12">
+              <div>
+              <span style={{fontSize: 24, color: "black"}}>Inventory Not on Tap:</span>
+              <List>
                 {this.state.beers.map((beer, index) => (
                   !beer.onTap ? (
-                      <DragDropContainer>
+                      
                       <ListItem key={beer.name} id={index}>
                         <Card body width="100%">
                           <CardTitle>{beer.name}</CardTitle>
@@ -406,16 +428,16 @@ class Breweries extends Component {
                           </Row>
                         </Card>
                       </ListItem>
-                    </DragDropContainer>
+                   
                   ) : ("")
                 ))}
                 </List>
                 </div>
-            ) : (
-              <h3>No Results to Display</h3>
-            )}
+            
           </Col>
+          
         </Row>
+      </div>
 {/*-------------------------------------------------------------*/}
       </Container>
     );
