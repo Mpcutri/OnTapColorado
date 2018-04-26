@@ -27,7 +27,7 @@ class LoginForm extends Component {
 		event.preventDefault()
 		console.log('handleSubmit')
 		this.props._login(this.state.username, this.state.password)
-		this.forceUpdate
+		// this.forceUpdate()
 		this.setState({
 			redirectTo: '/'
 		})
@@ -40,23 +40,29 @@ class LoginForm extends Component {
 			return (
 				<div className="LoginForm">
 					<form>
-						<label htmlFor="username">Username </label>
+						<label htmlFor="username">
+							Username
+						</label>
 							<br />
 						<input
 							type="text"
 							name="username"
 							value={this.state.username}
 							onChange={this.handleChange}
+							placeholder=". . ."
 						/>
 							<br />
 							<br />
-						<label htmlFor="password">Password </label>
+						<label htmlFor="password">
+							Password
+						</label>
 							<br />
 						<input
 							type="password"
 							name="password"
 							value={this.state.password}
 							onChange={this.handleChange}
+							placeholder=". . ."
 						/>
 							<br />
 							<br />

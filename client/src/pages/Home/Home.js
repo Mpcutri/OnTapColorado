@@ -24,6 +24,7 @@ import { InfoBox } from "react-google-maps/lib/components/addons/InfoBox";
 import "./Home.css";
 import { Button } from 'reactstrap';
 import ScrollToTop from "react-scroll-up";
+import whiteArrow from "../../images/whiteArrow.png";
 import Flag from "../../images/blurryFlag.png";
 // import brewMark from "./markers.js";
 
@@ -131,7 +132,7 @@ class Breweries extends Component {
 
         <div id="scrollButton" style={{ position: "relative", zIndex: "5" }}>   
           <ScrollToTop id="scroll-button" showUnder={160}>
-            <span style={{ backgroundColor: "rgba(136, 135, 135, 0.65)", padding: "20px", borderRadius: '10px' }}><span className="glyphicon glyphicon-arrow-up"></span></span>
+            <span style={{ backgroundColor: "rgba(136, 135, 135, 0.65)", padding: "20px", borderRadius: '10px' }}><img style={{ height: "20px", width: "20px" }} src={whiteArrow} /></span>
           </ScrollToTop>
         </div>
 
