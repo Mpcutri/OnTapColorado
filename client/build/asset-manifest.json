@@ -1,11 +1,15 @@
 {
-  "main.css": "static/css/main.170d4c50.css",
-  "main.css.map": "static/css/main.170d4c50.css.map",
-  "main.js": "static/js/main.53805bd6.js",
-  "main.js.map": "static/js/main.53805bd6.js.map",
+  "main.css": "static/css/main.7c35e3cc.css",
+  "main.css.map": "static/css/main.7c35e3cc.css.map",
+  "main.js": "static/js/main.5c172b96.js",
+  "main.js.map": "static/js/main.5c172b96.js.map",
   "static/media/ProfileIcon.png": "static/media/ProfileIcon.ce74a181.png",
+  "static/media/blurryFlag.png": "static/media/blurryFlag.3b775ab4.png",
   "static/media/bobRossMountain.jpg": "static/media/bobRossMountain.c41d3d34.jpg",
-  "static/media/final.png": "static/media/final.8ea68673.png",
-  "static/media/home.png": "static/media/home.79b08934.png",
-  "static/media/onTapColoradoFlag.png": "static/media/onTapColoradoFlag.f2f1f1e6.png"
+  "static/media/navBar.jpg": "static/media/navBar.1873ce5e.jpg",
+  "static/media/onTap.png": "static/media/onTap.761f4f9a.png",
+  "static/media/onTapColoradoFlag.png": "static/media/onTapColoradoFlag.f2f1f1e6.png",
+  "static/media/taps.jpg": "static/media/taps.4e3c6873.jpg",
+  "static/media/tapsLight.jpg": "static/media/tapsLight.1809198d.jpg",
+  "static/media/whiteArrow.png": "static/media/whiteArrow.20fd4c9d.png"
 }
