@@ -314,7 +314,6 @@ class Breweries extends Component {
               <Button color="primary" >Modal for adding a beer form</Button>
                 {this.state.beers.map((beer, index) => (
                   beer.onTap ? (
-                    <DragDropContainer>
                       <ListItem key={beer.name} id={index}>
                         <Card body width="100%">
                           <Media>
@@ -390,7 +389,6 @@ class Breweries extends Component {
                           </Media>
                         </Card>
                       </ListItem>
-                    </DragDropContainer>
                   ) : ("")
                 ))}
               </List>
