@@ -74,6 +74,7 @@ export default class Example extends React.Component {
     };
     this._login = this._login.bind(this)
     this.toggle = this.toggle.bind(this)
+    this.toggle2 = this.toggle.bind(this)
   }
 
   toggle() {
@@ -116,7 +117,7 @@ export default class Example extends React.Component {
                 <NavLink className="loginButton" onClick={this.toggle} active style={style.loginButton}>Login</NavLink>
               </NavItem>
               <NavItem>
-                <NavLink id="signUpLink" href="/signup">Sign up</NavLink>
+                <NavLink id="signUpLink" onClick={() => {this.setState({ signUp: true, modal: !this.state.modal }) }}>Sign up</NavLink>
               </NavItem>
             </Nav>
           </Collapse>
@@ -144,7 +145,7 @@ export default class Example extends React.Component {
 
                 <ModalBody style={style.footerText}>
                   <h6>
-                    Don't have an account? <a href="/signup">Sign up today!</a>
+                    Don't have an account? <a style={{ color: "blue" }} onClick={() => {this.setState({ signUp: true }) }}>Sign up today!</a>
                   </h6>
                 </ModalBody>
               </div>
@@ -156,7 +157,7 @@ export default class Example extends React.Component {
 
                 <ModalBody style={style.footerText}>
                   <h6>
-                    Don't have an account? <a href="/signup">Sign up today!</a>
+                    Already have an account? <a style={{ color: "blue" }} onClick={() => {this.setState({ signUp: false }) }}>Log in!</a>
                   </h6>
                 </ModalBody>
               </div>

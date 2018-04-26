@@ -1,5 +1,14 @@
 a:hover {
+  cursor: pointer;
   /*background-color: purple;*/
+}
+
+#loginText {
+  cursor: pointer;
+}
+
+#signupText {
+  cursor: pointer;
 }
 
 .navbar {
