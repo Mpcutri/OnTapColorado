@@ -22,6 +22,7 @@ import {
   ModalBody,
   ModalFooter } from 'reactstrap';
 import LoginForm from '../../pages/Login';
+import SignupForm from '../../pages/SignUp';
 
 const style = {
   signupButton: {
@@ -47,7 +48,8 @@ const style = {
   },
   loginButton: {
     paddingLeft: '20px',
-    paddingRight: '20px'
+    paddingRight: '20px',
+    marginLeft: "10px"
   },
   homePage: {
     fontSize: '30px'
@@ -67,7 +69,8 @@ export default class Example extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      modal: false
+      modal: false,
+      signUp: false
     };
     this._login = this._login.bind(this)
     this.toggle = this.toggle.bind(this)
@@ -122,15 +125,44 @@ export default class Example extends React.Component {
 
       <div id="login-modal">
         <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
-          <ModalHeader toggle={this.toggle}>Log in</ModalHeader>
-          <ModalBody>
-            <LoginForm _login={this._login}/>
-          </ModalBody>
-          <ModalBody style={style.footerText}>
-            <h6>
-              Don't have an account? <a href="/signup">Sign up today!</a>
-            </h6>
-          </ModalBody>
+          <ModalHeader toggle={this.toggle}>
+            <span id="loginText" onClick={() => {this.setState({ signUp: false }) }}>
+              Log in
+            </span>
+              {'  |  '}
+            <span id="signupText" onClick={() => {this.setState({ signUp: true }) }}>
+              Sign up
+            </span>
+          </ModalHeader>
+
+          <div>
+            {!this.state.signUp ? (
+              <div>
+                <ModalBody>
+                  <LoginForm _login={this._login}/>
+                </ModalBody>
+
+                <ModalBody style={style.footerText}>
+                  <h6>
+                    Don't have an account? <a href="/signup">Sign up today!</a>
+                  </h6>
+                </ModalBody>
+              </div>
+            ) : (
+              <div>
+                <ModalBody>
+                  <SignupForm />
+                </ModalBody>
+
+                <ModalBody style={style.footerText}>
+                  <h6>
+                    Don't have an account? <a href="/signup">Sign up today!</a>
+                  </h6>
+                </ModalBody>
+              </div>
+            )}
+          </div>
+
         </Modal>
       </div>
       </div>
