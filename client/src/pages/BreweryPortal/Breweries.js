@@ -296,14 +296,11 @@ class Breweries extends Component {
 {/*-------------------------------------------------------------*/}
       <div>  
         <Row>
-
-          <Col size="md-4 sm-6">
-            <h1>Beers List</h1>
-
           <h1>Beers List</h1>
         </Row>
       </div>
 
+      <div>
 
       <div>
         <Row>
