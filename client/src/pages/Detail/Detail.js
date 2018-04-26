@@ -5,12 +5,10 @@ import "./Detail.css";
 import {render} from 'react-dom';
 import { Link } from "react-router-dom";
 import { List, ListItem } from "../../components/List";
-// import {ScrollArea} from'react-scrollbar';
 import { TextArea, FormBtn } from "../../components/Form";
 import { Col, Row, Container } from "../../components/Grid";
 import { DragDropContainer, DropTarget } from 'react-drag-drop-container';
 import {SortableContainer, SortableElement} from 'react-sortable-hoc';
-// import LinesEllipsisLoose from 'react-lines-ellipsis/lib/loose';
 import ExpandText from 'react-expand-text';
 import { Card, 
           CardImg, 
@@ -54,7 +52,6 @@ const style = {
 class Detail extends Component {
   constructor(props) {
     super(props);
-    this.togglePopOver = this.togglePopOver.bind(this);
     this.state = {
       brewery: "",
       beers: [],
@@ -65,13 +62,12 @@ class Detail extends Component {
         // backdrop needs to be clickable or we need a cancel button on the modal
       backdrop: false,
       popoverOpen: false,
-      description: null
+      description: null,
     };
 
     this.toggle = this.toggle.bind(this);
     this.changeBackdrop = this.changeBackdrop.bind(this);
   }
-
   // Modal on/off
   toggle() {
     this.setState({
@@ -168,9 +164,11 @@ class Detail extends Component {
                     </Button>
                   </p>
                 </Media>
+
               </Media>
             </Jumbotron>
           </Col>
+
         </Row>
         {/* Beers on tap list*/}
         <Row>
@@ -186,17 +184,17 @@ class Detail extends Component {
                         <CardImg top width="100%" src="https://placeholdit.imgix.net/~text?txtsize=33&txt=318%C3%97180&w=318&h=180" alt="Card image cap" />
                         <CardBody>
                           <CardTitle><h2>{beer.name}</h2></CardTitle>
-                          <CardSubtitle><h4>{beer.type}</h4></CardSubtitle>
+                          <CardSubtitle>{beer.type}</CardSubtitle>
                           <CardText>&#9632; ABV:{beer.abv} &#9632; IBU:{beer.ibu}</CardText>
 
                             <CardText>
                             <ExpandText
                               text={beer.description}
                               className="my-css-class"
-                              maxLength={75}
+                              maxLength={140}
                             />
                           </CardText>
-                          <CardText>Click text to expand:</CardText>
+                          <CardText style={{color: "grey"}}>Click text to expand:</CardText>
                           {/* Opens modal */}
                           <Button color="primary" onClick={this.toggle}>
                             Notifications
