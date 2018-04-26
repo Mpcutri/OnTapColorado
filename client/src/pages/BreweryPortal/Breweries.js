@@ -295,7 +295,7 @@ class Breweries extends Component {
       {/* End Jumbotron and Modal*/}
 {/*-------------------------------------------------------------*/}
         <Row>
-          <Col size="md-4 sm-12">
+          <Col size="md-4 sm-6">
             <h1>Beers List</h1>
 
               {console.log(this.state.currentBrewery)}
