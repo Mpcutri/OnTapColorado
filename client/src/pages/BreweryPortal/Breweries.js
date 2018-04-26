@@ -294,10 +294,16 @@ class Breweries extends Component {
         </Row>
       {/* End Jumbotron and Modal*/}
 {/*-------------------------------------------------------------*/}
+      <div>  
         <Row>
-          <Col size="md-4 sm-12">
-            <h1>Beers List</h1>
+          <h1>Beers List</h1>
+        </Row>
+      </div>
 
+      <div>
+        <Row>
+          <div>
+            <Col size="md-6">
               {console.log(this.state.currentBrewery)}
               {console.log(this.state.beers)}
               {this.state.beers.length ? (
@@ -327,6 +333,7 @@ class Breweries extends Component {
                               <EditBtn onClick={() => this.updateBeer(index)} />
                             </div>
 
+                            <div>  
                             <Modal 
                                 isOpen={this.state.modal1} 
                                 toggle={this.toggleEditBeerModal} 
@@ -376,6 +383,7 @@ class Breweries extends Component {
 
                                 </ModalBody>
                               </Modal>
+                              </div>
                             </Media>
                           </Media>
                         </Card>
@@ -384,6 +392,17 @@ class Breweries extends Component {
                   ) : ("")
                 ))}
               </List>
+              </div>
+              ) : (
+              <h3>No Results to Display</h3>
+              )}
+              
+              </Col>
+              </div>
+
+              <div>
+              <Col size="md-6">
+              <div>
               <List><span style={{fontSize: 24, color: "black"}}>Inventory Not on Tap:</span>
                 {this.state.beers.map((beer, index) => (
                   !beer.onTap ? (
@@ -411,11 +430,11 @@ class Breweries extends Component {
                 ))}
                 </List>
                 </div>
-            ) : (
-              <h3>No Results to Display</h3>
-            )}
+            
           </Col>
+          </div>
         </Row>
+      </div>
 {/*-------------------------------------------------------------*/}
       </Container>
     );
