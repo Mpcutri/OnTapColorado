@@ -3,11 +3,11 @@ a:hover {
   /*background-color: purple;*/
 }
 
-#loginText {
+.loginText {
   cursor: pointer;
 }
 
-#signupText {
+.signupText {
   cursor: pointer;
 }
 
@@ -148,10 +148,11 @@ label:hover {
 #slider {
   /*background-color: transparent;*/
   position: absolute;
-  border-bottom: 3px solid white;
+  border-bottom: 3px solid red;
   margin: 7px 10px;
   transition: transform 0.5s;
   width: 130px;
+  color: red;
 }
 
 [type=radio],#r1:checked ~ #slider {
