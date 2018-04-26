@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import { Redirect } from 'react-router-dom'
+import { Alert } from 'reactstrap';
 
 class SignupForm extends Component {
 	constructor() {
@@ -15,7 +16,8 @@ class SignupForm extends Component {
 			website: '',
 			phone_number: '',
 			beer: [],
-			redirectTo: null
+			redirectTo: null,
+			alert: false
 		}
 		this.handleSubmit = this.handleSubmit.bind(this)
 		this.handleChange = this.handleChange.bind(this)
@@ -25,6 +27,7 @@ class SignupForm extends Component {
 			[event.target.name]: event.target.value
 		})
 	}
+
 	handleSubmit(event) {
 		event.preventDefault()
 		console.log("click worked!");
@@ -44,9 +47,10 @@ class SignupForm extends Component {
 				console.log(response)
 				if (!response.data.errmsg) {
 					console.log('youre good')
+					console.log(response.data)
 					this.setState({
-						redirectTo: '/login'
-					})
+			            alert: true
+			          })
 				} else {
 					console.log('duplicate')
 				}
@@ -57,6 +61,7 @@ class SignupForm extends Component {
 			return <Redirect to={{ pathname: this.state.redirectTo }} />
 		}
 		return (
+		<div>
 			<div className="SignupForm">
 				<h1>Signup form</h1>
 				<label htmlFor="brewery">Brewery Name: </label>
@@ -89,6 +94,15 @@ class SignupForm extends Component {
 				/>
 				<button onClick={this.handleSubmit}>Sign up</button>
 			</div>
+
+			<div>
+				{this.state.alert ? (
+						<Alert color="success" style={{ marginTop: "10px" }}>
+			        		You have successfully created an account! <a href="#" className="alert-link">Login here!</a>
+			      		</Alert>
+      			) : ("")}
+      		</div>
+      	</div>
 		)
 	}
 }
