@@ -186,13 +186,19 @@ class Detail extends Component {
                           <CardTitle><h2>{beer.name}</h2></CardTitle>
                           <CardSubtitle>{beer.type}</CardSubtitle>
                           <CardText>&#9632; ABV:{beer.abv} &#9632; IBU:{beer.ibu}</CardText>
-
-                            <CardText>
-                            <ExpandText
-                              text={beer.description}
-                              className="my-css-class"
-                              maxLength={140}
-                            />
+                              <CardText>
+                              <ExpandText
+                                text={beer.description}
+                                className="my-css-class"
+                                maxLength={140}
+                              />
+                              <Transitioner
+                                configureTransition={this._configureTransition}
+                                navigation={this.props.navigation}
+                                render={this._render}
+                                onTransitionStart={this.onTransitionStart}
+                                onTransitionEnd={this.onTransitionEnd}
+      />                      />
                           </CardText>
                           <CardText style={{color: "grey"}}>Click text to expand:</CardText>
                           {/* Opens modal */}
