@@ -51,7 +51,9 @@ const style = {
 
 class Breweries extends Component {
   state = {
-    breweries: []
+    breweries: [],
+    beers: [],
+    types: []
   };
 
   componentDidMount() {
@@ -66,6 +68,14 @@ class Breweries extends Component {
       .catch(err => console.log(err));
   };
 
+  loadBeers = () => {
+    this.state.breweries.map(brewery => (
+      brewery.beer.map(beer => (
+        this.state.beers.push(beer)
+      ))
+    ))
+  };
+
   handleInputChange = event => {
     const { name, value } = event.target;
     this.setState({
@@ -74,6 +84,7 @@ class Breweries extends Component {
   };
 
   render() {
+    this.loadBeers();
     const MyMapComponent = compose(
       withProps({
         googleMapURL:
@@ -136,7 +147,7 @@ class Breweries extends Component {
           </ScrollToTop>
         </div>
 
-        <div style={{ backgroundColor: "#2b2b2b", position: "relative" }}>
+        <div style={{ position: "relative" }}>
           <Container>
                 <div id="map" style={{ position: "relative", marginTop: "30px" }}>
                   <MyMapComponent isMarkerShown />
@@ -178,6 +189,7 @@ class Breweries extends Component {
           <Container>
             <Col size="md-6">
                 {console.log(this.state.breweries)}
+                {console.log(this.state.beers)}
                 {this.state.breweries.length ? (
                   <div className="brewery-list" style={style.breweryList}>
                     <List>

@@ -70,7 +70,9 @@ export default class Example extends React.Component {
     super(props);
     this.state = {
       modal: false,
-      signUp: false
+      signUp: false,
+      searchResults: [],
+      search: ""
     };
     this._login = this._login.bind(this)
     this.toggle = this.toggle.bind(this)
