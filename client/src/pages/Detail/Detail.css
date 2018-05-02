@@ -1,11 +1,34 @@
-.card-subtitle {
-	margin-bottom: 7px;
-	font-size: 15px;
+/*.media-object {
+	padding-bottom: 0px;
+	margin-left: 30px;
 }
 
-.card-text {
-	font-size: 11px;
-	margin-bottom: 2px;
+.media-left {
+	margin-bottom: 20px;
+}*/
+.jumbotron {
+	border: .5px solid grey;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+img.media-object {
+	padding-left: 30px;
+	padding-bottom: 10px;
+	padding-right: 20px;
+}
+
+img.media-left {
+	margin-bottom: 30px;
+}
+
+#beerList-header {
+	text-align: center;
+}
+
+.card {
+	margin: 10px;
+	border: .5px solid grey;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .card-img-top {
@@ -18,13 +41,19 @@
 	padding-top: 05px;
 }
 
-.card-subtitle {
-	margin-bottom: 2px;
-}
-
 #card-h2 {
 	margin-bottom: 0px;
 	border-bottom: 1px solid grey;
+}
+
+.card-subtitle {
+	margin-bottom: 6px;
+	font-size: 15px;
+}
+
+.card-text {
+	font-size: 11px;
+	margin-bottom: 2px;
 }
 
 #card-abv {
@@ -35,19 +64,10 @@
 	margin-top: 6px;
 }
 
-.card {
-	margin: 10px;
-}
-
 #card-button {
 	margin-top: 6px;	
 }
 
-.media-object {
-	padding-bottom: 0px;
-	margin-left: 30px;
-}
-
-.media-left {
-	margin-bottom: 20px;
+div.col-sm-3 {
+	padding: 0px;
 }
