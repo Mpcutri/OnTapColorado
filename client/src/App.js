@@ -93,7 +93,7 @@ class App extends Component {
     return (
       <div className="App">
         {/* LINKS to our different 'pages' */}
-        <Route exact path="/" render={() => <LoginStatus user={this.state.user} />} />
+      {/* <Route exact path="/" render={() => <LoginStatus user={this.state.user} />} /> */}
         <DisplayLinks _logout={this._logout} loggedIn={this.state.loggedIn} id={this.state.id} brewery={this.state.brewery}/>
         {/*  ROUTES */}
         {/* <Route exact path="/" component={Home} /> */}
