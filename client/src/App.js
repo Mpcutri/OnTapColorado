@@ -42,7 +42,7 @@ class App extends Component {
           user: response.data.user,
           info: null,
           id: response.data.user._id,
-          brewery: null
+          brewery: response.data.user.brewery
         })
       } else {
         this.setState({
@@ -120,7 +120,7 @@ const DisplayLinks = props => {
     return (
       <Router>
       <div>
-        <Nav2 userLogout={props._logout} id={props.id} />
+        <Nav2 userLogout={props._logout} id={props.id} brewery={props.brewery} />
         <Switch>
           <Route exact path="/admin/:id" component={Breweries} />
           <Route exact path="/breweries/:id" component={Detail} />
