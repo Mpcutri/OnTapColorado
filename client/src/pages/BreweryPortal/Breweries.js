@@ -203,16 +203,16 @@ class Breweries extends Component {
 
   render() {
     return (
-      <Container fluid>
+      <Container centered>
         <Row>
           <Col size="md-12" style={{ marginTop: "30px" }}>
-            
             <Jumbotron>
               <Media>
                 <Media left href="#">
-                <Media object src="https://placeholdit.imgix.net/~text?txtsize=33&txt=318%C3%97180&w=200&h=200" 
+                  {/* maybe try maxHeight and width if image upload doesn't fit in image div*/}
+                <Media object src="http://www.beersearchparty.com/wp-content/uploads/2014/10/Our-Mutual-Friend.jpg" 
                         alt="Generic placeholder image" 
-                        style={{height: "200px", width: "200", marginRight: "10px", marginTop: "11px"}}/>
+                        style={{height: "180px", width: "180", marginRight: "10px", marginBottom: "20px"}}/>      
                 </Media>
                 <Media body>
                   <Media heading>
@@ -221,24 +221,28 @@ class Breweries extends Component {
                     </h1>
                   </Media>
                   <Media heading>
-                    <h3>
+                    <p>
                       {this.state.currentBrewery.location}
-                    </h3>
+                    </p>
                   </Media>
-                  <Media heading>
-                    {this.state.currentBrewery.phone_number}
+                  <Media>
+                    <p>
+                      {this.state.currentBrewery.phone_number}
+                    </p>
                   </Media>
-                  <p>
-                    <Button color="primary" onClick={this.handleClick}>
+                  <div>
+                    <Button size="sm" onClick={this.handleClick}>
                       Brewery Website
                     </Button>
-                  </p>
-                  <p>
-                    <Button style={{marginBottom: "9px"}} color="primary" onClick={this.toggle}>
-                      Edit Brewery Info
-                    </Button>  
-                  </p>             
+                  </div>           
                 </Media>
+
+                <div>
+                  <i class="material-icons" onClick={this.toggle}>
+                    border_color
+                  </i> 
+                </div>
+
               </Media>
               <Modal 
                 isOpen={this.state.modal} 
@@ -277,31 +281,28 @@ class Breweries extends Component {
                         name="phone_number"
                         placeholder="Phone Number"
                       />   
+
+                  {/*here goes the upload buttons*/}    
+                  {/*logo image upload*/}
+                  {/*jumbotron image upload*/}
+
                     </form>
 
                   </ModalBody>
                 <ModalFooter>
                   <Button 
                     // disabled={!(this.state.brewery)} 
+                    size="sm"
                     color="primary" 
                     onClick={this.handleBreweryFormSubmit}>Submit
                   </Button>
                 </ModalFooter>
               </Modal>
             </Jumbotron>
-
           </Col>
         </Row>
       {/* End Jumbotron and Modal*/}
 {/*-------------------------------------------------------------*/}
-      <div>  
-        <Row>
-          <h1>Beers List</h1>
-        </Row>
-      </div>
-
-    
-
       <div>
         <Row>
             <Col size="md-1"/>
@@ -312,88 +313,73 @@ class Breweries extends Component {
               {this.state.beers.length ? (
               <div>
               <span style={{fontSize: 24, color: "black"}}>Currently On Tap:</span>
-              <List>
-              <Button color="primary" >Modal for adding a beer form</Button>
                 {this.state.beers.map((beer, index) => (
                   beer.onTap ? (
-                      <ListItem key={beer.name} id={index}>
-                        <Card body width="100%">
-                          <Media>
-                            <Media body>
+                      <CardDeck>
+                        <Card key={beer.name} id={index} body width="100%">
+                          <CardTitle><h2>{beer.name}</h2></CardTitle>
+                          <CardText>Type: {beer.type} &#9632; ABV: {beer.abv} &#9632; IBU: {beer.ibu}</CardText>
 
-                            <Media heading>
-                              <CardTitle>{beer.name}</CardTitle>
-                            </Media>
-                            <Media>
-                              <CardText>Type: {beer.type} &#9632; ABV: {beer.abv} &#9632; IBU: {beer.ibu}</CardText>
-                            </Media>
-                            <Media>
-                              <Button color="primary" id="pop-over" onClick={this.toggleEditBeerModal}>Testing Button</Button>
-                            </Media>
-                            <div>
-                              <DeleteBtn onClick={() => this.deleteBeer(index)} />
-                              <UpdateBtn onClick={() => this.toggleBeer(index)} />
-                              <EditBtn onClick={() => this.updateBeer(index)} />
-                            </div>
+                          <div>
+                            <DeleteBtn onClick={() => this.deleteBeer(index)} />
+                            <UpdateBtn onClick={() => this.toggleBeer(index)} />
+                            <EditBtn onClick={() => this.updateBeer(index)} />
+                          </div>
 
-                            <div>  
-                            <Modal 
-                                isOpen={this.state.modal1} 
-                                toggle={this.toggleEditBeerModal} 
-                                className={this.props.className} 
-                                backdrop={this.state.backdrop}>
-                              <ModalHeader toggle={this.toggleEditBeerModal}><h1>Add a beer to your tap list!</h1></ModalHeader>
-                                <ModalBody>
-                                  <form style={{backgroundColor: "rbga(0,0,0,0.1)"}}>
-                                    <Input
-                                      value={this.state.name}
-                                      onChange={this.handleInputChange}
-                                      name="name"
-                                      placeholder="Name (required)"
-                                    />
-                                    <Input
-                                      value={this.state.type}
-                                      onChange={this.handleInputChange}
-                                      name="type"
-                                      placeholder="Type"
-                                    />
-                                    <Input
-                                      value={this.state.abv}
-                                      onChange={this.handleInputChange}
-                                      name="abv"
-                                      placeholder="ABV"
-                                    />
-                                    <Input
-                                      value={this.state.ibu}
-                                      onChange={this.handleInputChange}
-                                      name="ibu"
-                                      placeholder="IBUs"
-                                    />
-                                    <TextArea
-                                      value={this.state.description}
-                                      onChange={this.handleInputChange}
-                                      name="description"
-                                      placeholder="Description"
-                                      style={{height: 200}}
-                                    />
-                                    <FormBtn
-                                      disabled={!(this.state.name)}
-                                      onClick={this.handleBeerFormSubmit}
-                                    >
-                                      Add/Update Beer
-                                    </FormBtn>
-                                  </form>
-
-                                </ModalBody>
-                              </Modal>
-                              </div>
-                            </Media>
-                          </Media>
+                        <div>  
+                        <Modal 
+                            isOpen={this.state.modal1} 
+                            toggle={this.toggleEditBeerModal} 
+                            className={this.props.className} 
+                            backdrop={this.state.backdrop}>
+                          <ModalHeader toggle={this.toggleEditBeerModal}><h1>Add a beer to your tap list!</h1></ModalHeader>
+                            <ModalBody>
+                              <form style={{backgroundColor: "rbga(0,0,0,0.1)"}}>
+                                <Input
+                                  value={this.state.name}
+                                  onChange={this.handleInputChange}
+                                  name="name"
+                                  placeholder="Name (required)"
+                                />
+                                <Input
+                                  value={this.state.type}
+                                  onChange={this.handleInputChange}
+                                  name="type"
+                                  placeholder="Type"
+                                />
+                                <Input
+                                  value={this.state.abv}
+                                  onChange={this.handleInputChange}
+                                  name="abv"
+                                  placeholder="ABV"
+                                />
+                                <Input
+                                  value={this.state.ibu}
+                                  onChange={this.handleInputChange}
+                                  name="ibu"
+                                  placeholder="IBUs"
+                                />
+                                <TextArea
+                                  value={this.state.description}
+                                  onChange={this.handleInputChange}
+                                  name="description"
+                                  placeholder="Description"
+                                  style={{height: 200}}
+                                />
+                                <FormBtn
+                                  disabled={!(this.state.name)}
+                                  onClick={this.handleBeerFormSubmit}
+                                >
+                                  Add/Update Beer
+                                </FormBtn>
+                              </form>
+                            </ModalBody>
+                          </Modal>
+                          </div>
                         </Card>
-                      </ListItem>
+                      </CardDeck>
                   ) : ("")
                 ))}
-              </List>
               </div>
               ) : (
               <h3>No Results to Display</h3>
@@ -410,24 +396,20 @@ class Breweries extends Component {
                 {this.state.beers.map((beer, index) => (
                   !beer.onTap ? (
                       
-                      <ListItem key={beer.name} id={index}>
-                        <Card body width="100%">
-                          <CardTitle>{beer.name}</CardTitle>
+                      <CardDeck>
+                        <Card key={beer.name} id={index} body width="100%">
+                          <CardTitle><h2>{beer.name}</h2></CardTitle>
                           <CardText>Type: {beer.type} &#9632; ABV: {beer.abv} &#9632; IBU: {beer.ibu}</CardText>
-                          <span>
-                          <Button color="primary" id="pop-over" onClick={this.togglePopOver}>Go somewhere</Button>
-                          <Popover placement="bottom" isOpen={this.state.popoverOpen} target="pop-over" toggle={this.togglePopOver}>
-                            <PopoverHeader>Popover Title</PopoverHeader>
-                            <PopoverBody>Sed posuere consectetur est at lobortis. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum.</PopoverBody>
-                          </Popover>
-                          </span>
-                          <Row>
-                          <DeleteBtn onClick={() => this.deleteBeer(index)} />
-                          <UpdateBtn onClick={() => this.toggleBeer(index)} />
-                          <EditBtn onClick={() => this.updateBeer(index)} />
-                          </Row>
+
+
+                          <div>
+                            <DeleteBtn onClick={() => this.deleteBeer(index)} />
+                            <UpdateBtn onClick={() => this.toggleBeer(index)} />
+                            <EditBtn onClick={() => this.updateBeer(index)} />
+                          </div>
+                          
                         </Card>
-                      </ListItem>
+                      </CardDeck>
                    
                   ) : ("")
                 ))}
