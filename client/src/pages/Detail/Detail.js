@@ -130,7 +130,7 @@ class Detail extends Component {
 
   render() {
     return (
-      <Container fluid>
+      <Container centered>
         {/* Jumbotron */}
         <Row>
           <Col size="md-12" style={{ marginTop: "30px" }}>
@@ -140,7 +140,7 @@ class Detail extends Component {
                   {/* maybe try maxHeight and width if image upload doesn't fit in image div*/}
                 <Media object src="https://placeholdit.imgix.net/~text?txtsize=33&txt=318%C3%97180&w=200&h=200" 
                         alt="Generic placeholder image" 
-                        style={{height: "200px", width: "200", marginRight: "10px", marginBottom: "20px"}}/>      
+                        style={{height: "180px", width: "180", marginRight: "10px", marginBottom: "20px"}}/>      
                 </Media>
                 <Media body>
                   <Media heading>
@@ -159,7 +159,7 @@ class Detail extends Component {
                     </p>
                   </Media>
                   <p>
-                    <Button onClick={this.handleClick}>
+                    <Button  size="sm" onClick={this.handleClick}>
                       Brewery Website
                     </Button>
                   </p>
@@ -171,8 +171,8 @@ class Detail extends Component {
         </Row>
         {/* Beers on tap list*/}
         <Row>
-          <Col size="md-10 md-offset-1">
-            <article>
+          <Col size="md-12">
+            <article id="beerList-header">
               <h1>On Tap Right Now!!!</h1>
             </article>
             {this.state.beers.length ? (
@@ -184,7 +184,7 @@ class Detail extends Component {
                         <CardBody>
                           <CardTitle><h2 id="card-h2">{beer.name}</h2></CardTitle>
                           <CardSubtitle>{beer.type}</CardSubtitle>
-                          <CardText id="card-abv">&#9632; ABV:{beer.abv} &#9632; IBU:{beer.ibu}</CardText>
+                          <CardText id="card-abv">&#9659; ABV:{beer.abv} &#9659; IBU:{beer.ibu}</CardText>
                           <CardText id="card-description">
                             <ExpandText
                               text={beer.description}
@@ -192,13 +192,13 @@ class Detail extends Component {
                               maxLength={200}
                             />
                           </CardText>
-                          <CardText style={{color: "grey"}}>Click text for full description</CardText>
+                          <CardText style={{color: "grey"}}>Click text for full description &#9663;</CardText>
                           {/* Opens modal */}
-                          <Button id="card-button" color="primary" onClick={this.toggle}>
+                          <Button id="card-button" size="sm" color="primary" onClick={this.toggle}>
                             Notifications
                           </Button>
                           
-                          {/* Actual modal */}
+                          {/* Card notification modal */}
                           <Modal 
                             isOpen={this.state.modal} 
                             toggle={this.toggle} 
