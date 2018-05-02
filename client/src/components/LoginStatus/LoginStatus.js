@@ -21,6 +21,7 @@ const LoginStatus = props => {
 			</div>
 		)
 	}
+	console.log(props)
 }
 
 export default LoginStatus

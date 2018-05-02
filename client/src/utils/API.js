@@ -4,6 +4,7 @@ export default {
   // Gets all breweries
   getBreweries: function() {
     return axios.get("/api/breweries");
+    
   },
   // Gets the brewery with the given id
   getBrewery: function(id) {
@@ -18,6 +19,7 @@ export default {
     console.log(beerData)
     return axios.post("/api/breweries/" + beerData.id, beerData);
   },
+
   //deletes a beer from the brewery array
   deleteBeer: function(id, beers) {
     console.log(id)
@@ -29,6 +31,12 @@ export default {
     console.log(breweryInfo)
     return axios.post("/api/breweryUpdate/" + breweryInfo.id, breweryInfo);
   },
+
+
+// search bar implementation
+  getBeers: function(query) {
+    return axios.get("/api/", { params: { q: query } });
+  }
 
 
 };
