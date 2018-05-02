@@ -26,6 +26,7 @@ import { Button } from 'reactstrap';
 import ScrollToTop from "react-scroll-up";
 import whiteArrow from "../../images/whiteArrow.png";
 import Flag from "../../images/blurryFlag.png";
+import ReactCursorPosition from 'react-cursor-position';
 // import brewMark from "./markers.js";
 
 
@@ -51,7 +52,11 @@ const style = {
 
 class Breweries extends Component {
   state = {
-    breweries: []
+    breweries: [],
+    position: {
+      x: 0,
+      y: 0
+    }
   };
 
   componentDidMount() {
@@ -138,9 +143,14 @@ class Breweries extends Component {
 
         <div style={{ backgroundColor: "#2b2b2b", position: "relative" }}>
           <Container>
+            <ReactCursorPosition {...{
+                    className: 'example__target',
+                    onPositionChanged: props => this.setState(props)
+            }}>
                 <div id="map" style={{ position: "relative", marginTop: "30px" }}>
                   <MyMapComponent isMarkerShown />
                 </div>
+            </ReactCursorPosition>
           </Container>
         </div>
         <Container>
