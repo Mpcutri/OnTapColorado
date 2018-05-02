@@ -5,8 +5,6 @@ import App from "./App";
 import { BrowserRouter } from 'react-router-dom';
 //Cards -reactstrap
 import 'bootstrap/dist/css/bootstrap.css';
-// import Favicon from 'react-favicon';
-
 
 ReactDOM.render(
 	<BrowserRouter>

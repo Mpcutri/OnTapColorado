@@ -300,6 +300,8 @@ class Breweries extends Component {
         </Row>
       </div>
 
+    
+
       <div>
         <Row>
             <Col size="md-1"/>

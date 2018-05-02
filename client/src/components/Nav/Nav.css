@@ -51,25 +51,26 @@ a:hover {
 }
 
 .navbar-brand:hover {
-    opacity: 0.5;
+    opacity: 0.85;
 }
 
-.nav-pills .nav-link.active {
-	background-color: #002968;
-	color: white;
-}
 
+/*login button*/
 .navbar-light .navbar-nav .nav-link.active {
-	color: white;
-	-webkit-transition: opacity .5s ease-in-out;
-  	-moz-transition: opacity .5s ease-in-out;
-  	-ms-transition: opacity .5s ease-in-out;
-  	-o-transition: opacity .5s ease-in-out;
-  	transition: opacity .5s ease-in-out;
-  	opacity: 1;
+  color: white;
   padding: 20px;
   border-radius: 5px;
+   background-color: #002968;
+  color: white;
+  transition: all 1s;
 }
+
+
+a.loginButton.nav-link.active:hover {
+  background-color: #b9632e;
+  /*opacity: 0.85;*/
+}
+/*end login button*/
 
 
 
@@ -90,7 +91,7 @@ a:hover {
 
 .navbar-light .navbar-brand:hover {
 	/*background-color: transparent;*/
-	opacity: 0.5;
+	opacity: 0.65;
 }
 
 
