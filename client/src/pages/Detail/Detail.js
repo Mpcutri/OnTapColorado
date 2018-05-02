@@ -5,12 +5,10 @@ import "./Detail.css";
 import {render} from 'react-dom';
 import { Link } from "react-router-dom";
 import { List, ListItem } from "../../components/List";
-// import {ScrollArea} from'react-scrollbar';
 import { TextArea, FormBtn } from "../../components/Form";
 import { Col, Row, Container } from "../../components/Grid";
 import { DragDropContainer, DropTarget } from 'react-drag-drop-container';
 import {SortableContainer, SortableElement} from 'react-sortable-hoc';
-// import LinesEllipsisLoose from 'react-lines-ellipsis/lib/loose';
 import ExpandText from 'react-expand-text';
 import { Card, 
           CardImg, 
@@ -54,7 +52,6 @@ const style = {
 class Detail extends Component {
   constructor(props) {
     super(props);
-    this.togglePopOver = this.togglePopOver.bind(this);
     this.state = {
       brewery: "",
       beers: [],
@@ -65,13 +62,12 @@ class Detail extends Component {
         // backdrop needs to be clickable or we need a cancel button on the modal
       backdrop: false,
       popoverOpen: false,
-      description: null
+      description: null,
     };
 
     this.toggle = this.toggle.bind(this);
     this.changeBackdrop = this.changeBackdrop.bind(this);
   }
-
   // Modal on/off
   toggle() {
     this.setState({
@@ -144,7 +140,7 @@ class Detail extends Component {
                   {/* maybe try maxHeight and width if image upload doesn't fit in image div*/}
                 <Media object src="https://placeholdit.imgix.net/~text?txtsize=33&txt=318%C3%97180&w=200&h=200" 
                         alt="Generic placeholder image" 
-                        style={{height: "220px", width: "300", marginRight: "10px"}}/>      
+                        style={{height: "200px", width: "200", marginRight: "10px", marginBottom: "20px"}}/>      
                 </Media>
                 <Media body>
                   <Media heading>
@@ -171,6 +167,7 @@ class Detail extends Component {
               </Media>
             </Jumbotron>
           </Col>
+
         </Row>
         {/* Beers on tap list*/}
         <Row>
@@ -183,20 +180,21 @@ class Detail extends Component {
                   {this.state.beers.map(beer => (                     
                     <Col size="sm-3">
                       <Card key={beer._id}>
-                        <CardImg top width="100%" src="https://placeholdit.imgix.net/~text?txtsize=33&txt=318%C3%97180&w=318&h=180" alt="Card image cap" />
+                        <CardImg top width="100%" src="https://www.drinkpreneur.com/wp-content/uploads/2017/04/drinkpreneur_2016-01-26-1453821995-8643361-beermain.jpg" alt="Card image cap" />
                         <CardBody>
-                          <CardTitle><h2>{beer.name}</h2></CardTitle>
-                          <CardSubtitle><h4>{beer.type}</h4></CardSubtitle>
-                          <CardText>&#9632; ABV:{beer.abv} &#9632; IBU:{beer.ibu}</CardText>
-                            <CardText>
+                          <CardTitle><h2 id="card-h2">{beer.name}</h2></CardTitle>
+                          <CardSubtitle>{beer.type}</CardSubtitle>
+                          <CardText id="card-abv">&#9632; ABV:{beer.abv} &#9632; IBU:{beer.ibu}</CardText>
+                          <CardText id="card-description">
                             <ExpandText
                               text={beer.description}
                               className="my-css-class"
-                              maxLength={75}
+                              maxLength={200}
                             />
                           </CardText>
+                          <CardText style={{color: "grey"}}>Click text for full description</CardText>
                           {/* Opens modal */}
-                          <Button color="primary" onClick={this.toggle}>
+                          <Button id="card-button" color="primary" onClick={this.toggle}>
                             Notifications
                           </Button>
                           

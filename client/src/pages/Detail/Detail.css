@@ -1,9 +1,53 @@
-h5.card-title {
-
-}
-
-h6.card-subtitle {
+.card-subtitle {
 	margin-bottom: 7px;
-
+	font-size: 15px;
 }
 
+.card-text {
+	font-size: 11px;
+	margin-bottom: 2px;
+}
+
+.card-img-top {
+	padding: 20px;
+	padding-bottom: 0px;
+	border-radius: 5px;
+}
+
+.card-body {
+	padding-top: 05px;
+}
+
+.card-subtitle {
+	margin-bottom: 2px;
+}
+
+#card-h2 {
+	margin-bottom: 0px;
+	border-bottom: 1px solid grey;
+}
+
+#card-abv {
+	border-bottom: 1px solid grey;
+}
+
+#card-description {
+	margin-top: 6px;
+}
+
+.card {
+	margin: 10px;
+}
+
+#card-button {
+	margin-top: 6px;	
+}
+
+.media-object {
+	padding-bottom: 0px;
+	margin-left: 30px;
+}
+
+.media-left {
+	margin-bottom: 20px;
+}
