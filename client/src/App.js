@@ -112,6 +112,7 @@ class App extends Component {
 }
 
 const DisplayLinks = props => {
+  console.log(props)
   if (props.loggedIn) {
     return (
       <Router>
