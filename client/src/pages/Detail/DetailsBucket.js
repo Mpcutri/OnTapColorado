@@ -82,3 +82,36 @@
                 </Card>
               </DragDropContainer>
             </Col>
+
+<CardImg top width="100%" src="https://placeholdit.imgix.net/~text?txtsize=33&txt=318%C3%97180&w=318&h=180" alt="Card image cap" />
+
+<Media>
+	<Media left href="#">
+	  {/* maybe try maxHeight and width if image upload doesn't fit in image div*/}
+	<Media object src="https://placeholdit.imgix.net/~text?txtsize=33&txt=318%C3%97180&w=200&h=200" 
+	        alt="Generic placeholder image" 
+	        style={{height: "200px", width: "200", marginRight: "10px", marginBottom: "20px"}}/>      
+	</Media>
+	<Media body>
+	  <Media heading>
+	    <h1>
+	      {this.state.brewery.brewery}
+	    </h1>
+	  </Media>
+	  <Media heading>
+	    <p>
+	      {this.state.brewery.location}
+	    </p>
+	  </Media>
+	  <Media>
+	    <p>
+	      {this.state.brewery.phone_number}
+	    </p>
+	  </Media>
+	  <p>
+	    <Button onClick={this.handleClick}>
+	      Brewery Website
+	    </Button>
+	  </p>
+	</Media>
+</Media>

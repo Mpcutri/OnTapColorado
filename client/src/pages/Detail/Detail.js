@@ -135,10 +135,12 @@ class Detail extends Component {
         <Row>
           <Col size="md-12" style={{ marginTop: "30px" }}>
             <Jumbotron>
+                  {/*jumbotron image needs to be dynamic to brewery info jumbo background upload*/}
               <Media>
                 <Media left href="#">
+                  {/*logo image in jumbotron needs to be dynamic to brewery info image upload*/}
                   {/* maybe try maxHeight and width if image upload doesn't fit in image div*/}
-                <Media object src="https://placeholdit.imgix.net/~text?txtsize=33&txt=318%C3%97180&w=200&h=200" 
+                <Media object src="http://www.beersearchparty.com/wp-content/uploads/2014/10/Our-Mutual-Friend.jpg" 
                         alt="Generic placeholder image" 
                         style={{height: "180px", width: "180", marginRight: "10px", marginBottom: "20px"}}/>      
                 </Media>
