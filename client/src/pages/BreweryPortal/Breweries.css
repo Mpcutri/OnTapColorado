@@ -1,7 +1,7 @@
-.jumbotron {
+/*.jumbotron {
 	border: .5px solid grey;
 	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-}
+}}
 
 img.media-object {
 	padding-left: 30px;
@@ -16,4 +16,42 @@ img.media-left {
 .media-body {
 	margin: -6px;
 }
+
+h5.card-title {
+	padding-bottom: 0px;
+}*/
+.brewery-card .card-body {
+	padding: 10px;
+	margin: 10px;
+	border: .5px solid grey;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.brewery-card #onTapCard-h2 {
+	margin-bottom: 0px;
+	border-bottom: 1px solid grey;
+}
+
+.brewery-card .card-subtitle {
+	margin-bottom: 6px;
+	font-size: 15px;
+}
+
+.brewery-card .card-text {
+	font-size: 11px;
+	margin-bottom: 2px;
+}
+
+.brewery-card #card-abv {
+	border-bottom: 1px solid grey;
+}
+
+.material-icons {
+	margin-top: 183px;
+	color: grey;
+}
+
+/*.brewery-card #card-title {
+	color: blue;
+}*/
 

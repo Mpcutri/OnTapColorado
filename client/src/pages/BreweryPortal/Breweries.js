@@ -4,6 +4,7 @@ import DeleteBtn from "../../components/DeleteBtn";
 import UpdateBtn from "../../components/UpdateBtn";
 import EditBtn from "../../components/EditBtn";
 import API from "../../utils/API";
+import "./Breweries.css";
 import { Link } from "react-router-dom";
 import { List, ListItem } from "../../components/List";
 import { TextArea, FormBtn } from "../../components/Form";
@@ -230,11 +231,13 @@ class Breweries extends Component {
                       {this.state.currentBrewery.phone_number}
                     </p>
                   </Media>
+                  <Col size="md-1">
                   <div>
                     <Button size="sm" onClick={this.handleClick}>
                       Brewery Website
                     </Button>
-                  </div>           
+                  </div>   
+                  </Col>        
                 </Media>
 
                 <div>
@@ -307,25 +310,24 @@ class Breweries extends Component {
         <Row>
             <Col size="md-1"/>
             <Col size="md-5 sm-12">
-            <div>
-              {console.log(this.state.currentBrewery)}
-              {console.log(this.state.beers)}
-              {this.state.beers.length ? (
+              <div>
+                {console.log(this.state.currentBrewery)}
+                {console.log(this.state.beers)}
+                {this.state.beers.length ? (
               <div>
               <span style={{fontSize: 24, color: "black"}}>Currently On Tap:</span>
                 {this.state.beers.map((beer, index) => (
                   beer.onTap ? (
-                      <CardDeck>
+                      <CardDeck className="brewery-card">
                         <Card key={beer.name} id={index} body width="100%">
-                          <CardTitle><h2>{beer.name}</h2></CardTitle>
-                          <CardText>Type: {beer.type} &#9632; ABV: {beer.abv} &#9632; IBU: {beer.ibu}</CardText>
-
+                          <CardTitle><h2 id="onTapCard-h2">{beer.name}</h2></CardTitle>
+                          <CardSubtitle>{beer.type}</CardSubtitle>
+                          <CardText id="card-abv">&#9659; ABV:{beer.abv} &#9659; IBU:{beer.ibu}</CardText>
                           <div>
-                            <DeleteBtn onClick={() => this.deleteBeer(index)} />
-                            <UpdateBtn onClick={() => this.toggleBeer(index)} />
-                            <EditBtn onClick={() => this.updateBeer(index)} />
+                            <Button size="sm" onClick={() => this.deleteBeer(index)} >delete</Button>{' '}
+                            <Button size="sm" onClick={() => this.toggleBeer(index)} >move</Button>{' '}
+                            <Button size="sm" onClick={() => this.updateBeer(index)} >edit</Button>{' '}
                           </div>
-
                         <div>  
                         <Modal 
                             isOpen={this.state.modal1} 
@@ -387,8 +389,6 @@ class Breweries extends Component {
               </div>
               </Col>
               
-
-              
               <Col size="md-5 sm-12">
               <div>
               <span style={{fontSize: 24, color: "black"}}>Inventory Not on Tap:</span>
@@ -396,18 +396,17 @@ class Breweries extends Component {
                 {this.state.beers.map((beer, index) => (
                   !beer.onTap ? (
                       
-                      <CardDeck>
+                      <CardDeck className="brewery-card">
                         <Card key={beer.name} id={index} body width="100%">
-                          <CardTitle><h2>{beer.name}</h2></CardTitle>
-                          <CardText>Type: {beer.type} &#9632; ABV: {beer.abv} &#9632; IBU: {beer.ibu}</CardText>
-
-
+                          <CardTitle><h2 id="onTapCard-h2">{beer.name}</h2></CardTitle>
+                          <CardSubtitle>{beer.type}</CardSubtitle>
+                          <CardText id="card-abv">&#9659; ABV:{beer.abv} &#9659; IBU:{beer.ibu}</CardText>
                           <div>
-                            <DeleteBtn onClick={() => this.deleteBeer(index)} />
-                            <UpdateBtn onClick={() => this.toggleBeer(index)} />
-                            <EditBtn onClick={() => this.updateBeer(index)} />
+                            <Button size="sm" onClick={() => this.deleteBeer(index)} >delete</Button>{' '}
+                            <Button size="sm" onClick={() => this.toggleBeer(index)} >move</Button>{' '}
+                            <Button size="sm" onClick={() => this.updateBeer(index)} >edit</Button>{' '}
                           </div>
-                          
+
                         </Card>
                       </CardDeck>
                    
