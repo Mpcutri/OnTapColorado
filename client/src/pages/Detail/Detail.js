@@ -171,18 +171,21 @@ class Detail extends Component {
           </Col>
 
         </Row>
-        {/* Beers on tap list*/}
+      {/* Beers on tap list*/}
         <Row>
           <Col size="md-12">
             <article id="beerList-header">
               <h1>On Tap Right Now!!!</h1>
             </article>
             {this.state.beers.length ? (
-              <CardDeck>
+              <CardDeck className="detail-card">
                   {this.state.beers.map(beer => (                     
                     <Col size="sm-3">
                       <Card key={beer._id}>
+                      {/* commented out until made dynamic to image upload on brewery edit button
+                            and not even sure it should be here at all. Maybe a circular icon size image like twitter instead.
                         <CardImg top width="100%" src="https://www.drinkpreneur.com/wp-content/uploads/2017/04/drinkpreneur_2016-01-26-1453821995-8643361-beermain.jpg" alt="Card image cap" />
+                      */}
                         <CardBody>
                           <CardTitle><h2 id="card-h2">{beer.name}</h2></CardTitle>
                           <CardSubtitle>{beer.type}</CardSubtitle>
@@ -197,10 +200,10 @@ class Detail extends Component {
                           <CardText style={{color: "grey"}}>Click text for full description &#9663;</CardText>
                           {/* Opens modal */}
                           <Button id="card-button" size="sm" color="primary" onClick={this.toggle}>
-                            Notifications
+                            Be Notified!
                           </Button>
                           
-                          {/* Card notification modal */}
+                        {/* Card notification modal */}
                           <Modal 
                             isOpen={this.state.modal} 
                             toggle={this.toggle} 
@@ -208,7 +211,6 @@ class Detail extends Component {
                             backdrop={this.state.backdrop}>
                             <ModalHeader toggle={this.toggle}>How would you like to be notified?</ModalHeader>
                               <ModalBody>
-
                                 <form>
                                   <span style={{fontSize: 24, color: "black"}}>Email</span>
                                     <Input
@@ -226,6 +228,32 @@ class Detail extends Component {
                                     />
                                 </form>
                               </ModalBody>
+
+                            {/* checkboxes are not wired up to anything yet*/}
+                              <form>
+                                <div id="modalForm-checkHeader">When would you like to be notified?</div>
+                                <FormGroup check>
+                                  <Label check>
+                                    <Input 
+                                      type="checkbox" />{' '}
+                                      When it goes on tap
+                                  </Label>
+                                </FormGroup>
+                                <FormGroup check>
+                                  <Label check>
+                                    <Input 
+                                      type="checkbox" />{' '}
+                                      When it gets low
+                                  </Label>
+                                </FormGroup>
+                                <FormGroup check id="form-check">
+                                  <Label check>
+                                    <Input 
+                                      type="checkbox" />{' '}
+                                      When it goes off tap
+                                  </Label>
+                                </FormGroup>
+                              </form>
 
                             <ModalFooter>
                               <Button 
@@ -251,3 +279,11 @@ class Detail extends Component {
 }
 
 export default Detail;
+
+
+
+
+
+
+
+
