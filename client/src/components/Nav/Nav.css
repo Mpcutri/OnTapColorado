@@ -70,7 +70,9 @@ a.loginButton.nav-link.active:hover {
 }
 /*end login button*/
 
-
+.nav-link {
+  font-size: 30px;
+}
 
 /*When you click the dropdown menu*/
 .nav-pills .show > .nav-link {

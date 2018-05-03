@@ -81,7 +81,7 @@ export default class Example extends React.Component {
               </NavItem>
               <UncontrolledDropdown nav inNavbar>
                 <DropdownToggle nav caret>
-                  {this.props.id}
+                  {this.props.brewery}
                 </DropdownToggle>
                 <DropdownMenu right>
                   <DropdownItem href={"/admin/" + this.props.id}>
