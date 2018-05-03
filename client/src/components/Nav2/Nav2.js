@@ -84,10 +84,10 @@ export default class Example extends React.Component {
                   {this.props.id}
                 </DropdownToggle>
                 <DropdownMenu right>
-                  <DropdownItem href={"/admin/" + this.props.id}>
+                  <DropdownItem href={"/admin/" + this.props.breweryURL}>
                     Brewery Portal
                   </DropdownItem>
-                  <DropdownItem href={"/breweries/" + this.props.id}>
+                  <DropdownItem href={"/breweries/" + this.props.breweryURL}>
                     User Portal
                   </DropdownItem>
                   <DropdownItem divider />

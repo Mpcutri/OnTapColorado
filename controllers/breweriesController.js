@@ -11,8 +11,9 @@ module.exports = {
       .catch(err => res.status(422).json(err));
   },
   findById: function(req, res) {
+    console.log("akjdsf;lkdsajf;lkdsajf;lkdsajf;lkdsaf" + req.params.breweryURL)
     db.User
-      .findById(req.params.id)
+      .find( { breweryURL: req.params.breweryURL } )
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },

@@ -100,9 +100,9 @@ class Breweries extends Component {
       }),   
       withHandlers({
         onMarkerClick: () => (marker) => {
-          console.log(marker._id)
+          console.log(marker.brewery)
           console.log('Go to the marker post page')
-          window.location = '/breweries/' + marker._id;
+          window.location = '/breweries/' + marker.breweryURL;
         },
         showInfo: () => (marker) => {
           $("#infoBox").show()
@@ -170,7 +170,7 @@ class Breweries extends Component {
                     {this.state.breweries.map(brewery => (
                       brewery.position ? (
                         <ListItem key={brewery._id}>
-                          <Link onClick={this.forceUpdate} to={"/breweries/" + brewery._id}>
+                          <Link onClick={this.forceUpdate} to={"/breweries/" + brewery.breweryURL}>
                             <strong>
                               {brewery.brewery}
                             </strong>
@@ -202,7 +202,7 @@ class Breweries extends Component {
                     <List>
                       {this.state.breweries.map(brewery => (
                         <ListItem key={brewery._id}>
-                          <Link onClick={this.forceUpdate} to={"/breweries/" + brewery._id}>
+                          <Link onClick={this.forceUpdate} to={"/breweries/" + brewery.breweryURL}>
                             <strong>
                               {brewery.brewery}
                             </strong>

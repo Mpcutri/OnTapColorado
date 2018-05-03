@@ -99,7 +99,7 @@ export default class Example extends React.Component {
             loggedIn: true,
             user: response.data.user
           })
-          window.location = '/admin/' + response.data.user._id
+          window.location = '/admin/' + response.data.user.breweryURL
         }
       })
   }
