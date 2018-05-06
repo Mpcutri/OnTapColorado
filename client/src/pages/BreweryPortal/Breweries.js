@@ -91,8 +91,9 @@ class Breweries extends Component {
 
   // Loads current brewery content on page load
   loadBreweryInfo = () => {
-    API.getBrewery(this.props.match.params.id)
-      .then(res => this.setState({ currentBrewery: res.data, beers: res.data.beer, id: res.data._id, brewery: res.data.brewery, location: res.data.location, website: res.data.website, phone_number: res.data.phone_number }))
+    console.log(this.props.match.params.breweryURL)
+    API.getBrewery(this.props.match.params.breweryURL)
+      .then(res => this.setState({ currentBrewery: res.data[0], beers: res.data[0].beer, id: res.data[0]._id, brewery: res.data[0].brewery, location: res.data[0].location, website: res.data[0].website, phone_number: res.data[0].phone_number }))
       .catch(err => console.log(err));
   };
   
