@@ -27,10 +27,7 @@ import { Card,
           Label, 
           Input, 
           FormText,
-          Media,
-          Popover, 
-          PopoverHeader, 
-          PopoverBody } from 'reactstrap';
+          Media } from 'reactstrap';
 
 const style = {
   breweryList: {
@@ -56,29 +53,21 @@ class Detail extends Component {
       brewery: "",
       beers: [],
       modal: false,
-      // when true backdrop goes black
-      // when false backdrop stays with no shade, but then is not clickable for 
+      // when background true backdrop goes black
+      // when background false backdrop stays with no shade, but then is not clickable for 
         // dismiss of modal and shadow on modal is way bigger than the modal in details
         // backdrop needs to be clickable or we need a cancel button on the modal
       backdrop: false,
-      popoverOpen: false,
       description: null,
     };
-
     this.toggle = this.toggle.bind(this);
     this.changeBackdrop = this.changeBackdrop.bind(this);
   }
+
   // Modal on/off
   toggle() {
     this.setState({
       modal: !this.state.modal
-    });
-  }
-
-  togglePopOver(beer) {
-    this.setState({
-      popoverOpen: !this.state.popoverOpen,
-      description: beer.description
     });
   }
 
@@ -169,7 +158,6 @@ class Detail extends Component {
               </Media>
             </Jumbotron>
           </Col>
-
         </Row>
       {/* Beers on tap list*/}
         <Row>
@@ -198,11 +186,10 @@ class Detail extends Component {
                             />
                           </CardText>
                           <CardText style={{color: "grey"}}>Click text for full description &#9663;</CardText>
-                          {/* Opens modal */}
+                        {/* Opens modal */}
                           <Button id="card-button" size="sm" color="primary" onClick={this.toggle}>
                             Be Notified!
                           </Button>
-                          
                         {/* Card notification modal */}
                           <Modal 
                             isOpen={this.state.modal} 
@@ -235,25 +222,22 @@ class Detail extends Component {
                                 <FormGroup check>
                                   <Label check>
                                     <Input 
+                                      // value={this.state.email}
+                                      // onChange={this.handleInputChange}
                                       type="checkbox" />{' '}
                                       When it goes on tap
-                                  </Label>
-                                </FormGroup>
-                                <FormGroup check>
-                                  <Label check>
-                                    <Input 
-                                      type="checkbox" />{' '}
-                                      When it gets low
                                   </Label>
                                 </FormGroup>
                                 <FormGroup check id="form-check">
                                   <Label check>
                                     <Input 
+                                      // value={this.state.email}
+                                      // onChange={this.handleInputChange}
                                       type="checkbox" />{' '}
                                       When it goes off tap
                                   </Label>
                                 </FormGroup>
-                              </form>
+                              </form> 
 
                             <ModalFooter>
                               <Button 
