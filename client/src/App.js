@@ -26,7 +26,8 @@ class App extends Component {
       loggedIn: false,
       user: null,
       id: null,
-      brewery: null
+      brewery: null,
+      breweryURL: null
     }
     this._logout = this._logout.bind(this)
     this._login = this._login.bind(this)
@@ -42,14 +43,16 @@ class App extends Component {
           user: response.data.user,
           info: null,
           id: response.data.user._id,
-          brewery: response.data.user.brewery
+          brewery: response.data.user.brewery,
+          breweryURL: response.data.user.breweryURL
         })
       } else {
         this.setState({
           loggedIn: false,
           user: null,
           info: null,
-          brewery: null
+          brewery: null,
+          breweryURL: null
         })
       }
     })
@@ -84,7 +87,8 @@ class App extends Component {
             loggedIn: true,
             user: response.data.user
           })
-          window.location = '/admin/' + response.data.user._id
+          console.log(response.data.user)
+          window.location = '/admin/' + response.data.user.breweryURL
         }
       })
   }
@@ -94,7 +98,7 @@ class App extends Component {
       <div className="App">
         {/* LINKS to our different 'pages' */}
       {/* <Route exact path="/" render={() => <LoginStatus user={this.state.user} />} /> */}
-        <DisplayLinks _logout={this._logout} loggedIn={this.state.loggedIn} id={this.state.id} brewery={this.state.brewery}/>
+        <DisplayLinks _logout={this._logout} loggedIn={this.state.loggedIn} id={this.state.id} brewery={this.state.brewery} breweryURL={this.state.breweryURL}/>
         {/*  ROUTES */}
         {/* <Route exact path="/" component={Home} /> */}
         <Route exact path="/" render={() => <Home user={this.state.user} />} />
@@ -120,10 +124,10 @@ const DisplayLinks = props => {
     return (
       <Router>
       <div>
-        <Nav2 userLogout={props._logout} id={props.id} brewery={props.brewery} />
+        <Nav2 userLogout={props._logout} id={props.id} brewery={props.brewery} breweryURL={props.breweryURL}/>
         <Switch>
-          <Route exact path="/admin/:id" component={Breweries} />
-          <Route exact path="/breweries/:id" component={Detail} />
+          <Route exact path="/admin/:breweryURL" component={Breweries} />
+          <Route exact path="/breweries/:breweryURL" component={Detail} />
           {/*
           <Route exact path="/signup" component={SignUp} />
           <Route exact path="/login" component={Login} />
@@ -139,7 +143,7 @@ const DisplayLinks = props => {
         <Nav />
         <Switch>
           <Route exact path="/breweries" component={Breweries} />
-          <Route exact path="/breweries/:id" component={Detail} />
+          <Route exact path="/breweries/:breweryURL" component={Detail} />
           {/*
           <Route exact path="/signup" component={SignUp} />
           <Route exact path="/login" component={Login} />

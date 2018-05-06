@@ -95,8 +95,8 @@ class Detail extends Component {
   // When this component mounts, grab the brewery with the _id of this.props.match.params.id
   // e.g. localhost:3000/breweries/599dcb67f0f16317844583fc
   componentDidMount() {
-    API.getBrewery(this.props.match.params.id)
-      .then(res => this.setState({ brewery: res.data, beers: res.data.beer }))
+    API.getBrewery(this.props.match.params.breweryURL)
+      .then(res => this.setState({ brewery: res.data[0], beers: res.data[0].beer }))
       .catch(err => console.log(err));
   } 
 
