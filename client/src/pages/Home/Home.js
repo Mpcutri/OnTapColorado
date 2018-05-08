@@ -170,7 +170,7 @@ class Breweries extends Component {
           </Container>
         </div>
         <Container>
-          <Col size="md-6">
+          <Col size="md-12">
               {console.log(this.props.breweries)}
               {this.props.breweries.length ? (
                 <div className="brewery-list" style={style.breweryList}>
@@ -192,46 +192,7 @@ class Breweries extends Component {
                 <h3>No Results to Display</h3>
               )}
           </Col>
-
-          <Col size="md-6">
-            <div className="brewery-list" style={style.breweryList}>
-              <p>whatevewhatever
-              </p>
-            </div>
-          </Col>
         </Container>
-        <div className="listbackground">
-          <Container>
-            <Col size="md-6">
-                {console.log(this.state.breweries)}
-                {console.log(this.state.beers)}
-                {this.state.breweries.length ? (
-                  <div className="brewery-list" style={style.breweryList}>
-                    <List>
-                      {this.state.breweries.map(brewery => (
-                        <ListItem key={brewery._id}>
-                          <Link onClick={this.forceUpdate} to={"/breweries/" + brewery.brewery}>
-                            <strong>
-                              {brewery.brewery}
-                            </strong>
-                          </Link>
-                        </ListItem>
-                      ))}
-                    </List>
-                    
-                  </div>
-                ) : (
-                  <h3>No Results to Display</h3>
-                )}
-            </Col>
-            <Col size="md-6">
-              <div className="info-list" style={style.breweryList}>
-                <p>whatevewhatever
-                </p>
-              </div>
-            </Col>
-          </Container>
-        </div>
       </div>
     );
   }
