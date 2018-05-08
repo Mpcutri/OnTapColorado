@@ -51,18 +51,21 @@ const style = {
 }
 
 class Breweries extends Component {
-  state = {
-    breweries: [],
-    beers: [],
-    types: [],
-    position: {
-      x: 0,
-      y: 0
+  constructor(props) {
+    super(props);
+    this.state = {
+      breweries: [],
+      beers: [],
+      types: [],
+      position: {
+        x: 0,
+        y: 0
+      }
     }
-  };
+  }
 
   componentDidMount() {
-    this.loadBreweries();
+    // this.loadBreweries();
   };
 
   loadBreweries = () => {
@@ -123,7 +126,7 @@ class Breweries extends Component {
             <div id="infoBox">
               <p id="infoText"></p>
             </div>
-            {this.state.breweries.map(brewery => (
+            {this.props.breweries.map(brewery => (
               <div key={brewery.id}>
                 {brewery.position ? (
                   <Marker
@@ -163,11 +166,11 @@ class Breweries extends Component {
         </div>
         <Container>
           <Col size="md-6">
-              {console.log(this.state.breweries)}
-              {this.state.breweries.length ? (
+              {console.log(this.props.breweries)}
+              {this.props.breweries.length ? (
                 <div className="brewery-list" style={style.breweryList}>
                   <List>
-                    {this.state.breweries.map(brewery => (
+                    {this.props.breweries.map(brewery => (
                       brewery.position ? (
                         <ListItem key={brewery._id}>
                           <Link onClick={this.forceUpdate} to={"/breweries/" + brewery.breweryURL}>
@@ -202,7 +205,7 @@ class Breweries extends Component {
                     <List>
                       {this.state.breweries.map(brewery => (
                         <ListItem key={brewery._id}>
-                          <Link onClick={this.forceUpdate} to={"/breweries/" + brewery.breweryURL}>
+                          <Link onClick={this.forceUpdate} to={"/breweries/" + brewery.brewery}>
                             <strong>
                               {brewery.brewery}
                             </strong>
