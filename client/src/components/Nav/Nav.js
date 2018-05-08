@@ -99,12 +99,18 @@ export default class Example extends React.Component {
             loggedIn: true,
             user: response.data.user
           })
-          window.location = '/admin/' + response.data.user._id
+          window.location = '/admin/' + response.data.user.breweryURL
+        } else if (response.status != 200) {
+          this.setState({
+            alert: true
+          })
+          console.log("dkfjdlfjdlkfjdlkfjdlkjfdlkjfdlkfjfdlkjfd")
         }
       })
   }
 
   render() {
+    console.log(this.props)
     return (
       <div>
       <div className="navbarDiv">
@@ -113,7 +119,7 @@ export default class Example extends React.Component {
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar pills>
               <NavItem>
-                <SearchBar className="search-bar"/>
+                <SearchBar breweries={this.props.breweries} beers={this.props.beers} className="search-bar"/>
               </NavItem>
               <NavItem>
                 <NavLink className="loginButton" onClick={this.toggle} active style={style.loginButton}>Login</NavLink>
@@ -143,7 +149,7 @@ export default class Example extends React.Component {
             {!this.state.signUp ? (
               <div>
                 <ModalBody>
-                  <LoginForm _login={this._login}/>
+                  <LoginForm _login={this._login} alert={this.state.alert}/>
                 </ModalBody>
 
                 <ModalBody style={style.footerText}>

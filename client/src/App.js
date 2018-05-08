@@ -13,6 +13,7 @@ import Login from "./pages/Login";
 import Nav2 from "./components/Nav2";
 import { Redirect } from 'react-router-dom';
 import "./pages/Home/Home.css";
+import API from "./utils/API";
 
 
 // IF ALL FAILS: changes line 14 to exactly: const App = () => (
@@ -26,13 +27,18 @@ class App extends Component {
       loggedIn: false,
       user: null,
       id: null,
-      brewery: null
+      brewery: null,
+      breweryURL: null,
+      breweries: [],
+      beers: [],
+      alert: false 
     }
     this._logout = this._logout.bind(this)
     this._login = this._login.bind(this)
   }
 
   componentDidMount() {
+    this.loadBreweries();
     axios.get('/auth/user').then(response => {
       console.log(response.data)
       if (!!response.data.user) {
@@ -42,18 +48,36 @@ class App extends Component {
           user: response.data.user,
           info: null,
           id: response.data.user._id,
-          brewery: response.data.user.brewery
+          brewery: response.data.user.brewery,
+          breweryURL: response.data.user.breweryURL
         })
       } else {
         this.setState({
           loggedIn: false,
           user: null,
           info: null,
-          brewery: null
+          brewery: null,
+          breweryURL: null         
         })
       }
     })
   }
+
+  loadBreweries = () => {
+    API.getBreweries()
+      .then(res =>
+        this.setState({ breweries: res.data })
+      )
+      .catch(err => console.log(err));
+  };
+
+  loadBeers = () => {
+    this.state.breweries.map(brewery => (
+      brewery.beer.map(beer => (
+        this.state.beers.push(beer)
+      ))
+    ))
+  };  
 
   _logout(event) {
     event.preventDefault()
@@ -62,7 +86,7 @@ class App extends Component {
       console.log(response.data)
       if (response.status === 200) {
         this.setState({
-          loggedIn: false,
+          loggedIn: null,
           user: null
         })
         window.location = '/'
@@ -84,20 +108,22 @@ class App extends Component {
             loggedIn: true,
             user: response.data.user
           })
-          window.location = '/admin/' + response.data.user._id
+          console.log(response.data.user)
+          window.location = '/admin/' + response.data.user.breweryURL
         }
       })
   }
 
   render() {
+    this.loadBeers();
     return (
       <div className="App">
         {/* LINKS to our different 'pages' */}
       {/* <Route exact path="/" render={() => <LoginStatus user={this.state.user} />} /> */}
-        <DisplayLinks _logout={this._logout} loggedIn={this.state.loggedIn} id={this.state.id} brewery={this.state.brewery}/>
+        <DisplayLinks breweries={this.state.breweries} beers={this.state.beers} _logout={this._logout} loggedIn={this.state.loggedIn} id={this.state.id} brewery={this.state.brewery} breweryURL={this.state.breweryURL}/>
         {/*  ROUTES */}
         {/* <Route exact path="/" component={Home} /> */}
-        <Route exact path="/" render={() => <Home user={this.state.user} />} />
+        <Route exact path="/" render={() => <Home breweries={this.state.breweries} user={this.state.user} />} />
         <Route
           exact
           path="/login"
@@ -107,6 +133,8 @@ class App extends Component {
             />}
         />
         <Route exact path="/signup" component={SignUp} />
+        {console.log(this.state.breweries)}
+        {console.log(this.state.beers)}
         {/* <Login _login={this._login} /> */}
       </div>
     )
@@ -120,10 +148,10 @@ const DisplayLinks = props => {
     return (
       <Router>
       <div>
-        <Nav2 userLogout={props._logout} id={props.id} brewery={props.brewery} />
+        <Nav2 userLogout={props._logout} id={props.id} brewery={props.brewery} breweryURL={props.breweryURL}/>
         <Switch>
-          <Route exact path="/admin/:id" component={Breweries} />
-          <Route exact path="/breweries/:id" component={Detail} />
+          <Route exact path="/admin/:breweryURL" component={Breweries} />
+          <Route exact path="/breweries/:breweryURL" component={Detail} />
           {/*
           <Route exact path="/signup" component={SignUp} />
           <Route exact path="/login" component={Login} />
@@ -136,10 +164,10 @@ const DisplayLinks = props => {
     return (
     <Router>
       <div>
-        <Nav />
+        <Nav breweries={props.breweries} beers={props.beers}/>
         <Switch>
           <Route exact path="/breweries" component={Breweries} />
-          <Route exact path="/breweries/:id" component={Detail} />
+          <Route exact path="/breweries/:breweryURL" component={Detail} />
           {/*
           <Route exact path="/signup" component={SignUp} />
           <Route exact path="/login" component={Login} />

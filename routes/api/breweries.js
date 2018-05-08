@@ -8,7 +8,7 @@ router.route("/")
 
 // Matches with "/api/breweries/:id" 
 router
-  .route("/:id")
+  .route("/:breweryURL")
   .get(breweriesController.findById)
   .post(breweriesController.update)
   .delete(breweriesController.remove)

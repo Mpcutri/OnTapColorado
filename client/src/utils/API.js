@@ -7,8 +7,8 @@ export default {
     
   },
   // Gets the brewery with the given id
-  getBrewery: function(id) {
-    return axios.get("/api/breweries/" + id);
+  getBrewery: function(breweryURL) {
+    return axios.get("/api/breweries/" + breweryURL);
   },
 
   saveBrewery: function(breweryData) {
