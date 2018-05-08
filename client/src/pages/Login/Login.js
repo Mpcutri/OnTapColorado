@@ -75,8 +75,6 @@ class LoginForm extends Component {
 						<Button id="submitButton" onClick={this.handleSubmit}>Login</Button>
 					</form>
 
-<<<<<<< HEAD
-=======
 					<div>
 						{this.state.alert ? (
 								<Alert color="danger" style={{ marginTop: "10px" }}>
@@ -84,7 +82,7 @@ class LoginForm extends Component {
 					      		</Alert>
 		      			) : ("")}
       				</div>
->>>>>>> 2eefe9cc0a73031386905213c852abc72d4c01e0
+
 				</div>
 			)
 		}
