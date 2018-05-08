@@ -148,7 +148,7 @@ const DisplayLinks = props => {
     return (
       <Router>
       <div>
-        <Nav2 userLogout={props._logout} id={props.id} brewery={props.brewery} breweryURL={props.breweryURL}/>
+        <Nav2 breweries={props.breweries} beers={props.beers} userLogout={props._logout} id={props.id} brewery={props.brewery} breweryURL={props.breweryURL}/>
         <Switch>
           <Route exact path="/admin/:breweryURL" component={Breweries} />
           <Route exact path="/breweries/:breweryURL" component={Detail} />
