@@ -100,11 +100,6 @@ export default class Example extends React.Component {
             user: response.data.user
           })
           window.location = '/admin/' + response.data.user.breweryURL
-        } else if (response.status != 200) {
-          this.setState({
-            alert: true
-          })
-          console.log("dkfjdlfjdlkfjdlkfjdlkjfdlkjfdlkfjfdlkjfd")
         }
       })
   }

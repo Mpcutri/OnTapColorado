@@ -77,7 +77,7 @@ export default class Example extends React.Component {
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar pills>
               <NavItem>
-                <SearchBar className="search-bar"/>
+                <SearchBar breweries={this.props.breweries} beers={this.props.beers} className="search-bar"/>
               </NavItem>
               <UncontrolledDropdown nav inNavbar>
                 <DropdownToggle nav caret id="brewery-name">
