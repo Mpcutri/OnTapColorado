@@ -4,6 +4,7 @@ import logoImage from "./images/onTapColoradoFlag.png";
 import LoginStatus from "../../components/LoginStatus";
 import SearchBar from "../../components/SearchBar";
 import Background from "../../images/bobRossMountain.jpg";
+import ContactBtn from "../../components/ContactBtn";
 import Logo from "../../components/Logo";
 import API from "../../utils/API";
 import { Link } from "react-router-dom";
@@ -150,9 +151,13 @@ class Breweries extends Component {
         <Logo style={{position: "absolute"}} />
 
         <div id="scrollButton" style={{ position: "relative", zIndex: "5" }}>   
-          <ScrollToTop id="scroll-button" showUnder={160}>
+          <ScrollToTop id="scroll-button" showUnder={160} style={{ marginBottom: "70px"}}>
             <span style={{ backgroundColor: "rgba(136, 135, 135, 0.65)", padding: "20px", borderRadius: '10px' }}><img style={{ height: "20px", width: "20px" }} src={whiteArrow} /></span>
           </ScrollToTop>
+        </div>
+
+        <div id="contact-button-home">
+          <ContactBtn />
         </div>
 
         <div style={{ position: "relative" }}>
