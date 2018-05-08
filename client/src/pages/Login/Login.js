@@ -10,7 +10,8 @@ class LoginForm extends Component {
 		this.state = {
 			username: '',
 			password: '',
-			redirectTo: null
+			redirectTo: null,
+			alert: false
 		}
 		// this.googleSignin = this.googleSignin.bind(this)
 		this.handleSubmit = this.handleSubmit.bind(this)
@@ -68,6 +69,7 @@ class LoginForm extends Component {
 							<br />
 						<Button id="submitButton" onClick={this.handleSubmit}>Login</Button>
 					</form>
+
 				</div>
 			)
 		}
