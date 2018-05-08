@@ -3,6 +3,7 @@ import React, { Component } from 'react'
 import { Redirect } from 'react-router-dom'
 import { Button } from 'reactstrap';
 import "./Login.css";
+import { Alert } from 'reactstrap';
 
 class LoginForm extends Component {
 	constructor() {
@@ -10,7 +11,9 @@ class LoginForm extends Component {
 		this.state = {
 			username: '',
 			password: '',
-			redirectTo: null
+			redirectTo: null,
+			loggedIn: true,
+			alert: false
 		}
 		// this.googleSignin = this.googleSignin.bind(this)
 		this.handleSubmit = this.handleSubmit.bind(this)
@@ -27,9 +30,12 @@ class LoginForm extends Component {
 		event.preventDefault()
 		console.log('handleSubmit')
 		this.props._login(this.state.username, this.state.password)
-		// this.forceUpdate()
+		setTimeout(this.alertChange, 1200)
+	}
+
+	alertChange = () => {
 		this.setState({
-			redirectTo: '/'
+			alert: true
 		})
 	}
 
@@ -68,6 +74,14 @@ class LoginForm extends Component {
 							<br />
 						<Button id="submitButton" onClick={this.handleSubmit}>Login</Button>
 					</form>
+
+					<div>
+						{this.state.alert ? (
+								<Alert color="danger" style={{ marginTop: "10px" }}>
+					        		Incorrect username or password.
+					      		</Alert>
+		      			) : ("")}
+      				</div>
 				</div>
 			)
 		}
