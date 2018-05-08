@@ -1,7 +1,6 @@
 import React from "react";
 import Nav2Icon from "./images/ProfileIcon.png";
 import SearchBar from "../SearchBar";
-import "./Nav2.css";
 import onTapText from "../../images/onTap.png";
 import {
   Collapse,
@@ -15,6 +14,7 @@ import {
   DropdownToggle,
   DropdownMenu,
   DropdownItem } from 'reactstrap';
+import "./Nav2.css";
 
 // const BUTTONS = ['Default', 'Primary', 'Success', 'Info', 'Warning', 'Danger'];
 
@@ -80,7 +80,7 @@ export default class Example extends React.Component {
                 <SearchBar breweries={this.props.breweries} beers={this.props.beers} className="search-bar"/>
               </NavItem>
               <UncontrolledDropdown nav inNavbar>
-                <DropdownToggle nav caret>
+                <DropdownToggle nav caret id="brewery-name">
                   {this.props.brewery}
                 </DropdownToggle>
                 <DropdownMenu right>

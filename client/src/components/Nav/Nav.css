@@ -70,7 +70,7 @@ a.loginButton.nav-link.active:hover {
 }
 /*end login button*/
 
-.nav-link {
+#brewery-name {
   font-size: 30px;
 }
 
