@@ -11,6 +11,7 @@ import Nav from "./components/Nav";
 import SignUp from "./pages/SignUp";
 import Login from "./pages/Login";
 import Nav2 from "./components/Nav2";
+import Footer from "./components/Footer";
 import { Redirect } from 'react-router-dom';
 import "./pages/Home/Home.css";
 import API from "./utils/API";
@@ -136,6 +137,7 @@ class App extends Component {
         {console.log(this.state.breweries)}
         {console.log(this.state.beers)}
         {/* <Login _login={this._login} /> */}
+        <Footer />
       </div>
     )
   }
