@@ -152,7 +152,7 @@ class Breweries extends Component {
 
         <div id="scrollButton" style={{ position: "relative", zIndex: "5" }}>   
           <ScrollToTop id="scroll-button" showUnder={160} style={{ marginBottom: "70px"}}>
-            <span style={{ backgroundColor: "rgba(136, 135, 135, 0.65)", padding: "20px", borderRadius: '10px' }}><img style={{ height: "20px", width: "20px" }} src={whiteArrow} /></span>
+            <span style={{ backgroundColor: "rgba(136, 135, 135, 0.65)", padding: "20px", borderRadius: '10px' }}><img style={{ height: "25px", width: "25px" }} src={whiteArrow} /></span>
           </ScrollToTop>
         </div>
 
