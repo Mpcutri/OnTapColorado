@@ -133,7 +133,7 @@ class Detail extends Component {
       <Container centered>
         {/* Jumbotron */}
         <Row>
-          <Col size="md-12" style={{ marginTop: "30px" }}>
+          <Col size="md-12" style={{ marginTop: "30px", marginBottom: "30px" }}>
             <Jumbotron>
                   {/*jumbotron image needs to be dynamic to brewery info jumbo background upload*/}
               <Media>
