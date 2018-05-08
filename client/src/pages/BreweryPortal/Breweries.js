@@ -52,11 +52,13 @@ class Breweries extends Component {
       phone_number: null,
       onTap: false,
       modal: false,
+      modal1: false,
       backdrop: false,
       popoverOpen: false
     };
 
     this.toggle = this.toggle.bind(this);
+    this.toggleEditBeerModal = this.toggleEditBeerModal.bind(this);
     this.changeBackdrop = this.changeBackdrop.bind(this);
   }
 
@@ -73,10 +75,22 @@ class Breweries extends Component {
     });
   }
 
-  toggleEditBeerModal() {
+  toggleEditBeerModal(index) {
     this.setState({
-      modal1: !this.state.modal1
+      modal1: !this.state.modal1,
+      name: this.state.beers[index].name,
+      type: this.state.beers[index].type,
+      abv: this.state.beers[index].abv,
+      ibu: this.state.beers[index].ibu,
+      description: this.state.beers[index].description,
+      onTap: this.state.beers[index].onTap,
+      id: this.state.beers[index].id
     });
+  }
+
+  updateBeerArray(i) {
+
+      this.state.beers[i].name = this.state.name
   }
 
   // Gets called on Beer Form submit and updates DB with new form values
@@ -327,7 +341,7 @@ class Breweries extends Component {
                           <div>
                             <Button size="sm" onClick={() => this.deleteBeer(index)} >delete</Button>{' '}
                             <Button size="sm" onClick={() => this.toggleBeer(index)} >move</Button>{' '}
-                            <Button size="sm" onClick={() => this.updateBeer(index)} >edit</Button>{' '}
+                            <Button size="sm" onClick={() => this.toggleEditBeerModal(index)} >edit</Button>{' '}
                           </div>
                         <div>  
                         <Modal 
@@ -371,7 +385,7 @@ class Breweries extends Component {
                                 />
                                 <FormBtn
                                   disabled={!(this.state.name)}
-                                  onClick={this.handleBeerFormSubmit}
+                                  onClick={this.updateBeerArray}
                                 >
                                   Add/Update Beer
                                 </FormBtn>
@@ -405,7 +419,7 @@ class Breweries extends Component {
                           <div>
                             <Button size="sm" onClick={() => this.deleteBeer(index)} >delete</Button>{' '}
                             <Button size="sm" onClick={() => this.toggleBeer(index)} >move</Button>{' '}
-                            <Button size="sm" onClick={() => this.updateBeer(index)} >edit</Button>{' '}
+                            <Button size="sm" onClick={() => this.toggleEditBeerModal(index)} >edit</Button>{' '}
                           </div>
 
                         </Card>
