@@ -1,8 +1,12 @@
-.footer {
+.footer-background {
 	background: url(../../images/footerImage.png);
-	-webkit-background-size: cover;
-	-moz-background-size: cover;
-	-o-background-size: cover;
-	background-size: cover;
+	background-repeat: no-repeat;
+    background-size: cover;
 	height: 200px;
+	margin: auto;
+}
+
+.footer {
+	margin: auto;
+	background-color: black;
 }

@@ -310,7 +310,7 @@ class Breweries extends Component {
                 </Media>
 
                 <div>
-                  <i class="material-icons" onClick={this.toggle}>
+                  <i class="material-icons" onClick={this.toggle} style={{ cursor: "pointer" }}>
                     border_color
                   </i> 
                 </div>
@@ -383,7 +383,7 @@ class Breweries extends Component {
                 {console.log(this.state.currentBrewery)}
                 {console.log(this.state.beers)}
                 {this.state.beers.length ? (
-              <div>
+              <div style={{ marginBottom: "30px" }}>
               <span style={{fontSize: 24, color: "black"}}>Currently On Tap:</span>
                 {this.state.beers.map((beer, index) => (
                   beer.onTap ? (
