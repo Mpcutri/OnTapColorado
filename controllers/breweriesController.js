@@ -30,13 +30,16 @@ module.exports = {
       .catch(err => res.status(422).json(err));
   },
   update: function(req, res) {
-    console.log(req.params.id)
+    console.log(req.params)
+    console.log("above is hopefully req.params")
+    console.log(req.params.breweryURL)
     db.User
-      .findOneAndUpdate({ _id: req.params.id }, {$push:{ beer: req.body }})
+      .findOneAndUpdate({ breweryURL: req.params.breweryURL }, {$push:{ beer: req.body }})
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
   updateBrewery: function(req, res) {
+    console.log(req.params)
     console.log("reqbody: ", req.body)
     db.User
       .findOneAndUpdate({ _id: req.params.id }, {$set:{ beer: req.body }} )
