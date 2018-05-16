@@ -28,15 +28,11 @@ import { Card,
           Label, 
           Input, 
           FormText,
-          Media,
-          Popover, 
-          PopoverHeader, 
-          PopoverBody } from 'reactstrap';
+          Media } from 'reactstrap';
 
 class Breweries extends Component {
   constructor(props) {
     super(props);
-    this.togglePopOver = this.togglePopOver.bind(this);
     this.state = {
       currentBrewery: [],
       beers: [],
@@ -54,10 +50,11 @@ class Breweries extends Component {
       modal: false,
       modal1: false,
       backdrop: false,
+
       popoverOpen: false,
       newBeer: false
-    };
 
+    };
     this.toggle = this.toggle.bind(this);
     this.toggleEditBeerModal = this.toggleEditBeerModal.bind(this);
     this.updateBeerArray = this.updateBeerArray.bind(this);
@@ -71,6 +68,10 @@ class Breweries extends Component {
       modal: !this.state.modal
     });
   }
+
+
+  // Edit beer modal 
+   // Add beer may need new modal??
 
   togglePopOver() {
     this.setState({
@@ -97,7 +98,7 @@ class Breweries extends Component {
     }
   }
 
-  toggleNewBeerModal() {
+  toggleNewBeerModal (){
     this.setState({
       modal1: !this.state.modal1,
       name: null,
@@ -245,7 +246,7 @@ class Breweries extends Component {
         id: this.state.id
       })
         .then(res => this.loadBreweryInfo())
-        .catch(err => console.log(err));
+        .catch(err => console.log(err));  
     }
   };
 
@@ -316,6 +317,7 @@ class Breweries extends Component {
                 </div>
 
               </Media>
+{/*---------- Add/Update brewery info modal -----------*/}
               <Modal 
                 isOpen={this.state.modal} 
                 toggle={this.toggle} 
@@ -323,7 +325,6 @@ class Breweries extends Component {
                 backdrop={this.state.backdrop}>
                 <ModalHeader toggle={this.toggle}>Update your Brewery Information</ModalHeader>
                   <ModalBody>
-                  
                     <form>
                       <span style={{fontSize: 24, color: "black"}}>Brewery Name</span>
                       <Input
@@ -353,13 +354,13 @@ class Breweries extends Component {
                         name="phone_number"
                         placeholder="Phone Number"
                       />   
-
-                  {/*here goes the upload buttons*/}    
-                  {/*logo image upload*/}
-                  {/*jumbotron image upload*/}
-
+                    {/*upload profile/background picture button
+                        not wired up to DB but they do open users finder window*/}
+                      <div id="form-profilePic">Upload a profile picture</div>
+                      <Input type="file" name="file" id="exampleFile" />
+                      <div id="form-profilePic">Upload a background picture</div>
+                      <Input type="file" name="file" id="exampleFile" />
                     </form>
-
                   </ModalBody>
                 <ModalFooter>
                   <Button 
@@ -375,6 +376,7 @@ class Breweries extends Component {
         </Row>
       {/* End Jumbotron and Modal*/}
 {/*-------------------------------------------------------------*/}
+      {/*--Beer cards---------------------------*/}
       <div>
         <Row>
             <Col size="md-1"/>
@@ -383,8 +385,10 @@ class Breweries extends Component {
                 {console.log(this.state.currentBrewery)}
                 {console.log(this.state.beers)}
                 {this.state.beers.length ? (
+
               <div style={{ marginBottom: "30px" }}>
               <span style={{fontSize: 24, color: "black"}}>Currently On Tap:</span>
+
                 {this.state.beers.map((beer, index) => (
                   beer.onTap ? (
                       <CardDeck className="brewery-card">
@@ -392,12 +396,13 @@ class Breweries extends Component {
                           <CardTitle><h2 id="onTapCard-h2">{beer.name}</h2></CardTitle>
                           <CardSubtitle>{beer.type}</CardSubtitle>
                           <CardText id="card-abv">&#9659; ABV:{beer.abv} &#9659; IBU:{beer.ibu}</CardText>
-                          <div>
+                          <div> 
                             <Button size="sm" onClick={() => this.deleteBeer(index)} >delete</Button>{' '}
                             <Button size="sm" onClick={() => this.toggleBeer(index)} >move</Button>{' '}
                             <Button size="sm" onClick={() => this.toggleEditBeerModal(index)} >edit</Button>{' '}
                           </div>
                         <div>  
+{/* -----------Add/Update a beer modal---------------------------*/}
                         <Modal 
                             isOpen={this.state.modal1} 
                             toggle={this.toggleEditBeerModal} 
@@ -459,15 +464,13 @@ class Breweries extends Component {
               <h3>No Results to Display</h3>
               )}
               </div>
-              </Col>
-              
-              <Col size="md-5 sm-12">
+            </Col>
+            <Col size="md-5 sm-12">
               <div>
-              <span style={{fontSize: 24, color: "black"}}>Inventory Not on Tap:</span>
+              <span id="brew-list">Inventory:</span>
               <List>
                 {this.state.beers.map((beer, index) => (
-                  !beer.onTap ? (
-                      
+                  !beer.onTap ? (   
                       <CardDeck className="brewery-card">
                         <Card key={beer.name} id={index} body width="100%">
                           <CardTitle><h2 id="onTapCard-h2">{beer.name}</h2></CardTitle>
@@ -478,17 +481,13 @@ class Breweries extends Component {
                             <Button size="sm" onClick={() => this.toggleBeer(index)} >move</Button>{' '}
                             <Button size="sm" onClick={() => this.toggleEditBeerModal(index)} >edit</Button>{' '}
                           </div>
-
                         </Card>
                       </CardDeck>
-                   
                   ) : ("")
                 ))}
-                </List>
-                </div>
-            
-          </Col>
-          
+              </List>
+            </div> 
+          </Col>  
         </Row>
         <Button size="sm" onClick={() => this.toggleNewBeerModal()} >Add New Beer!</Button>
       </div>

@@ -1,6 +1,6 @@
 import React from "react";
 import Nav2Icon from "./images/ProfileIcon.png";
-import SearchBar from "../SearchBar";
+// import SearchBar from "../SearchBar";
 import onTapText from "../../images/onTap.png";
 import {
   Collapse,
@@ -76,9 +76,9 @@ export default class Example extends React.Component {
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar pills>
-              <NavItem>
+              {/*<NavItem>
                 <SearchBar breweries={this.props.breweries} beers={this.props.beers} className="search-bar"/>
-              </NavItem>
+              </NavItem>*/}
               <UncontrolledDropdown nav inNavbar>
                 <DropdownToggle nav caret id="brewery-name">
                   {this.props.brewery}
