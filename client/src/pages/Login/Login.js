@@ -82,6 +82,7 @@ class LoginForm extends Component {
 					      		</Alert>
 		      			) : ("")}
       				</div>
+
 				</div>
 			)
 		}

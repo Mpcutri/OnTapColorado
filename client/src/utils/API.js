@@ -15,9 +15,9 @@ export default {
     return axios.post("/api/breweries", breweryData);
   },
 
-  saveBeer: function(beerData) {
-    console.log(beerData)
-    return axios.post("/api/breweries/" + beerData.id, beerData);
+  saveBeer: function(beerData, breweryURL) {
+    console.log("BEER DATA: ")
+    return axios.post("/api/breweries/" + breweryURL, beerData);
   },
 
   //deletes a beer from the brewery array

@@ -1,0 +1,12 @@
+.footer-background {
+	background: url(../../images/footerImage.png);
+	background-repeat: no-repeat;
+    background-size: cover;
+	height: 200px;
+	margin: auto;
+}
+
+.footer {
+	margin: auto;
+	background-color: black;
+}

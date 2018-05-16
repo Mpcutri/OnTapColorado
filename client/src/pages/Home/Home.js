@@ -4,6 +4,7 @@ import logoImage from "./images/onTapColoradoFlag.png";
 import LoginStatus from "../../components/LoginStatus";
 import SearchBar from "../../components/SearchBar";
 import Background from "../../images/bobRossMountain.jpg";
+import ContactBtn from "../../components/ContactBtn";
 import Logo from "../../components/Logo";
 import API from "../../utils/API";
 import { Link } from "react-router-dom";
@@ -150,9 +151,13 @@ class Breweries extends Component {
         <Logo style={{position: "absolute"}} />
 
         <div id="scrollButton" style={{ position: "relative", zIndex: "5" }}>   
-          <ScrollToTop id="scroll-button" showUnder={160}>
-            <span style={{ backgroundColor: "rgba(136, 135, 135, 0.65)", padding: "20px", borderRadius: '10px' }}><img style={{ height: "20px", width: "20px" }} src={whiteArrow} /></span>
+          <ScrollToTop id="scroll-button" showUnder={160} style={{ marginBottom: "70px"}}>
+            <span style={{ backgroundColor: "rgba(136, 135, 135, 0.65)", padding: "20px", borderRadius: '10px' }}><img style={{ height: "25px", width: "25px" }} src={whiteArrow} /></span>
           </ScrollToTop>
+        </div>
+
+        <div id="contact-button-home">
+          <ContactBtn />
         </div>
 
         <div style={{ position: "relative" }}>
@@ -165,7 +170,7 @@ class Breweries extends Component {
           </Container>
         </div>
         <Container>
-          <Col size="md-6">
+          <Col size="md-12">
               {console.log(this.props.breweries)}
               {this.props.breweries.length ? (
                 <div className="brewery-list" style={style.breweryList}>
@@ -187,46 +192,7 @@ class Breweries extends Component {
                 <h3>No Results to Display</h3>
               )}
           </Col>
-
-          <Col size="md-6">
-            <div className="brewery-list" style={style.breweryList}>
-              <p>whatevewhatever
-              </p>
-            </div>
-          </Col>
         </Container>
-        <div className="listbackground">
-          <Container>
-            <Col size="md-6">
-                {console.log(this.state.breweries)}
-                {console.log(this.state.beers)}
-                {this.state.breweries.length ? (
-                  <div className="brewery-list" style={style.breweryList}>
-                    <List>
-                      {this.state.breweries.map(brewery => (
-                        <ListItem key={brewery._id}>
-                          <Link onClick={this.forceUpdate} to={"/breweries/" + brewery.brewery}>
-                            <strong>
-                              {brewery.brewery}
-                            </strong>
-                          </Link>
-                        </ListItem>
-                      ))}
-                    </List>
-                    
-                  </div>
-                ) : (
-                  <h3>No Results to Display</h3>
-                )}
-            </Col>
-            <Col size="md-6">
-              <div className="info-list" style={style.breweryList}>
-                <p>whatevewhatever
-                </p>
-              </div>
-            </Col>
-          </Container>
-        </div>
       </div>
     );
   }
