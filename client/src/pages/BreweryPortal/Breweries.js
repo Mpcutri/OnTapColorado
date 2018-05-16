@@ -319,6 +319,7 @@ class Breweries extends Component {
               </Media>
 {/*---------- Add/Update brewery info modal -----------*/}
               <Modal 
+
                 isOpen={this.state.modal} 
                 toggle={this.toggle} 
                 className={this.props.className} 
