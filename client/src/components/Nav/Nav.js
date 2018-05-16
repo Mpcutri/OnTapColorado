@@ -81,8 +81,7 @@ export default class Example extends React.Component {
 
   toggle() {
     this.setState({
-      modal: !this.state.modal,
-      isOpen: !this.state.isOpen
+      modal: !this.state.modal
     });
   }
 
@@ -112,9 +111,9 @@ export default class Example extends React.Component {
       <div className="navbarDiv">
         <Navbar color="light" light expand="md">
           <NavbarBrand className="homePage" style={style.homePage} href="/"><img id="logoImage" src={onTapText} /></NavbarBrand>
-          <Collapse isOpen={this.state.isOpen} navbar>
+
             <Nav className="ml-auto" navbar pills>
-              <NavItem>
+              <NavItem class="navSearchBar">
                 <SearchBar breweries={this.props.breweries} beers={this.props.beers} className="search-bar"/>
               </NavItem>
               <NavItem>
@@ -124,7 +123,7 @@ export default class Example extends React.Component {
                 <NavLink id="signUpLink" onClick={() => {this.setState({ signUp: true, modal: !this.state.modal }) }}>Sign up</NavLink>
               </NavItem>
             </Nav>
-          </Collapse>
+
         </Navbar>
       </div>
 

@@ -1,9 +1,8 @@
 import React, { Component } from "react";
 // import Jumbotron from "../../components/Jumbotron";
-import logoImage from "./images/onTapColoradoFlag.png";
+import Image from "./images/onTapColoradoFlag.png";
 import LoginStatus from "../../components/LoginStatus";
 import SearchBar from "../../components/SearchBar";
-import Background from "../../images/bobRossMountain.jpg";
 import ContactBtn from "../../components/ContactBtn";
 import Logo from "../../components/Logo";
 import API from "../../utils/API";
