@@ -22,7 +22,10 @@ h5.card-title {
 }*/
 .brewery-card .card-body {
 	padding: 10px;
-	margin: 10px;
+	margin-left: 20px;
+	margin-right: 20px;
+	margin-bottom: 2px;
+	margin-top: 2px;
 	border: .5px solid grey;
 	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
@@ -49,6 +52,16 @@ h5.card-title {
 .material-icons {
 	margin-top: 183px;
 	color: grey;
+}
+
+#form-profilePic {
+	margin-top: 10px;
+}
+
+#brew-list {
+	font-size: 24px; 
+	color: black;
+	margin-left: 8px
 }
 
 /*.brewery-card #card-title {

@@ -1,7 +1,7 @@
 import "./Nav.css";
 import $ from "jquery";
 import onTapText from "../../images/onTap.png";
-import SearchBar from "../SearchBar";
+// import SearchBar from "../SearchBar";
 import React from 'react';
 import axios from 'axios'
 import {
@@ -113,9 +113,10 @@ export default class Example extends React.Component {
           <NavbarBrand className="homePage" style={style.homePage} href="/"><img id="logoImage" src={onTapText} /></NavbarBrand>
 
             <Nav className="ml-auto" navbar pills>
+            {/*}
               <NavItem class="navSearchBar">
                 <SearchBar breweries={this.props.breweries} beers={this.props.beers} className="search-bar"/>
-              </NavItem>
+              </NavItem> */}
               <NavItem>
                 <NavLink className="loginButton" onClick={this.toggle} active style={style.loginButton}>Login</NavLink>
               </NavItem>
