@@ -178,3 +178,37 @@ label:hover {
   display: inline-block;
 }
 
+@media screen and (max-width: 768px) {
+  #wrap {
+    display: none;
+  }
+  #click-me-button {
+    display: none;
+  }
+  .loginButton .nav-link {
+    display: inline-block;
+  }
+  #signUpLink {
+    display: none;
+  }
+  #logo-image {
+    max-height: 25vh;
+  }
+  .loginText {
+    cursor: pointer;
+  }
+  .signupText {
+    cursor: pointer;
+  }
+  .navbar {
+    background: white; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+  }
+  .logoContainer {
+    max-height: 50vh;
+  }
+}
+

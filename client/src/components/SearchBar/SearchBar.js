@@ -74,7 +74,7 @@ export default class SearchBar extends React.Component {
 			    </form>
 
 			  </div>
-			  <button onClick={this.searchBeers}>CLICK ME!!</button>
+			  <button id="click-me-button" onClick={this.searchBeers}>CLICK ME!!</button>
 			  </div>
 			);
 		}
