@@ -98,7 +98,7 @@ class Breweries extends Component {
     }
   }
 
-
+  toggleNewBeerModal (){
     this.setState({
       modal1: !this.state.modal1,
       name: null,
@@ -396,7 +396,7 @@ class Breweries extends Component {
                           <CardTitle><h2 id="onTapCard-h2">{beer.name}</h2></CardTitle>
                           <CardSubtitle>{beer.type}</CardSubtitle>
                           <CardText id="card-abv">&#9659; ABV:{beer.abv} &#9659; IBU:{beer.ibu}</CardText>
-                          <div>
+                          <div> 
                             <Button size="sm" onClick={() => this.deleteBeer(index)} >delete</Button>{' '}
                             <Button size="sm" onClick={() => this.toggleBeer(index)} >move</Button>{' '}
                             <Button size="sm" onClick={() => this.toggleEditBeerModal(index)} >edit</Button>{' '}
