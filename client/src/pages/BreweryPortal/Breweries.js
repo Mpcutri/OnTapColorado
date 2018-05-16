@@ -61,6 +61,8 @@ class Breweries extends Component {
     });
   }
 
+  // Edit beer modal 
+   // Add beer may need new modal??
   toggleEditBeerModal() {
     this.setState({
       modal1: !this.state.modal1
@@ -123,11 +125,11 @@ class Breweries extends Component {
       onTap: this.state.beers[index].onTap,
       id: this.state.beers[index].id
     });
-    // this.state.beers.splice(index, 1)
-    // console.log(this.state.beers)
-    // API.deleteBeer({ id: this.state.id}, this.state.beers)
-    //   .then(res => this.loadBreweryInfo())
-    //   .catch(err => console.log(err));
+    this.state.beers.splice(index, 1)
+    console.log(this.state.beers)
+    API.deleteBeer({ id: this.state.id}, this.state.beers)
+      .then(res => this.loadBreweryInfo())
+      .catch(err => console.log(err));
   };
 
   // Obvious
@@ -295,6 +297,7 @@ class Breweries extends Component {
         </Row>
       {/* End Jumbotron and Modal*/}
 {/*-------------------------------------------------------------*/}
+      {/*--Beer cards---------------------------*/}
       <div>
         <Row>
             <Col size="md-1"/>
@@ -318,7 +321,7 @@ class Breweries extends Component {
                             <Button size="sm" onClick={() => this.updateBeer(index)} >edit</Button>{' '}
                           </div>
                         <div>  
-                      {/* Add/Update a beer modal */}
+{/* -----------Add/Update a beer modal---------------------------*/}
                         <Modal 
                             isOpen={this.state.modal1} 
                             toggle={this.toggleEditBeerModal} 
