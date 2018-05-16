@@ -90,11 +90,11 @@ class Detail extends Component {
   } 
 
   // Web link to brewery in jumbotron
-  handleClick = (e) => {
-    e.preventDefault();
-    window.location = this.state.brewery.website;
-    console.log('Link to brewery URL clicked on Details');
-  }
+    handleClick = (e) => {
+      e.preventDefault();
+      window.location = this.state.brewery.website;
+      console.log('Link to brewery URL clicked on Details');
+    }
   // // Gets called each time a text field is entered or changed and sets the state to the new value
   // handleInputChange = event => {
   //   const { name, value } = event.target;
