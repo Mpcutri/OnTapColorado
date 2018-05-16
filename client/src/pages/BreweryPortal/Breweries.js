@@ -467,8 +467,7 @@ class Breweries extends Component {
             </Col>
             <Col size="md-5 sm-12">
               <div>
-              <span id="brew-list">Inventory:</span>
-              <List>
+              <span id="brew-list">Inventory:<Button style={{ float: 'right', marginRight: 5 }}size="sm" onClick={() => this.toggleNewBeerModal()} >Add New Beer!</Button></span>
                 {this.state.beers.map((beer, index) => (
                   !beer.onTap ? (   
                       <CardDeck className="brewery-card">
@@ -485,11 +484,9 @@ class Breweries extends Component {
                       </CardDeck>
                   ) : ("")
                 ))}
-              </List>
             </div> 
           </Col>  
         </Row>
-        <Button size="sm" onClick={() => this.toggleNewBeerModal()} >Add New Beer!</Button>
       </div>
 {/*-------------------------------------------------------------*/}
       </Container>
