@@ -5,6 +5,7 @@ import { Button } from 'reactstrap';
 import "./Login.css";
 import { Alert } from 'reactstrap';
 
+
 class LoginForm extends Component {
 	constructor() {
 		super()
@@ -32,6 +33,14 @@ class LoginForm extends Component {
 		this.props._login(this.state.username, this.state.password)
 		setTimeout(this.alertChange, 1200)
 	}
+
+	handleEnter(event) {
+		if (event.keyCode === 13) {
+			event.preventDefault()
+			this.props._login(this.state.username, this.state.password)
+			setTimeout(this.alertChange, 1200)
+    	}
+  	}
 
 	alertChange = () => {
 		this.setState({
@@ -69,6 +78,7 @@ class LoginForm extends Component {
 							value={this.state.password}
 							onChange={this.handleChange}
 							placeholder=". . ."
+							onKeyPress={this.handleTest}
 						/>
 							<br />
 							<br />
