@@ -250,7 +250,7 @@ class Breweries extends Component {
     }
   };
 
-  // Gets called on Brewery Form (inside modal) submit and updates DB with new form values
+  // Gets called on Brewery protal - Brewery edit button is clicked and changes are made, submits and updates DB with new form values
   handleBreweryFormSubmit = event => {
     event.preventDefault();
     this.toggle();
@@ -319,7 +319,6 @@ class Breweries extends Component {
               </Media>
 {/*---------- Add/Update brewery info modal -----------*/}
               <Modal 
-
                 isOpen={this.state.modal} 
                 toggle={this.toggle} 
                 className={this.props.className} 
