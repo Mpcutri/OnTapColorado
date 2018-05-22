@@ -250,7 +250,7 @@ class Breweries extends Component {
     }
   };
 
-  // Gets called on Brewery Form (inside modal) submit and updates DB with new form values
+  // Gets called on Brewery protal - Brewery edit button is clicked and changes are made, submits and updates DB with new form values
   handleBreweryFormSubmit = event => {
     event.preventDefault();
     this.toggle();
@@ -265,6 +265,7 @@ class Breweries extends Component {
       .catch(err => console.log(err));
     };
 
+  // Brewery website link
   handleClick = (e) => {
     e.preventDefault();
     window.location = this.state.brewery.website;

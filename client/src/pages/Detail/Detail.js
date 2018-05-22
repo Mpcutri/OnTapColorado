@@ -169,8 +169,8 @@ class Detail extends Component {
               <CardDeck className="detail-card">
                   {this.state.beers.map(beer => (           
                     <Col size="sm-12 md-6 lg-6">
-                    {beer.onTap ? ( 
-                      <Card size="col-sm-12 col-md-12 col-lg-6" key={beer._id}>
+                    {beer.onTap ? (
+                      <Card size="col-sm-12 col-md-12 col-lg-6" key={beer._id} id="card-width">
                       {/* commented out until made dynamic to image upload on brewery edit button
                             and not even sure it should be here at all. Maybe a circular icon size image like twitter instead.
                         <CardImg top width="100%" src="https://www.drinkpreneur.com/wp-content/uploads/2017/04/drinkpreneur_2016-01-26-1453821995-8643361-beermain.jpg" alt="Card image cap" />
