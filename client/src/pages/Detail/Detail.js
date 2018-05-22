@@ -167,9 +167,9 @@ class Detail extends Component {
             </article>
             {this.state.beers.length ? (
               <CardDeck className="detail-card">
-                  {this.state.beers.map(beer => (                     
+                  {this.state.beers.map(beer => (           
                     <Col size="sm-12 md-6 lg-6">
-
+                    {beer.onTap ? (
                       <Card size="col-sm-12 col-md-12 col-lg-6" key={beer._id} id="card-width">
                       {/* commented out until made dynamic to image upload on brewery edit button
                             and not even sure it should be here at all. Maybe a circular icon size image like twitter instead.
@@ -250,6 +250,7 @@ class Detail extends Component {
                           </Modal>
                         </CardBody>
                       </Card>
+                      ) : ("")}
                     </Col>
                   ))}
               </CardDeck>
