@@ -29,7 +29,7 @@ import whiteArrow from "../../images/whiteArrow.png";
 import Flag from "../../images/blurryFlag.png";
 // import ReactCursorPosition from 'react-cursor-position';
 // import brewMark from "./markers.js";
-import {SectionsContainer, Section} from 'react-fullpage';
+// import {SectionsContainer, Section} from 'react-fullpage';
 
 
 const style = {
