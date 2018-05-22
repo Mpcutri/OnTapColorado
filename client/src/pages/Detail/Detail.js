@@ -124,17 +124,6 @@ class Detail extends Component {
         <Row>
           <Col size="md-12" style={{ marginTop: "30px", marginBottom: "30px" }}>
             <Jumbotron>
-              <div class="LI-profile-badge"  
-                data-version="v1" 
-                data-size="medium" 
-                data-locale="en_US" 
-                data-type="horizontal" 
-                data-theme="dark" 
-                data-vanity="ian-nowicki">
-                <a class="LI-simple-link" 
-                  href='https://www.linkedin.com/in/ian-nowicki?trk=profile-badge'>Ian Nowicki
-                </a>
-              </div>
                   {/*jumbotron image needs to be dynamic to brewery info jumbo background upload*/}
               <Media>
                 <Media left href="#">
@@ -181,7 +170,7 @@ class Detail extends Component {
                   {this.state.beers.map(beer => (                     
                     <Col size="sm-12 md-6 lg-6">
 
-                      <Card size="col-sm-12 col-md-12 col-lg-6" key={beer._id}>
+                      <Card size="col-sm-12 col-md-12 col-lg-6" key={beer._id} id="card-width">
                       {/* commented out until made dynamic to image upload on brewery edit button
                             and not even sure it should be here at all. Maybe a circular icon size image like twitter instead.
                         <CardImg top width="100%" src="https://www.drinkpreneur.com/wp-content/uploads/2017/04/drinkpreneur_2016-01-26-1453821995-8643361-beermain.jpg" alt="Card image cap" />

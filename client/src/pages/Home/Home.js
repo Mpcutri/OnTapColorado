@@ -122,7 +122,7 @@ class Breweries extends Component {
       withScriptjs,
       withGoogleMap
     )(props => (
-      <div>
+      <div id="map-scroll">
       <GoogleMap defaultZoom={13} defaultCenter={{ lat: 39.7393, lng: -104.9848 }}>
         {props.isMarkerShown && (
           <div>

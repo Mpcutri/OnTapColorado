@@ -40,6 +40,10 @@ img.media-left {
 	padding-bottom: 0px;
 	border-radius: 5px;
 }*/
+.detail-card {
+	padding-left: 05px;
+	padding-right: 05px;
+}
 
 .detail-card .card-body {
 	padding-top: 05px;
@@ -98,6 +102,10 @@ div.col-sm-3 {
 
 @media screen and (max-width: 768px) {
 
+}
+
+#card-width {
+	padding: 0px;
 }
 
 
