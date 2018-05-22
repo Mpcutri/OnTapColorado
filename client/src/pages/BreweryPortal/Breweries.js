@@ -265,6 +265,7 @@ class Breweries extends Component {
       .catch(err => console.log(err));
     };
 
+  // Brewery website link
   handleClick = (e) => {
     e.preventDefault();
     window.location = this.state.brewery.website;
