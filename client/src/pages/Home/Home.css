@@ -37,3 +37,9 @@
   background: url(../../images/blurryFlag.png) no-repeat center center fixed;
   background-size: cover;
 }
+
+.map-scroll {
+  -webkit-scroll-snap-type: mandatory;
+  -webkit-scroll-snap-destination: 50% 50%;
+}
+

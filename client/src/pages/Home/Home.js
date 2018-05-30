@@ -3,7 +3,7 @@ import React, { Component } from "react";
 import logoImage from "./images/onTapColoradoFlag.png";
 import LoginStatus from "../../components/LoginStatus";
 import SearchBar from "../../components/SearchBar";
-import Background from "../../images/bobRossMountain.jpg";
+// import Background from "../../images/bobRossMountain.jpg";
 import ContactBtn from "../../components/ContactBtn";
 import Logo from "../../components/Logo";
 import API from "../../utils/API";
@@ -29,11 +29,12 @@ import whiteArrow from "../../images/whiteArrow.png";
 import Flag from "../../images/blurryFlag.png";
 // import ReactCursorPosition from 'react-cursor-position';
 // import brewMark from "./markers.js";
+// import {SectionsContainer, Section} from 'react-fullpage';
 
 
 const style = {
   breweryList: {
-    border: 'solid',
+    // border: 'solid',
     position: "relative", 
     marginBottom: "30px",
     marginTop: "30px"
@@ -121,6 +122,7 @@ class Breweries extends Component {
       withScriptjs,
       withGoogleMap
     )(props => (
+      <div id="map-scroll">
       <GoogleMap defaultZoom={13} defaultCenter={{ lat: 39.7393, lng: -104.9848 }}>
         {props.isMarkerShown && (
           <div>
@@ -145,6 +147,7 @@ class Breweries extends Component {
           </div>
         )}
       </GoogleMap>
+      </div>
     ));
     return (
       <div>
@@ -169,9 +172,10 @@ class Breweries extends Component {
          
           </Container>
         </div>
+
         <Container>
           <Col size="md-12">
-              {console.log(this.props.breweries)}
+            {console.log(this.props.breweries)}
               {this.props.breweries.length ? (
                 <div className="brewery-list" style={style.breweryList}>
                   <List>
@@ -193,6 +197,7 @@ class Breweries extends Component {
               )}
           </Col>
         </Container>
+
       </div>
     );
   }

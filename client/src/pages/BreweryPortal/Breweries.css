@@ -68,3 +68,14 @@ h5.card-title {
 	color: blue;
 }*/
 
+/*.ReactModal__Overlay
+{
+  overflow: auto;
+}
+
+.ReactModal__Body--open
+{
+    height: 100%;
+    overflow: hidden;
+}*/
+
