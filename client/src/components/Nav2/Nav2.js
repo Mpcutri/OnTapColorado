@@ -1,7 +1,7 @@
 import React from "react";
 import Nav2Icon from "./images/ProfileIcon.png";
 // import SearchBar from "../SearchBar";
-import onTapText from "../../images/onTap.png";
+import onTapText from "../../images/onTapWhiteText.png";
 import {
   Collapse,
   Navbar,

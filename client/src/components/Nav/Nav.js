@@ -1,6 +1,6 @@
 import "./Nav.css";
 import $ from "jquery";
-import onTapText from "../../images/onTap.png";
+import onTapText from "../../images/onTapWhiteText.png";
 // import SearchBar from "../SearchBar";
 import React from 'react';
 import axios from 'axios'
