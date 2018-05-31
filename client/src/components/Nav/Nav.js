@@ -131,11 +131,11 @@ export default class Example extends React.Component {
       <div id="login-modal">
         <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
           <ModalHeader toggle={this.toggle}>
-            <span className="loginText" onClick={() => {this.setState({ signUp: false }) }}>
+            <span className={ !this.state.signUp ? "underlinedText" : "noUnderline" } onClick={() => {this.setState({ signUp: false }) }}>
               Log in
             </span>
               {'  |  '}
-            <span className="signupText" onClick={() => {this.setState({ signUp: true }) }}>
+            <span className={ this.state.signUp ? "underlinedText" : "noUnderline" } onClick={() => {this.setState({ signUp: true }) }}>
               Sign up
             </span>
           <div></div>

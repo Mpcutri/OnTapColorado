@@ -1,8 +1,8 @@
-.LoginForm {
+.SignUpForm {
 	text-align: center;
 }
 
-.LoginForm input {
+.SignUpForm input {
 	text-align: center;
 	border: none;
 	border-bottom: solid;
@@ -13,7 +13,7 @@
     transition: width .5s;
 }
 
-.LoginForm input:focus {
+.SignUpForm input:focus {
 	border: none;
 	border-bottom: solid;
 	border-width: 2px;
@@ -37,6 +37,6 @@ label:focus,
     outline:0px !important;
 }
 
-#submitButton {
+#signUpSubmit-button {
 	background-color: #002968;
 }
