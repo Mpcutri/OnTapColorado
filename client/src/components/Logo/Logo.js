@@ -11,7 +11,7 @@ const Logo = () => (
 	  
 	  <div className="logoContainer">
 	  	<section id="text-background">
-	   		<img id="logo-image" src={logoImage} style={{ margin: "auto"}}/>
+	   		{/* <img id="logo-image" src={logoImage} style={{ margin: "auto"}}/> */}
 	   	</section>
 	  </div>
 
