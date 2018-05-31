@@ -3,13 +3,39 @@ a:hover {
   /*background-color: purple;*/
 }
 
-.loginText {
+.underlinedText {
   cursor: pointer;
+  display: inline-block;
 }
 
-.signupText {
-  cursor: pointer;
+.underlinedText:after {
+  content: '';
+  width: 0px;
+  height: 1px;
+  display: block;
+  background: black;
+  transition: 300ms;
+  width: 100%;
 }
+
+.noUnderline {
+  cursor: pointer;
+  display: inline-block;
+}
+
+.noUnderline:after {
+  content: '';
+  width: 0px;
+  height: 1px;
+  display: block;
+  background: black;
+  transition: 300ms;
+}
+
+.noUnderline:hover:after {
+  width: 100%;
+}
+
 
 #signUpLink {
   color: #2b2b2b;

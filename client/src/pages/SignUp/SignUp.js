@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import axios from 'axios'
-import { Redirect } from 'react-router-dom'
+import { Redirect } from 'react-router-dom';
+import { Button } from 'reactstrap';
+import "./SignUp.css";
 import { Alert } from 'reactstrap';
 
 class SignupForm extends Component {
@@ -62,37 +64,52 @@ class SignupForm extends Component {
 		}
 		return (
 		<div>
-			<div className="SignupForm">
-				<h1>Signup form</h1>
-				<label htmlFor="brewery">Brewery Name: </label>
-					<input
-						type="text"
-						name="brewery"
-						value={this.state.brewery}
-						onChange={this.handleChange}
-					/>
-				<label htmlFor="username">Username: </label>
+			<div className="SignUpForm">
+				<label htmlFor="brewery">Brewery Name</label>
+					<br />
+				<input
+					type="text"
+					name="brewery"
+					value={this.state.brewery}
+					placeholder=". . ."
+					onChange={this.handleChange}
+				/>
+					<br />
+					<br />
+				<label htmlFor="username">Username</label>
+					<br />
 				<input
 					type="text"
 					name="username"
 					value={this.state.username}
+					placeholder=". . ."
 					onChange={this.handleChange}
 				/>
-				<label htmlFor="password">Password: </label>
+					<br />
+					<br />
+				<label htmlFor="password">Password</label>
+					<br />
 				<input
 					type="password"
 					name="password"
 					value={this.state.password}
+					placeholder=". . ."
 					onChange={this.handleChange}
 				/>
-				<label htmlFor="confirmPassword">Confirm Password: </label>
+					<br />
+					<br />
+				<label htmlFor="confirmPassword">Confirm Password</label>
+					<br />
 				<input
 					type="password"
 					name="confirmPassword"
 					value={this.state.confirmPassword}
+					placeholder=". . ."
 					onChange={this.handleChange}
 				/>
-				<button onClick={this.handleSubmit}>Sign up</button>
+					<br />
+					<br />
+				<Button id="signUpSubmit-button" onClick={this.handleSubmit}>Sign up</Button>
 			</div>
 
 			<div>

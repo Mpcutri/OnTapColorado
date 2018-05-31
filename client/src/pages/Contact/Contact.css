@@ -1,0 +1,42 @@
+#subjectText {
+	height: 35px;
+	border-bottom-right-radius: 0px;
+	border-bottom-left-radius: 0px;
+}
+
+.contactInputText {
+	display: inline-block;
+	border: none;
+	transition: all 1s ease-in;
+}
+
+.contactInputText:focus {
+	border-bottom: solid;
+	border-bottom-width: 2px;
+	width: 90%;
+}
+
+#messageText {
+	border-top-right-radius: 0px;
+	border-top-left-radius: 0px;
+}
+
+textarea:hover, 
+input:hover, 
+textarea:active, 
+input:active, 
+textarea:focus, 
+input:focus,
+button:focus,
+button:active,
+button:hover,
+label:focus,
+.btn:active,
+.btn.active
+{
+    outline:0px !important;
+}
+
+.contactForm input {
+	margin-left: 1rem;
+}
