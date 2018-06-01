@@ -163,7 +163,7 @@ class Detail extends Component {
         <Row>
           <Col size="md-12">
             <article id="beerList-header">
-              <h1>On Tap Right Now!!!</h1>
+              <h1>On Tap Right Now:</h1>
             </article>
             {this.state.beers.length ? (
               <CardDeck className="detail-card">
