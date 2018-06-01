@@ -33,6 +33,12 @@
   box-shadow: 0 0 100px 0 rgba(0,0,0,1);
 }
 
+#editMapElement {
+    -webkit-box-shadow: 0 0 50px 0 rgba(0,0,0,1);
+    box-shadow: 0 0 25px 0 rgba(0,0,0,1);
+    border-radius: 5px;
+}
+
 .listbackground {
   background: url(../../images/blurryFlag.png) no-repeat center center fixed;
   background-size: cover;
@@ -43,3 +49,14 @@
   -webkit-scroll-snap-destination: 50% 50%;
 }
 
+#breweryList {
+  margin-right: 10px;
+}
+
+#breweryInfo {
+  background-color: white;
+  margin-top: 30px;
+  height: 545px;
+  padding: 12px 20px;
+  margin-left: 10px;
+}
