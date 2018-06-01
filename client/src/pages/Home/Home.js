@@ -27,6 +27,9 @@ import { Button } from 'reactstrap';
 import ScrollToTop from "react-scroll-up";
 import whiteArrow from "../../images/whiteArrow.png";
 import Flag from "../../images/blurryFlag.png";
+import Fade from 'react-reveal/Fade';
+import Flip from 'react-reveal/Flip';
+
 // import ReactCursorPosition from 'react-cursor-position';
 // import brewMark from "./markers.js";
 // import {SectionsContainer, Section} from 'react-fullpage';
@@ -101,7 +104,7 @@ class Breweries extends Component {
         "https://maps.googleapis.com/maps/api/js?key=AIzaSyA3o7dy50LdekZi5WmxFMHbVK690D3KeKQ&v=3.exp&libraries=geometry,drawing,places",
         loadingElement: <div style={{ height: `95%` }} />,
         containerElement: <div style={{ height: `700px` }} />,
-        mapElement: <div style={{ height: `95%` }} />
+        mapElement: <div id="editMapElement" style={{ height: `95%` }} />
       }),   
       withHandlers({
         onMarkerClick: () => (marker) => {
@@ -111,7 +114,7 @@ class Breweries extends Component {
         },
         showInfo: () => (marker) => {
           $("#infoBox").show()
-          $("#infoBox").css({ backgroundColor: `white`, color: "black", padding: `12px`, position: "absolute", left: "60%", bottom: "40%"})
+          $("#infoBox").css({ backgroundColor: `white`, color: "black", padding: `12px`, position: `absolute`, left: `60%`, bottom: `40%`})
           $("#infoText").text(marker.brewery)
         },
         hideInfo: () => (marker) => {
@@ -150,7 +153,7 @@ class Breweries extends Component {
       </div>
     ));
     return (
-      <div>
+      <div style={{}}>
         <Logo style={{position: "absolute"}} />
 
         <div id="scrollButton" style={{ position: "relative", zIndex: "5" }}>   
@@ -163,40 +166,65 @@ class Breweries extends Component {
           <ContactBtn />
         </div>
 
-        <div style={{ position: "relative" }}>
-          <Container>
-            
+        <div id="homeDivider" style={{ width: "100%", backgroundColor: "white", height: "20px" }}>
+        </div>
+
+        <div style={{ position: "relative", backgroundColor: "white" }}>
+
+          <Fade left>
+            <h1 id="mapText" style={{ marginLeft: "10%", fontWeight: "700" }}>Find A Brewery Near You</h1>
+          </Fade>
+
+
+          <Fade bottom>
+            <Container>
                 <div id="map" style={{ position: "relative", marginTop: "30px" }}>
                   <MyMapComponent isMarkerShown />
                 </div>
-         
-          </Container>
+            </Container>
+          </Fade>
+
         </div>
 
+        <Fade bottom>
         <Container>
-          <Col size="md-12">
-            {console.log(this.props.breweries)}
-              {this.props.breweries.length ? (
-                <div className="brewery-list" style={style.breweryList}>
-                  <List>
-                    {this.props.breweries.map(brewery => (
-                      brewery.position ? (
-                        <ListItem key={brewery._id}>
-                          <Link onClick={this.forceUpdate} to={"/breweries/" + brewery.breweryURL}>
-                            <strong>
-                              {brewery.brewery}
-                            </strong>
-                          </Link>
-                        </ListItem>
-                      ) : ("")
-                    ))}
-                  </List>
-                </div>
-              ) : (
-                <h3>No Results to Display</h3>
-              )}
-          </Col>
+
+        <Row id="breweryRow">
+
+            <Col size="md-6" style={{marginRight: "10px"}}>
+              {console.log(this.props.breweries)}
+                {this.props.breweries.length ? (
+                  <div id="breweryList" style={style.breweryList}>
+                    <List>
+                      {this.props.breweries.map(brewery => (
+                        brewery.position ? (
+                          <ListItem key={brewery._id}>
+                            <Link onClick={this.forceUpdate} to={"/breweries/" + brewery.breweryURL}>
+                              <strong>
+                                {brewery.brewery}
+                              </strong>
+                            </Link>
+                          </ListItem>
+                        ) : ("")
+                      ))}
+                    </List>
+                  </div>
+                ) : (
+                  <h3>No Results to Display</h3>
+                )}
+            </Col>
+
+
+            <Col size="md-6" style={{marginLeft: "10px"}}>
+              <p id="breweryInfo">
+                TESTING
+              </p>
+            </Col>
+
+        </Row>
+
         </Container>
+        </Fade>
 
       </div>
     );
