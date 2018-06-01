@@ -62,6 +62,7 @@ class Breweries extends Component {
       breweries: [],
       beers: [],
       types: [],
+      breweryHover: "",
       position: {
         x: 0,
         y: 0
@@ -95,6 +96,12 @@ class Breweries extends Component {
       [name]: value
     });
   };
+
+  showBreweryInfo = () => {
+    this.setState({
+      breweryHover: "F Yeah!"
+    })
+  }
 
   render() {
     this.loadBeers();
@@ -199,7 +206,7 @@ class Breweries extends Component {
                       {this.props.breweries.map(brewery => (
                         brewery.position ? (
                           <ListItem key={brewery._id}>
-                            <Link onClick={this.forceUpdate} to={"/breweries/" + brewery.breweryURL}>
+                            <Link onMouseOver={this.showBreweryInfo.bind(this, brewery)} onClick={this.forceUpdate} to={"/breweries/" + brewery.breweryURL}>
                               <strong>
                                 {brewery.brewery}
                               </strong>
@@ -217,7 +224,7 @@ class Breweries extends Component {
 
             <Col size="md-6" style={{marginLeft: "10px"}}>
               <p id="breweryInfo">
-                TESTING
+                {this.state.breweryHover}
               </p>
             </Col>
 
