@@ -91,7 +91,7 @@ class ContactBtn extends React.Component {
 
             <ModalBody style={style.footerText}>
               <h6>
-                Don't have an account? <a style={{ color: "blue" }} onClick={() => {this.setState({ signUp: true }) }}>Sign up today!</a>
+                Garunteed response within the next 48 hours.
               </h6>
             </ModalBody>
           </div>
